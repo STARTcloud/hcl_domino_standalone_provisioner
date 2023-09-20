@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.23](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.22...hcl_domino_standalone_provisioner/v0.1.23) (2023-09-20)
+
+
+### Bug Fixes
+
+* template sample hosts.yml ([d81d1a4](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/d81d1a4bda5e79e3fe9f737d4d52c819296a2d79))
+* update provisioner ([adf72b0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/adf72b032d8a01ab51f10ebcb9f62d1a24fdeb24))
+
 ## [0.1.22](https://github.com/DominoVagrant/demo-tasks/compare/demo-tasks/v0.1.21...demo-tasks/v0.1.22) (2023-09-20)
 
 
