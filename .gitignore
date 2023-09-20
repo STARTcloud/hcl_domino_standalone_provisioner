@@ -1,0 +1,40 @@
+## Don't Save Secrets That pertain to Secure details
+.secrets.yml
+
+## Don't Save Log Files
+*.log
+
+# Don't Include Vagrant support files
+.vagrant
+
+# Don't include your ID Files!
+safe-id-to-cross-certify/*.ids
+safe-id-to-cross-certify/*.id
+safe-id-to-cross-certify/*.IDS
+safe-id-to-cross-certify/*.ID
+*.IDS
+*.ID
+*.id
+*.ids
+SAFE.IDS
+
+# Build Files to Ignore
+.DS_Store
+*.swp
+.classpath
+.project
+.settings/
+.gradle/
+build/
+test_files/
+*/Hosts.template.yml
+
+*/installers/*/archives/*.tar.xz
+*/installers/*/archives/*.tar.gz
+*/installers/*/archives/*.tar
+*/installers/*/archives/*.zip
+*/installers/*/archives/*.gz
+*/installers/*/archives/*.tgz
+
+## Ignore Roles
+hcl_domino_standalone_provisioner/provisioners/ansible/roles/
