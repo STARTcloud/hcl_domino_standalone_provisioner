@@ -5,12 +5,12 @@
             "release-type": "ruby",
             "bump-minor-pre-major": true,
             "bump-patch-for-minor-pre-major": true,
-            "package-name": "demo-tasks",
+            "package-name": "hcl_domino_standalone_provisioner",
             "draft": false,
-            "version-file": "demo-tasks/core/version.rb",
+            "version-file": "hcl_domino_standalone_provisioner/version.rb",
             "prerelease": false,
             "default-branch" : "main",
-            "component": "demo-tasks"
+            "component": "hcl_domino_standalone_provisioner"
         }
     },
     "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"

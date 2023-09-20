@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  app_name: demo-tasks
+  app_name: hcl_domino_standalone_provisioner
   suffix: ''
 
 jobs:
@@ -22,10 +22,10 @@ jobs:
         with:
           command: manifest
           default-branch: main
-          package-name: demo-tasks
+          package-name: "${{ env.app_name }}"
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
-          version-file: "demo-tasks/core/version.rb"
+          version-file: "${{ env.app_name }}/version.rb"
 
       - 
         name: "Checking out code"

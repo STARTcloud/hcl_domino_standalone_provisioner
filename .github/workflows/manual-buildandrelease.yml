@@ -27,7 +27,7 @@ on:
         default: true
 
 env:
-  app_name: ${{ inputs.env == 'production' && 'demo-tasks' || 'demo-tasks-development' }}
+  app_name: ${{ inputs.env == 'production' && 'hcl_domino_standalone_provisioner' || 'hcl_domino_standalone_provisioner_development' }}
   suffix: ${{ inputs.env == 'development' && '-dev' || '' }}
 
 jobs:

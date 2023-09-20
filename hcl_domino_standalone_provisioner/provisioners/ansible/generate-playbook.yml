@@ -1,6 +1,6 @@
 ---
 -
-  name: "Generating demo-tasks Playbook Locally"
+  name: "Generating hcl_domino_standalone_provisioner Playbook Locally"
   become: true
   gather_facts: true
   hosts: all
