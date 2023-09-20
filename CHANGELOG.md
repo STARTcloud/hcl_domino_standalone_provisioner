@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.23](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/demo-tasks-v0.1.22...demo-tasks/v0.1.23) (2023-09-20)
+
+
+### Bug Fixes
+
+* first commit ([21175d4](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/21175d43058c6607c88e4d59cdf826d3c21c2886))
+
 ## [0.1.22](https://github.com/DominoVagrant/demo-tasks/compare/demo-tasks/v0.1.21...demo-tasks/v0.1.22) (2023-09-20)
 
 
