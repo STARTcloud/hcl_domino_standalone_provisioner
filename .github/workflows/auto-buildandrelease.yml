@@ -1,0 +1,70 @@
+name: AUTO - Build, Release and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  app_name: hcl_domino_standalone_provisioner
+  suffix: ''
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      my_output: ${{ steps.build_info.outputs.version }}
+    steps:
+      -
+        name: "Running Release-Please"
+        id: release
+        uses: google-github-actions/release-please-action@v3
+        with:
+          command: manifest
+          default-branch: main
+          package-name: "${{ env.app_name }}"
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
+          version-file: "${{ env.app_name }}/version.rb"
+
+      - 
+        name: "Checking out code"
+        uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
+
+      - 
+        name: "Displaying build info"
+        id: build_info
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          echo "Ref: ${{ github.ref_name }}"
+          echo "Tag: ${{ steps.release.outputs.tag_name }}"
+          echo "App Name: ${{ env.app_name }}"
+          echo "Version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
+          echo "::set-output name=version::${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
+
+      -
+        name: "Zipping Output"
+        id: zip_artifact
+        uses: vimtor/action-zip@v1
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          files: ${{ env.app_name }}/
+          dest: ${{ env.app_name }}.zip 
+
+      - 
+        name: "Creating release"
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          name: "${{ env.app_name }}: v${{ steps.build_info.outputs.version }}"
+          tag_name: ${{ env.app_name }}/v${{ steps.build_info.outputs.version }}${{ env.suffix }}
+          target_commitish: ${{ github.sha }}
+          body: |
+            This is a Production release of ${{ env.app_name }}.
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.app_name }}.zip
+          fail_on_unmatched_files: true

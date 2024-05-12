@@ -1,0 +1,136 @@
+name: MANUAL - Build, Release and Publish
+
+on:    
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'An Environment'
+        required: true
+        type: choice
+        default: production
+        options:
+          - development
+          - production
+      version:
+        description: 'A Version'
+        required: true
+        type: string
+      caching:
+        description: 'Use caching'
+        required: true
+        type: boolean
+        default: false
+      draft: 
+        description: 'Release as draft'
+        required: true
+        type: boolean
+        default: true
+
+env:
+  app_name: ${{ inputs.env == 'production' && 'hcl_domino_standalone_provisioner' || 'hcl_domino_standalone_provisioner_development' }}
+  suffix: ${{ inputs.env == 'development' && '-dev' || '' }}
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build info
+        run: |
+          echo "Ref: ${{ github.ref_name }}"
+          echo "Env: ${{ inputs.env }}"
+          echo "Version: ${{ inputs.version }}"
+          echo "App Name: ${{ env.app_name }}"
+
+      - 
+        name: Checking out code
+        uses: actions/checkout@v4
+
+      - 
+        name: "Including Core Release"
+        uses: robinraju/release-downloader@v1.8
+        with:
+          repository: "STARTcloud/core_provisioner"
+          latest: true
+          fileName: "core_provisioner.zip"
+          out-file-path: "${{ env.app_name }}/"
+          extract: true
+
+      -
+        name: "Removing core_provisioner Archive"
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: "${{ env.app_name }}/core_provisioner.zip"
+
+      -
+        name: "Removing Roles Directory"
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: "${{ env.app_name }}/provisioners/ansible/roles"
+
+      - 
+        name: "Checking out STARTcloud/startcloud_roles"
+        uses: actions/checkout@v4
+        with:
+          repository: STARTcloud/startcloud_roles
+          path: ${{ env.app_name }}/provisioners/ansible/startcloud_roles
+          clean: false
+
+      - 
+        name: "Checking out STARTcloud/hcl_roles"
+        uses: actions/checkout@v4
+        with:
+          repository: STARTcloud/hcl_roles
+          path: ${{ env.app_name }}/provisioners/ansible/hcl_roles
+          clean: false
+
+      - 
+        name: "Consolidating Roles"
+        run: |
+          mkdir ${{ env.app_name }}/provisioners/ansible/roles
+          mv ${{ env.app_name }}/provisioners/ansible/hcl_roles/* ${{ env.app_name }}/provisioners/ansible/roles
+          mv ${{ env.app_name }}/provisioners/ansible/startcloud_roles/* ${{ env.app_name }}/provisioners/ansible/roles
+          rm -rf ${{ env.app_name }}/provisioners/ansible/hcl_roles
+          rm -rf ${{ env.app_name }}/provisioners/ansible/startcloud_roles
+
+      -
+        name: "Removing .git directories"
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: "${{ env.app_name }}/provisioners/ansible/roles/.git"
+#      - 
+#        name: "Including Startcloud Roles"
+#        uses: robinraju/release-downloader@v1.8
+#        with:
+#          repository: "STARTcloud/startcloud_roles"
+#          latest: true
+#          fileName: "startcloud_roles.zip"
+#          out-file-path: "${{ env.app_name }}/provisioners/ansible/roles"
+#          extract: true
+#
+#      -
+#        name: "Removing startcloud_roles Archive"
+#        uses: JesseTG/rm@v1.0.3
+#        with:
+#          path: "${{ env.app_name }}/core_provisioner.zip"
+
+      -
+        name: Zipping Output
+        uses: vimtor/action-zip@v1
+        with:
+          files: ${{ env.app_name }}/
+          dest: ${{ env.app_name }}.zip 
+
+      - 
+        name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "${{ env.app_name }}: v${{ inputs.version }}"
+          tag_name: ${{ env.app_name }}/v${{ inputs.version }}${{ env.suffix }}
+          target_commitish: ${{ github.sha }}
+          body: |
+            This is a ${{ inputs.env }} release of ${{ env.app_name }}.
+          draft: ${{ inputs.draft }}
+          prerelease: ${{ inputs.env == 'development' }}
+          files: |
+            ${{ env.app_name }}.zip
+          fail_on_unmatched_files: true
