@@ -1,0 +1,35 @@
+{
+ "collection_info": {
+  "namespace": "startcloud",
+  "name": "hcl_roles",
+  "version": "1.0.1",
+  "authors": [
+   {
+    "name": "MarkProminic"
+   }
+  ],
+  "readme": "README.md",
+  "tags": [
+   "hcl",
+   "roles"
+  ],
+  "description": "A collection of roles HCL products for the STARTcloud Environment",
+  "license": [
+   "GPL-2.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "https://github.com/STARTcloud/hcl_roles",
+  "documentation": "https://github.com/STARTcloud/hcl_roles",
+  "homepage": "https://github.com/STARTcloud/hcl_roles",
+  "issues": "https://github.com/STARTcloud/hcl_roles/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "8d4a7002ee1a695bc51ac8ea70c1d11ed78b6027e1f3179c8b1e27ea834eb74f",
+  "format": 1
+ },
+ "format": 1
+}

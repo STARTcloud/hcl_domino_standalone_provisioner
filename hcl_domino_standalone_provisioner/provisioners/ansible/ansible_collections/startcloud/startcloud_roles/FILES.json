@@ -1,0 +1,1328 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c36fb04714245df0d59e3c6ca1e411f5009cbb916bd7bfc5d90ea4fd45c64b90",
+   "format": 1
+  },
+  {
+   "name": "roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a79f6bfb311c36943ae8c3ed6a258215d8e51e58c4686c1f0a687a2b0fdbeefb",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7bb334d2e7bde2ca5549dcae365bac8dbfb080cb66dd9ab26d073b84930f25a1",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_chrome/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8cb54d76150354e143fb5a372fdb1aac0b1326f1da6054b9600d86f52a00a8fe",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7526335ee23e171cc4ab809621c2b83cf7106f2afa7a97d3dd8e403407fe59e9",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9fe00f9960fd43370cf041906145578b97c6023f3b1488f943f173a97357deba",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_dependencies/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6ae7826c44c187207eee1f926090c3a65e624d0365e5793207f5b3cb6e10bbe3",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6255e8575b3ff150a8682e7bafce70ccd902c10d7d8a0c8c46dcaf0c7c3e4ab6",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/files/branding.jar",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "88e12c1e3087a487f6bbf3aa312050090f528167630f66cce30ad5e2def8dc59",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/files/guacamole-auth-domino-1.0.0.jar",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e564b2d901f7efb524a93098f805a95a090db68197db5024941379d3b560524d",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/files/mysql-connector-j-8.0.31.jar",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0b051a2bc20ec33c6a463da82a64260d47e4c2b66e54bdb1376ff09014d03724",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c942b02498f7c81f12f2c466415ac95523e9e0301b90c5da99b44e9746605a1c",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_guacamole/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ea73e87363dc8aa0f69bd7917a906a6bcf69ce01e4beac1f1a724375c91faa06",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "519ad5a250e2bc894c3a4543656aca818acdfb7781090980df96f55f734854a9",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/handlers",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/handlers/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0f2e065bb472189f42e82f81eba7a50d87f725cba90b54004f8b8cf797ddb54b",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d93739d96dfb5383d4174f22500dc51f92e00aece5d5cdbbfe9d415503a1c5b6",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0818d10d58d02c92224fade5ed9150fce63fadcea047027dde2e2618b5dfed59",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/haproxy.cfg.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5c503b7e01409bbec8bf1f4e6406463353f30f2b6bae1984c541372d8caac621",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/400.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2c8a573eda5f5b73cf6223393037e3707707730660724545c37764730182bb29",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/403.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3ba0a777470e72887d486e9662f2c8581cb4aea844a42e3ecb5f292db4208c57",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/404.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "01cf22d2b5fc51a3d03852ecacdd280bc4f779436c4c9c05ba4a9329803c0e47",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/408.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5429c96faf72b1c95357039f4bd219f0bd3d5caca12b50ca1b7f03e20f3d745d",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/500.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2e3cd5ac36eb441743027cf7fb2a538f02665dfae05fe98ae2f9a86b54c32244",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/502.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b08ce26a5290926c5a2b4b9d4f3ac499b43fc541ff50cb5c94c93e7894122f4a",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/503.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a13b7b443b7660d05eec18b2e17997a9b9dc4ddbebb7be6385c6df437ed9ebfa",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/html/504.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ac3fc912fc2b2e6492d405476f1e3bc6da256069d0e042bd5caa2f01a1f2001a",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/400.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7cde0b99a55b90f3cea4c0a9994e0d66f6ae972c3d28d1ba0f75746721e1bb14",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/403.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0d8617059afe5b9b61c33924467d631bf4fb5b78920ddce291c9553921867d04",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/404.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "97f5c62759e62b1c7224693d9c0ad4c052f41279f6a19e3a84b8d948db55c762",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/408.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "21076f80aad69e1fc2b3d0f4e9cb00bce6f7837238c594663b87410aac623c82",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/500.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "284637d84d4012d5f13f96fa0f97fb4ec7d3533380ba0c0a6f361e76a748abe6",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/502.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7696f7192293e7c5d05d6003384f91f7a576ab62179a97f734d81f62f1016f8b",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/503.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "27e21cc2a03fa430e39b4438e8e83f156dd37295cc2e57fb8abc5e09d79a2bb8",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_haproxy/templates/tpl/504.http.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "46d76260141ee6f459252670bf05655fd7aecced8c9fcce2eb8bd370730efbb2",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3b58485d81fc45f65a158568d70db389b21e09673ca97f4b93a70216cd7f98d2",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_hostname/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8d8acc85b5eaf72a73bb1e484b92a301d65eb880a8ff9f98b5cbc4702debc84b",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f131dccebe45cc0eaddaadde3c796633acaf2783cc52637178debf6120dfc13a",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5bedb083c4413cbbd35e18ea18bad577dd61348d66b7bca6b11ef3e6767c9d8c",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_lockdown/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "21f46213af8feeb94494631136c2c849ddaf9bd1b5c7fcd4ce984aac8d63ae8f",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c0ec1a53310a60ae1b39e3f76052f3cbaf1c5323a94a38a5fb481779fef87878",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5a6fb89411dc88536b5ecc4a8ced685810f942a07d269451183c1b589076b35b",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_mariadb/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f9b47f2accaab4f8adb567b549d8447628e9b982b0f2941ebb67a6191b8be928",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "463d5c29c996e94c9e5ee7c1dfb67be13b9e8e56bb378d44679a94c12b03376a",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "99437ff8f2e304194753effe5263e658ecad5acf91be502f8daac4734b3640e9",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_networking/templates/interface.yaml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "90de6f37a7ea496be1d15b94b6f58fa86d7e2db4fff0a5e7e02986e2cca68113",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "27983526e47243f67aa0e12e4abca41c995eb94e798f101596518fe09a4f156f",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/handlers",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/handlers/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2f69290ae55ab1025a51be1bc84fc8e4fb7fc7a4f7e6eb6491a02936f44bbd65",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ba28ab0790ba1572da0cf0c87b928673fef17032f2e1f217c16556816fb273cb",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fa60ac1fc5a9b0f491b194c823d4a3e5f4cd323d73ab1162e7ff20407a303dc1",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/templates/cockpit.conf.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a5704824a80fecfa39c5fe3af30d47e8e43f9aecddac753b1855b9f679c48db",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/templates/environment.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1e2639f4c02e0b11636fe9542fd01bd8d2102be0fe6f4be0f10a0fd49025a265",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/templates/index.html.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c730618c6ddb9e815de701a994a4fa0ac09ad45a05a16ce8d09bd67907e2cc0e",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/templates/pythonserve.service.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ab0793ba8d361831ee6408adeae9ababbe4b33ac29d93a26bf51243f0af45e18",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_quick_start/templates/styles.css",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "14ca0b3d7e7231391061957653867d1830a2ddea2e9cdcc04a4d833a9b609691",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bbae84223dcd3d3cb5921422546e6d37019d239f004e934a3ed8602ff8482859",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "47c577ad73adde03ec692047df47dc476e05be26ed18ba3a61b1a2ebecf692c1",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_gradle/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "afa0d644eebd0d765cf9f40bf51ce6b677c1f1126c94d30ac5b68554e736fe8e",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b6875c75fc1e100e5e5d3560085fe7d7883fc9d983418616db03a1c13601fb47",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/handlers",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/handlers/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "34f0d031e4df51edfe3abadfcc770aac8fc0dc0028c00f3bff354bfc47df4f27",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "26cf6c229ac6da8c3834d7bf70079583191938cdf61d6220c9df7bd144d29cf4",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/tasks/install.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ba39c4658915032e7f51f44eb2a7c5e53114611ec23b553f55c89d2c313e33e5",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c7291b23cf2d1f32e005757c28656ca5f38f296300c1ead1f2b78f1f37b0ffa0",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/tasks/persist_env.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0778b28faf75766bb22b5f170ec5455c44b977ec541033a5e8008a3dd12f4672",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/tasks/sdkman.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5be14fb668462c908d8f770da2492d45e4b5cbef6609390cc4df192c857cf8de",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/templates/sdkman_config.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "de85527ef263dcd7bfe248179a2276b7dcc1c67f9d79729619ef91a054451e7f",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/vars",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/vars/Alpine.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8c8f8f9335fa54d224325f90a3faf59fbc69806d86dfd3255e9f899fdbcb9754",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/vars/Debian.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd82fc0a8e2e67ca6857c5358c1766e1c988652a6b0fc2740db73436c34f24c1",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/vars/default.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6f65d28eda20fe22ed077c6318860bceff05d0742ce999c906fbe81d5d8b5eb6",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/vars/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6f65d28eda20fe22ed077c6318860bceff05d0742ce999c906fbe81d5d8b5eb6",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_install/vars/RedHat.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "667a083f9e58c3854487f4d0d9b83b343b0fe37badce66ff6d9a91c766720d70",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3cb0101c0afa957cc61563bb81d46fa2999a2d4a5acc20956bff39ad8701d76f",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b410d89717391ec891016d820902caed54dbace871856c1db2885d862a2366",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_java/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5a96efcf10dd4ee2207e1c7835dc94310ae7a517d652d7339938fdc642c16f9d",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0707d66a0b08f7ee10a07b17152191ccc9549dd42aab482696eee6a273e9b624",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "23004a28b5e496c379ad451d09116eaa660bfe963cad519ff2a18684ca8e138e",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_sdkman_maven/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8baf6a024aef47df3c30a4d3fd35c8fc0c2b0bff32813a0ecece9b9a1873ac02",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ad7169344947e24248edeee979500922323830c05547bbe657e4df34546c6e2e",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "97be5dfbbf62c00f055717de9028d18a56ad112349f5225e444a4617dcb691e0",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_service_user/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "10c325fcdc6cc403e812ef05f93b25ae6e651c1f6558ab58b0652241a1998ed4",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "12aaeebc912fcf6f8b0d9b10e48b251ad808fc68d10d36f264da7282361fecf4",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2465c3eccc14c75fc0df0094d989c1a9257ec0342c87594a6b8a56ded5bb1e7b",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_setup/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be4c243a73c05a68ad5a8d0cdec359a1740840269323cd91e8a1724489d0a2b5",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8e06463ed78e35b4cbc1a7b0ba78d53b805469ce3ded6385af296d2f0d512875",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "067c6e748c8eac0951c8a9b135a28b047cfe5520c2b7cbe3e4c351fd100a3321",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_ssl/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5e06d84497ae8bcb7c56c278e49aef90eb4ae7694a75b07aaddd822a384b37b5",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0e2139f182ed032c7d23789e6b80dc59ef5240a79e28808776e2d03dcce53886",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/handlers",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/handlers/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "513b8bbc179072a86ac28c6b33c198bde9279c6b5977dd5b04fc15548081d82f",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "89f535124d4cb583b556c57d0fbdbdbc350f5582a7017297adabc27cf19079e3",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/tasks/main.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d723c27ce99a545fa5c89b7f22aed330cc539635a1d9037b20bd44d472e39ee7",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/tasks/tomcat-setup-Debian.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cb1eecacd9c953110b48af13385fbe2d431ad786f6966a3f492a8871093b9fde",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/templates/context.xml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7cd5a92c20f11f52fe2ca290d6a2f293d5f66ef541468c1ddebdf0c20f78e3aa",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/templates/environment.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fddec2df345cf09130966348e0d937b5930d3bff6fcb7bc9ec96ecbcee725c00",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/templates/server.xml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a95473dc662caf281bf5916d61229cdf02f1a7399a6dd63b838a93bcdf42e9c7",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/templates/tomcat-users.xml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fe4cfbe71c1503e3bd7373e316698cea45f0a63eb7d8d93f24e65682b8f31ef3",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_tomcat/templates/tomcat.service.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "50f144df446c1bc2e2a37fc6bd783d459d5bdd3962134c9e0d9cc7fd409ad5e3",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9d1486ece5c7500b0893cf64991408849e955635ee64b22ac1c994e721675697",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d8208601ab2fa6d0d392871c5797c5fdcf1cee25cd90949fed5b7491c47789b9",
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/startcloud_vagrant_readme/templates/cloud.txt.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "549ae13c114e7ef2ca052046826232194047a5a4649ecd62991ce40b8e70b726",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

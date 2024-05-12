@@ -1,0 +1,1433 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "06832a50bd699d3b5dced4aa3c15e8ba8d55d8292997df196de08f90e0efb356",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0a8012e2c0160bbae9cdd4bee23a88ab0b419c65666a4d5eecdb84bec94d8552",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_appdevpack/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b0cf590e5a1e15be34379925417afe87eb52d4f349999d34e9fe629db3c9e467",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "806c8adb28c0da35f8d22979eab9afd780a0d2d7fd43242064e2beca3ccf8d81",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8c10a29647a1286e5076882f36155b350ebbf877ec00035b3d67cc424b36c3f7",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "64f4192a16383f96d66fae9ce5ef788981eb4b81bf95d6c1ca5bbe9accd9b12a",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_config/templates/setup.json.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "64d0cc5b01cfe1e915c03e53e765ff4bd53ba64df1fb2887c54c4db449b07aee",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5524b256457cf2836b2e48a71ccfe2d3e9a06c300ec18a75c232fabf960d8311",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b4a303222f04f2479830085102131b4667b2e66d4bffbefd72d6109abbf81ef9",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_cross_certify/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "32d1f96c765fc4a7bfa8cfdf3969951c82c57cab9c027a36f317493648ac28d3",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d5c6284b5a95b438f1c070d923ec96d2f2c3eea58a14fae9c92adf2749b132ac",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/files/Genesis-0.6.18.jar",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e1cc8635e861fed95566eeff3836ff37ab3e3f62ec8460db5def9e5a73c7795d",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2d88625a84e23f64bf2d2aec8a11a63f08d6d270c54b1ab7e890ea521428acba",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "148cab9c211f2c90d0716988989ba80523f40a77df7759305a861c6cee38b037",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis/templates/genesis-test.json",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7128b890388e5689de7b65ee62ed32cf9eebd68b7c8df935cbbc525f79f0a7b8",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b61876e84a941de4f8c4dd2cfff573fb3ae0866090bfc4f8b7365c566e6494ee",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8d0a82ff41f2420d0e4b265b2befccf9a299780f5a07da4621fcefe3eda04a3a",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_genesis_applications/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ea12fef5816a900b168dfb01e37b8ba077539272014278e01c4a72d786b53a9b",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "28922c6aeac2ac2902b81f8ed6e7fdff80734521f59bf8d980990e8edbdc9d8b",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2d87cdb527c0c2d3f0cf7f495214acc61ffd34e417a4cf21ef93d3f6892797d5",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "21a07366e8aa5188d44a79661af3053c82b33169f4119d103695f73b08c7f226",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_install/templates/installer.properties.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b0e043aad3005994e43b52645d1dc4aea817a209e1ebbdece5ad52f62469a249",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/files/ExampleServlet.class",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ef3aa4c0b672c3001a00a12648c78839a5e000586a3f4e87e2b5fd3d30f8822c",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e18e3f7e6aa0baf3f48ab1792feb60b6edd19151dcdd9bbeee7b5cf2285c3a04",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4d519606d601da9663f34266aac758c6cfa610e879e144ed2586df465ff0b77d",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/templates/build-notesjava-standalone-example-apps.bsh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2ba450a63fc40b0702d933f800cdd1d8874dfb8e962c44e64ef14994b02503e9",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_app_example/templates/build-servlet-example.bsh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "501d4059e95b8ae95b1ac4ac76b5077766c1fed321a745fbe0c558fe223f150e",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a5d677d74a3c81695725d172edaafef87b430f4b7efa722283066887b729c185",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4c685c9ff6a0ad767a16a74eaea803a0d65c8334855d50595c8570b342ace72f",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a4456bc54e58f30e92b097fb5e6e1fe51d6cc5a07445eaf2fcce6573cad6d6ed",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_config/templates/notes.ini.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "da7fcab08a36a7a45a13c32b7e37ca748aabb7fca64881ab4b409235ea6f43ea",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "71d9fddee2ade2b5efcb97139b0f81607c9318bb138e1876e26d1d58b66b55cb",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b1d6b335e5661082056b5449808fecf4d2fb3da9c916d960edb15c0ab368938e",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f84c34fe1154aaf5da035df30b90fdc4c10bf4a1707af794c99a7ca2e08051ea",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/templates/CrossCertifyNotesID.java.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dfbb96517f65e1ba34f2a9006c2efdd997d0aa41760df8cccd77371b0c21c519",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/templates/CrossCertifyNotesID.properties.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b2529a7f4740b4993dc4d1699de92ce79ea9c7cd9195671fe197bacbc82eaed8",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_java_tools/templates/default_cross_certify_acl.json.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2d1785defbb357e844fee668f242fb98afabd618a23cde6d7f20c1bfa910273b",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9dada6e0bdc90085acefe73947fd94cf1ceae7467861270a59b5350b98278384",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a3b000743531f8b18ad23e6d441e71c42ba1f8b0b4834d0a1e4fa9eb32ce977e",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ff7d2bec384324a938ff6099a4098e1c5b8c28ce90060b6ae41db0f4e4047542",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_leap/templates/voltacl-org.json.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e65abf5f9df235c3bd3a357ec02190e712289f25388c12ff6e62fd898f1f93b0",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cd84e5534bb6343a3a608bc7d72cd4a581945ee334790889c5718a859b53acf7",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "58eee2d377c5df02e396eef1f3b409bfc54834a45146f45ee5897ae9accdc0ef",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c566d3635ab9ee07ff8d241882706ecbfa538932ad00bc1093a97e8a951f30f",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_nomadweb/templates/nomad-config.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d13e11c4d0f65581f7c8806c82517e7c3a833728cf197a7dea78b83ae38065ac",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c5c65e9079c663683af7b793136c137f05f8533aa55d931d490725d21fc0c6e7",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "651b33260a919b4c2678eae4b16d4322e6cdb6c96e088d899d6c486f91e6bc58",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_reset/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b91c111086d109b0e90ac89be5fc4e278a0c63bc2fa6c1345ebddb24eff1531d",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2d846c343e58c29bcd390065da271f4a92ead94b1c294700718b1821d2b6062c",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd46ec0098ac53948775a628d40b6f545f34b8ce666a680e4d74708da20a40fd",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_rest_api/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7286f84f59dd74dbbb305b967e35f9ef80fcaa109f65b8bcdc477b5f40b49189",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "47a8969f9d9e6420ac31aeb1fc9b48263f163dc6bfdb1360c010060d5dbbdeb5",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "18c10d1af6eb9d945f1239d66323baf86f46b4b60c1e45ea9e9e38dc66bb7932",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_sametime/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "74dacc4b1f3d7352739ecd9bb4ad9331648bb2592a673e6ea5fd5c51b7b3b3a9",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "50f3b6bf38016248c23d4c5a709f64ffc86d5f4bed0416c13a3aea0a7baa2f75",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "809f5d4bd823ef9060d261de84ae9fa699b69859685784a63aa9565fe4c4465a",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ec71ad7b2fc69835cf1270e2a5d2b6a1df9b70b0df2a1128fcc37f345b8e62b7",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/vars",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_service_nash/vars/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "75e09baccc5affec77b10eef0fc99f7367f6ceec56d2dcfdd1c01f36247de0d1",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8627ce4167e960211c65018f093f16ec7627942d80bce865096c69194f4790de",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4e220c4cff2209cf540c765dcc63462f34d7c5c06426d4f22fcf9f1ec74ee53d",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler/templates/installer.properties.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4c5be0e5aad2199bff2ce3427617646ad8af2632859ff8b9cd755d64f55bf094",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dd79c3ce075fecc95469e5a8ff118f0e42ea95cd987f1c5b9f9be4ae87628bb4",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e8b2047d1e67bb29ca5825714287799092540f6464e4ef46ca2756c6c9f62499",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_traveler_htmo/templates/htmo-traveler-access.json.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a431c0e398f98f2ef74f10932162f19b2bb35f91cc760d543eb6dca08e5f92d",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "79f9ae74c3e08224ee7ec98948298d8f5eb1f03d7519058c9967f48e21df30f6",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be0836a4fb0d18dad2da7fa5502c3b0eeaaac5dbd9781e252f20561994475d5c",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b7215787939647dd86b49a20c7d1a0a05b23b4ef08c3f8e6fd52d212629afc7c",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/templates/maven_settings.xml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "218135d72f432f3f47a58aca585e5ab88d68a0ac77df6a240261ba7171693a23",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_updatesite/templates/run_nsfodp.sh.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e314832d9769c70e17a98a36691c904a5991b997565c5a9e54e025f74492a569",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5898e9a90e94d9cd3c9ba3f6a40353ee3cee71ae99917ccd7719f717979b9674",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be5173ffbf833b8bc78ce9ae0167d8ae925a70c65efe3f778c3978c5d8126778",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2acea7f2d2feaa2fd8681c080617a2c32a2aa2c261ae0c5e943a65674585bf4e",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_readme/templates/CommandHelp.txt.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bfc0f3f4414b50d58f3986ba4575f45a5ff563218db8130842259d8643a9c9a0",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d8ec379b599cf0c26d5d2e37f0cb17dd4b03c2bd80c55d9feab54fad2ee96abb",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9a4842c4ce74659c0458d453a243bae981cb57d32601e706e65e9f8cc64e5388",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e115dba1045b5515db6818390dedde27f0f4014f39a3401876dec1d2b6af2303",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/deploy_database.sh.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "83eaf56c04e465cb5c38d3ecd5d515f6710db3eb5570d7a7693724cb342bd687",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/deploy_html.sh.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2382d7a76ca95dd833358ccc7b2d04b269e3072dcc94eee183f306dc18c2ab50",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/environment.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7496e7cee0d952f31f77ae1a81111b47886d4fb07eb33614cb5cf70bd8a4fcfa",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/import_json_documents.sh.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d3ebfd18e453321e18c6dce4c5a911cb4f9b90cf41ecba7c88fa8631cf6ea5f1",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/restapi.service.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a7881fcfb827be54a9b54dfcc9081a9a1a8da656e464e93e490e1ad69e5fdb3",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/rest_config.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ed5715a78459d3da07f02fd5af50bb01a99195e455abefa95d8115e439c91a1c",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_vagrant_rest_api/templates/run_dxl_importer.sh.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "67785683c95e8f4be71c1384edbc7ceb8530cd48786773ed6b8924f564dad312",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2e6c6c5f3153c260180edd66253affbb9d133fe5c69a67dd583d117ce31c6231",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d410ac8580691481b34dd213aec6675ec8d59cdc616fea6f724e7ea8f35e7096",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f3b871ad6f24d13e57c885432b472b0e341ad5eee8c975c90ef519fa679c6828",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/templates/create-database-v1.json",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6df84e381020ca18fd0aac1b41a3b32d25fa834a667ca47086df4ef3358b87bf",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_domino_verse/templates/update-internet-sites-docs-v4.json",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9ea53cfb00a9e8754dfa14c94100ffd41405d46834b53e51077cd7a9448365ca",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0cffeb2f0766eae8ce4ad8bb4a60eaca943c80e9e92724e8ea06ebab68b3d887",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8758ab1b5271f44bbfe6743fc47e93cf170099b3cc6523f44e6593d9050ca28f",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dcb914a219a66fe4d0b2e27d4c2c2ff3bbd1db0cab31e809fb4c8c5b0fd55156",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/templates/installer.properties.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7e5e7038e83066a8d1333bfee28834c94fd4731a175014241512823e8b920192",
+   "format": 1
+  },
+  {
+   "name": "roles/hcl_voltmx/templates/voltmx.service.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b234874adf6949079ba67b3c303f872c1420263d74312ca3104ada9e3ac2a71e",
+   "format": 1
+  }
+ ],
+ "format": 1
+}
