@@ -2,13 +2,3 @@
 	path = hcl_domino_standalone_provisioner/core
 	url = https://github.com/STARTcloud/core_provisioner
 	branch = submodule
-
-[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/hcl_roles"]
-	path = hcl_domino_standalone_provisioner/provisioners/ansible/roles
-	url = https://github.com/STARTcloud/hcl_roles
-	branch = main
-
-[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/startcloud_roles"]
-	path = hcl_domino_standalone_provisioner/provisioners/ansible/roles
-	url = https://github.com/STARTcloud/startcloud_roles
-	branch = main
