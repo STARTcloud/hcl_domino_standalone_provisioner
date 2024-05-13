@@ -6,3 +6,11 @@
 	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections
 	url = https://github.com/STARTcloud/ansible_collections
 	branch = main
+[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/hcl_roles"]
+	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/hcl_roles
+	url = https://github.com/STARTcloud/hcl_roles
+	branch = main
+[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/startcloud_roles"]
+	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/startcloud_roles
+	url = https://github.com/STARTcloud/startcloud_roles
+	branch = main
