@@ -185,27 +185,27 @@ hosts:
       - startcloud.hcl_roles
 
     roles:
-      - name: startcloud_setup
-      - name: startcloud_networking
-      - name: startcloud_hostname
-      - name: startcloud_dependencies
-      - name: startcloud_service_user
-      - name: startcloud_ssl
-      - name: sdkman_install
-      - name: sdkman_java
-      - name: sdkman_maven
-      - name: sdkman_gradle
-      - name: domino_reset
-      - name: domino_install
-      - name: domino_vagrant_rest_api
-      - name: domino_service_nash
-      - name: domino_java_config
-      - name: domino_java_tools
-      - name: domino_updatesite
-      - name: domino_config
-      - name: domino_genesis
-      - name: domino_genesis_applications
-      - name: domino_cross_certify
+      - name: startcloud.startcloud_roles.setup
+      - name: startcloud.startcloud_roles.networking
+      - name: startcloud.startcloud_roles.hostname
+      - name: startcloud.startcloud_roles.dependencies
+      - name: startcloud.startcloud_roles.service_user
+      - name: startcloud.startcloud_roles.sdkman_install
+      - name: startcloud.startcloud_roles.sdkman_java
+      - name: startcloud.startcloud_roles.sdkman_maven
+      - name: startcloud.startcloud_roles.sdkman_gradle
+      - name: startcloud.startcloud_roles.ssl
+      - name: startcloud.hcl_roles.domino_reset
+      - name: startcloud.hcl_roles.domino_install
+      - name: startcloud.hcl_roles.domino_vagrant_rest_api
+      - name: startcloud.hcl_roles.domino_service_nash
+      - name: startcloud.hcl_roles.domino_java_config
+      - name: startcloud.hcl_roles.domino_java_tools
+      - name: startcloud.hcl_roles.domino_updatesite
+      - name: startcloud.hcl_roles.domino_config
+      - name: startcloud.hcl_roles.domino_genesis
+      - name: startcloud.hcl_roles.domino_genesis_applications
+      - name: startcloud.hcl_roles.domino_cross_certify
       ::ROLE_LEAP::
       ::ROLE_NOMADWEB::
       ::ROLE_TRAVELER::
@@ -213,8 +213,10 @@ hosts:
       ::ROLE_VERSE::
       ::ROLE_APPDEVPACK::
       ::ROLE_RESTAPI::
+      #- name: startcloud.startcloud_roles.mariadb
       ::ROLE_VOLTMX::
       - name: domino_vagrant_readme
       ::ROLE_STARTCLOUD_QUICK_START::
       ::ROLE_STARTCLOUD_HAPROXY::
       ::ROLE_STARTCLOUD_VAGRANT_README::
+
