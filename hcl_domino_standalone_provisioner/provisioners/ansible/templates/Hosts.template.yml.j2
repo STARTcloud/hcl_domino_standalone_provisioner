@@ -180,6 +180,10 @@ hosts:
       domino_rest_api_version: ::DOMINO_REST_API_INSTALLER_VERSION:: # 1
       domino_rest_api_archive: ::DOMINO_REST_API_INSTALLER:: # Domino_REST_API_V1_Installer.tar.gz
 
+    collections:
+      - startcloud.startcloud_roles
+      - startcloud.hcl_roles
+
     roles:
       - name: startcloud_setup
       - name: startcloud_networking

@@ -13,6 +13,12 @@
     {{ key }}: {{ value }}
     {% endfor %}
   {% endif %}
+  {% if collections is defined and collections and collections != "" %}
+  collections:
+    {% for key, value in collections.items() %}
+    {{ key }}: {{ value }}
+    {% endfor %}
+  {% endif %}
   roles:
     {% for role in provision_roles %}
     -

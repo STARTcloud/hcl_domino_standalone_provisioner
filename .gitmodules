@@ -2,3 +2,7 @@
 	path = hcl_domino_standalone_provisioner/core
 	url = https://github.com/STARTcloud/core_provisioner
 	branch = submodule
+[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections"]
+	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections
+	url = https://github.com/STARTcloud/ansible_collections
+	branch = main
