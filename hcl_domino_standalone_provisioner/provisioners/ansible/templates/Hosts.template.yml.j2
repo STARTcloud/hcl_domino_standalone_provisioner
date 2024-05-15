@@ -6,23 +6,37 @@
 hosts:
   -
     settings:
+      # Identifiers
       hostname: ::SERVER_HOSTNAME:: # demo
       domain: ::SERVER_DOMAIN:: # startcloud.com
       server_id: '::SERVER_ID::' # Auto-generated
+
+      # Resources
       vcpus: ::RESOURCES_CPU:: # 2
       memory: ::RESOURCES_RAM:: # 8G
 
-      box: 'STARTcloud/debian12-server'
-      box_version: 0.0.3
-      os_type: 'Debian_64'
-      provider-type: virtualbox
-      firmware_type: UEFI
+      # Console Access
       consoleport: ::SERVER_ID:: # Auto-generated
       consolehost: 0.0.0.0
+      show_console: false ## Some people have reported issues when VBox doesn't show the Console
+
+      # Box information
+      box: 'STARTcloud/debian12-server'
+      box_url: 'https://vagrantcloud.com'
+      box_version: 0.0.4
+
+      # Provider Specific Settings
+      provider-type: virtualbox
+      os_type: 'Debian_64'
+      firmware_type: UEFI
+
+      # Setup Variables
       setup_wait: 300
+
+      # Vagrant Configurations
       vagrant_user_private_key_path: ./id_rsa
       vagrant_user: startcloud
-      vagrant_user_pass: 'STARTcloud22@!'
+      vagrant_user_pass: 'STARTcloud24@!'
       vagrant_insert_key: true
       ssh_forward_agent: true
 
@@ -69,12 +83,14 @@ hosts:
                 install_mode: pip
                 ssh_pipelining: true
                 verbose: false
+                remote_collections: true
               - script: ansible/playbook.yml
                 ansible_python_interpreter: /usr/bin/python3
                 compatibility_mode: 2.0
                 install_mode: pip
                 ssh_pipelining: true
                 verbose: false
+                remote_collections: true
 
     folders:
       - map: .
@@ -83,7 +99,7 @@ hosts:
         disabled: true
         automount: true
         description: "Disable VBoxSF"
-      - map: ./ansible/
+      - map: ./provisioners/ansible/
         to: /vagrant/ansible/
         type: rsync
         args:
@@ -104,30 +120,38 @@ hosts:
 
     vars:
       ## You can set global role variables here, look in the defaults folders for hints as to variables used by roles
+      debug_all: true
+
+      ## --When using the default: demo.startcloud.com as the hostname and domain, we use the default-signed.crt certificates to provide a valid SSL--
+      ## The former line, is being phased out, now the startcloud_roles.ssl role will generate a CA, and sign a server certificate for the servers to use.
+      ## This CA root cert will need to be installed on the users machines, or they will need to bring their own SSL.
+      ## If the hostname and domain, ie demo.startcloud.com do not match the certificate we provide (ie demo.startcloud.com in default-signed.crt), some services may not start (ie nomadweb)
+      ## If a user does not mind using a self signed certificate for their development testing for their own domain  or are unable to replace the default-signed.crt files
+      ## they would set the below value to true so that the vm creates a SSL crt with the valid hostname, so that when the service compares the hostname it is to listen on and
+      ## the hostname the certificate is signed for it matches.
+      selfsigned_enabled: ::CERT_SELFSIGNED:: # true
+      haproxy_ssl_redirect: true
+
       # Domino Configuration Variables
       domino_organization: ::SERVER_ORGANIZATION:: #STARTcloud
       safe_notes_id: ::USER_SAFE_ID:: # SAFE.ids
       domino_admin_notes_id_password: "password"
       domino_server_clustermates: ::DOMINO_SERVER_CLUSTERMATES:: # 0
-      is_additional_server: ::DOMINO_IS_ADDITIONAL_INSTANCE:: false
-      use_existing_server_id: ::DOMINO_SERVER_CLUSTERMATE_ID_USE:: false
-      existing_server_id: ::DOMINO_SERVER_CLUSTERMATES_ID:: "demo1.id"
-      existing_server: ::DOMINO_SERVER_CLUSTERMATE_SERVER:: "demo0.startcloud.com"
-      existing_server_ip: ::DOMINO_SERVER_CLUSTERMATE_IP:: "192.168.2.227"
 
-      ## When using the default: demo.startcloud.com as the hostname and domain, we use the default-signed.crt certificates to provide a valid SSL
-      ## If the hostname and domain, ie demo.startcloud.com do not match the certificate we provide (ie demo.startcloud.com in default-signed.crt), some services may not start (ie nomadweb)
-      ## If a user does not mind using a self signed certificate for their development testing for their own domain  or are unable to replace the default-signed.crt files
-      ## they would set the below value to true so that the vm creates a SSL crt with the valid hostname, so that when the service compares the hostname it is to listen on and
-      ## the hostname the certificate is signed for it matches.
-      haproxy_ssl_redirect: true
-      selfsigned_enabled: ::CERT_SELFSIGNED:: # false
-      debug_all: true
+      # Additional server options
+      is_additional_server: ::DOMINO_IS_ADDITIONAL_INSTANCE:: false
+      #use_existing_server_id: ::DOMINO_SERVER_CLUSTERMATE_ID_USE:: false
+      #existing_server_id: ::DOMINO_SERVER_CLUSTERMATES_ID:: "demo1.id"
+      #existing_server: ::DOMINO_SERVER_CLUSTERMATE_SERVER:: "demo0.startcloud.com"
+      #existing_server_ip: ::DOMINO_SERVER_CLUSTERMATE_IP:: "192.168.2.227"
 
       # Genesis Variables
       genesis_packages:
         - netmonitor
         - SuperHumanPortal
+
+      ## ORGNAME_CUSTOMCOLLECTION_variables:
+      ## Define Variables that the ORGNAME.CUSTOMCOLLECTION Roles will use if any.
 
       # Domino Installer Variables
       #domino_hash: ::DOMINO_HASH:: # "4153dfbb571b1284ac424824aa0e25e4"
@@ -180,9 +204,40 @@ hosts:
       domino_rest_api_version: ::DOMINO_REST_API_INSTALLER_VERSION:: # 1
       domino_rest_api_archive: ::DOMINO_REST_API_INSTALLER:: # Domino_REST_API_V1_Installer.tar.gz
 
-    collections:
+    collections: ## Note to SHI Devs, this is new and is required
       - startcloud.startcloud_roles
       - startcloud.hcl_roles
+      #- ORGNAME.CUSTOMCOLLECTION
+      ## How to Create a Custom Ansible Role Collection: 
+      ## https://www.cherryservers.com/blog/ansible-roles-tutorial
+      ## https://docs.ansible.com/ansible/latest/dev_guide/developing_collections_creating.html
+      ## My Instructions
+      ## 1. Install Ansible on your Local machine (or I guess do this inside the VM since it has Ansible already installed, though you will need to figure out how to auth with git)
+      ## 2. On your local machine, not the VM, navigate (cd) to Current instance of SHI provisioner files 
+      ##     IE: C:\Users\mgilbert\AppData\Roaming\SuperHumanInstallerDev\servers\demo-tasks\5225\provisioners\ansible\ansible_collections\
+      ## 3. Create a new directory that corresponds to your organization, ie startcloud, cd into that directory. (Note it is recommend to create a Repo for each org)
+      ## 4. Create the Collection Folder, and cd into that directory, then Create a(nother) Github Repo, git init (It is recommended to prepare this repo as a git submodule if you created a repo for your org)
+      ## 5. Create the roles folder, then navigate into that folder
+      ## 6. Initialize the Role ansible-galaxy init CUSTOMROLE
+      ## 7. Modify Tasks, Remove optional unneeded folders/files
+      ## 8. Save work and commit
+      ## 9. Update this section of the Hosts.yml to include your collection
+      ## 10. Update the Roles section to include the role(s) you create using their FQCN.
+      ##     Note: if you want to run JUST your role, after the server has already been provisioned once, then comment out ALL the other roles. (work to be done in the future, like tagging, to do this)
+      ## 11. Then you can run 'vagrant rsync && vagrant provision' This will synchronize your role onto the SHI VM.
+      ## Doing it this way, gives you:
+      ##    1. A local copy of you dev scripts
+      ##    2. Provides others a copy via github of your dev scripts
+      ##    2. The ability to run your custom role right now without waiting for a new release of SHI
+      ##
+      ## In the end however, for not Prominic/Moonshine Developers we should use the GitHubs Repo URL to install the Role
+      ## There are two approaches for this:
+      ## 1. We have SHI, run the ansible-galaxy command to install the role into ansible_collections/ORGNAME/CUSTOMCOLLECTION folder aka: https://docs.ansible.com/ansible/latest/collections_guide/collections_installing.html
+      ##     caveat, we haven't been requiring users to install Ansible for SHI to work
+      ##     We could use git, to clone their repo into this path
+      ## 2. We have SHI, pass the github URL to the custom collection, and seperate role called startcloud_roles.custom_collections,
+      ##      will then download that role and then execute it (caveat this only downloads the collection into the VM and NOT into the Local copy of the SHI provisoner -- Role to be created based on feedback)
+      ## 3. SHI updates the requirements.yml, which if Hosts.yml, the ansible provisioner has "remote_collections: true", then it will install the collection in the VM
 
     roles:
       - name: startcloud.startcloud_roles.setup
@@ -197,15 +252,16 @@ hosts:
       - name: startcloud.startcloud_roles.ssl
       - name: startcloud.hcl_roles.domino_reset
       - name: startcloud.hcl_roles.domino_install
-      - name: startcloud.hcl_roles.domino_vagrant_rest_api
+      - name: startcloud.hcl_roles.domino_vagrant_rest_api 
       - name: startcloud.hcl_roles.domino_service_nash
       - name: startcloud.hcl_roles.domino_java_config
       - name: startcloud.hcl_roles.domino_java_tools
       - name: startcloud.hcl_roles.domino_updatesite
-      - name: startcloud.hcl_roles.domino_config
+      - name: startcloud.hcl_roles.domino_config 
       - name: startcloud.hcl_roles.domino_genesis
       - name: startcloud.hcl_roles.domino_genesis_applications
       - name: startcloud.hcl_roles.domino_cross_certify
+      #- name: startcloud.hcl_roles.domino_java_app_example ## Uncomment Me to build your own Domino Java Servlet
       ::ROLE_LEAP::
       ::ROLE_NOMADWEB::
       ::ROLE_TRAVELER::
@@ -213,10 +269,12 @@ hosts:
       ::ROLE_VERSE::
       ::ROLE_APPDEVPACK::
       ::ROLE_RESTAPI::
-      #- name: startcloud.startcloud_roles.mariadb
-      ::ROLE_VOLTMX::
       - name: domino_vagrant_readme
+      #- name: startcloud.startcloud_roles.mariadb ::ROLE_MARIADB::
+      ::ROLE_VOLTMX::
       ::ROLE_STARTCLOUD_QUICK_START::
+      #- name: ORGNAME.CUSTOMCOLLECTION.example_role # ::ROLE_STARTCLOUD_EXAMPLE_ROLE:: ## This is a role that people can look to clone for their own use
       ::ROLE_STARTCLOUD_HAPROXY::
       ::ROLE_STARTCLOUD_VAGRANT_README::
+      #- name: startcloud.startcloud_roles.lockdown
 
