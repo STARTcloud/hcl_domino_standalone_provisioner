@@ -126,8 +126,9 @@ hosts:
       ## The former line, is being phased out, now the startcloud_roles.ssl role will generate a CA, and sign a server certificate for the servers to use.
       ## This CA root cert will need to be installed on the users machines, or they will need to bring their own SSL.
       ## If the hostname and domain, ie demo.startcloud.com do not match the certificate we provide (ie demo.startcloud.com in default-signed.crt), some services may not start (ie nomadweb)
-      ## If a user does not mind using a self signed certificate for their development testing for their own domain  or are unable to replace the default-signed.crt files
-      ## they would set the below value to true so that the vm creates a SSL crt with the valid hostname, so that when the service compares the hostname it is to listen on and
+      ## If a user does not mind using a self signed certificate for their development testing for their own domain  or are unable to replace the default-signed.crt files  
+      ## they would set the below value to true so that the vm creates a SSL crt with the valid hostname, so that when the service compares the hostname it is to listen on 
+and
       ## the hostname the certificate is signed for it matches.
       selfsigned_enabled: ::CERT_SELFSIGNED:: # true
       haproxy_ssl_redirect: true
@@ -158,7 +159,7 @@ hosts:
       domino_major_version: ::DOMINO_MAJOR_VERSION:: # "12"
       domino_minor_version: ::DOMINO_MINOR_VERSION:: # "0"
       domino_patch_version: ::DOMINO_PATCH_VERSION:: # "2"
-      
+
       # Domino fixpack Variables
       #domino_fp_hash: ::DOMINO_FP_HASH:: # "124153dfbb571b1284ac4248"
       #domino_server_installer_tar: ::DOMINO_INSTALLER:: # "Domino_12.0.2_Linux_English.tar"
@@ -198,7 +199,7 @@ hosts:
       #appdevpack_hash: ::APPDEVPACK_HASH:: # "b84248ae22a57efe19dac360bd2aafc2"
       appdevpack_archive: ::APPDEVPACK_INSTALLER:: # domino-appdev-pack-1.0.15.tgz
       appdevpack_version: ::APPDEVPACK_INSTALLER_VERSION:: # 1.0.15
-      
+
       # Domino Rest API Variables
       #domino_rest_api_hash: ::DOMINO_REST_API_HASH:: # "fa990f9bac800726f917cd0ca857f220"
       domino_rest_api_version: ::DOMINO_REST_API_INSTALLER_VERSION:: # 1
@@ -208,14 +209,14 @@ hosts:
       - startcloud.startcloud_roles
       - startcloud.hcl_roles
       #- ORGNAME.CUSTOMCOLLECTION
-      ## How to Create a Custom Ansible Role Collection: 
+      ## How to Create a Custom Ansible Role Collection:
       ## https://www.cherryservers.com/blog/ansible-roles-tutorial
       ## https://docs.ansible.com/ansible/latest/dev_guide/developing_collections_creating.html
       ## My Instructions
       ## 1. Install Ansible on your Local machine (or I guess do this inside the VM since it has Ansible already installed, though you will need to figure out how to auth with git)
-      ## 2. On your local machine, not the VM, navigate (cd) to Current instance of SHI provisioner files 
+      ## 2. On your local machine, not the VM, navigate (cd) to Current instance of SHI provisioner files
       ##     IE: C:\Users\mgilbert\AppData\Roaming\SuperHumanInstallerDev\servers\demo-tasks\5225\provisioners\ansible\ansible_collections\
-      ## 3. Create a new directory that corresponds to your organization, ie startcloud, cd into that directory. (Note it is recommend to create a Repo for each org)
+      ## 3. Create a new directory that corresponds to your organization, ie startcloud, cd into that directory. (Note it is recommend to create a Repo for each org)       
       ## 4. Create the Collection Folder, and cd into that directory, then Create a(nother) Github Repo, git init (It is recommended to prepare this repo as a git submodule if you created a repo for your org)
       ## 5. Create the roles folder, then navigate into that folder
       ## 6. Initialize the Role ansible-galaxy init CUSTOMROLE
@@ -237,7 +238,7 @@ hosts:
       ##     We could use git, to clone their repo into this path
       ## 2. We have SHI, pass the github URL to the custom collection, and seperate role called startcloud_roles.custom_collections,
       ##      will then download that role and then execute it (caveat this only downloads the collection into the VM and NOT into the Local copy of the SHI provisoner -- Role to be created based on feedback)
-      ## 3. SHI updates the requirements.yml, which if Hosts.yml, the ansible provisioner has "remote_collections: true", then it will install the collection in the VM
+      ## 3. SHI updates the requirements.yml, which if Hosts.yml, the ansible provisioner has "remote_collections: true", then it will install the collection in the VM     
 
     roles:
       - name: startcloud.startcloud_roles.setup
@@ -252,12 +253,12 @@ hosts:
       - name: startcloud.startcloud_roles.ssl
       - name: startcloud.hcl_roles.domino_reset
       - name: startcloud.hcl_roles.domino_install
-      - name: startcloud.hcl_roles.domino_vagrant_rest_api 
+      - name: startcloud.hcl_roles.domino_vagrant_rest_api
       - name: startcloud.hcl_roles.domino_service_nash
       - name: startcloud.hcl_roles.domino_java_config
       - name: startcloud.hcl_roles.domino_java_tools
       - name: startcloud.hcl_roles.domino_updatesite
-      - name: startcloud.hcl_roles.domino_config 
+      - name: startcloud.hcl_roles.domino_config
       - name: startcloud.hcl_roles.domino_genesis
       - name: startcloud.hcl_roles.domino_genesis_applications
       - name: startcloud.hcl_roles.domino_cross_certify
@@ -277,4 +278,3 @@ hosts:
       ::ROLE_STARTCLOUD_HAPROXY::
       ::ROLE_STARTCLOUD_VAGRANT_README::
       #- name: startcloud.startcloud_roles.lockdown
-
