@@ -17,3 +17,9 @@
         dest: "/vagrant/ansible/playbook.yml"
         mode: a+x
         src: "playbook.yml.j2"
+    -
+      name: "Dynamically generating playbook"
+      ansible.builtin.template:
+        dest: "/vagrant/ansible/always-playbook.yml"
+        mode: a+x
+        src: "always-playbook.yml.j2"

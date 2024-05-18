@@ -6,6 +6,8 @@
 
 # Don't Include Vagrant support files
 .vagrant
+hcl_domino_standalone_provisioner\id_rsa
+hcl_domino_standalone_provisioner\results.yml
 
 # Don't include your ID Files!
 safe-id-to-cross-certify/*.ids
@@ -38,3 +40,4 @@ test_files/
 
 ## Ignore Roles
 hcl_domino_standalone_provisioner/provisioners/ansible/roles/
+hcl_domino_standalone_provisioner/Hosts.yml
