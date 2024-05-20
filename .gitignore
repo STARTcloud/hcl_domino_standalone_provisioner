@@ -10,6 +10,7 @@ hcl_domino_standalone_provisioner/id_rsa
 hcl_domino_standalone_provisioner/Hosts.yml
 hcl_domino_standalone_provisioner\id_rsa
 hcl_domino_standalone_provisioner\results.yml
+hcl_domino_standalone_provisioner/results.yml
 
 # Don't include your ID Files!
 safe-id-to-cross-certify/*.ids
