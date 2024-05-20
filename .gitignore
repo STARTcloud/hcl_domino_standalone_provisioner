@@ -6,6 +6,8 @@
 
 # Don't Include Vagrant support files
 .vagrant
+hcl_domino_standalone_provisioner/id_rsa
+hcl_domino_standalone_provisioner/Hosts.yml
 hcl_domino_standalone_provisioner\id_rsa
 hcl_domino_standalone_provisioner\results.yml
 
@@ -38,6 +40,3 @@ test_files/
 */installers/*/archives/*.gz
 */installers/*/archives/*.tgz
 
-## Ignore Roles
-hcl_domino_standalone_provisioner/provisioners/ansible/roles/
-hcl_domino_standalone_provisioner/Hosts.yml

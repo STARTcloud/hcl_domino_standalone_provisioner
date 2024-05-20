@@ -1,0 +1,9 @@
+---
+open_url: https://192.168.2.128:443/welcome.html
+adapters:
+- ip: 10.244.244.15/24
+  mac: '08:00:27:bd:ef:8c'
+  name: nat_adapter
+- ip: 192.168.2.128/24
+  mac: '08:00:27:c1:e7:2a'
+  name: public_adapter
