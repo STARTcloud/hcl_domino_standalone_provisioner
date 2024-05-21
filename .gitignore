@@ -1,6 +1,6 @@
 ## Don't Save Secrets That pertain to Secure details
 .secrets.yml
-
+vault.yml
 ## Don't Save Log Files
 *.log
 
@@ -8,10 +8,11 @@
 .vagrant
 hcl_domino_standalone_provisioner/id_rsa
 hcl_domino_standalone_provisioner/Hosts.yml
+hcl_domino_standalone_provisioner\Hosts.yml
 hcl_domino_standalone_provisioner\id_rsa
 hcl_domino_standalone_provisioner\results.yml
 hcl_domino_standalone_provisioner/results.yml
-
+Hosts.yml
 # Don't include your ID Files!
 safe-id-to-cross-certify/*.ids
 safe-id-to-cross-certify/*.id
