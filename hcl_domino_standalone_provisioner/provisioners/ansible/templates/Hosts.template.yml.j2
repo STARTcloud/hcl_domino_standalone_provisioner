@@ -204,19 +204,24 @@ and
       #domino_rest_api_hash: ::DOMINO_REST_API_HASH:: # "fa990f9bac800726f917cd0ca857f220"
       domino_rest_api_version: ::DOMINO_REST_API_INSTALLER_VERSION:: # 1
       domino_rest_api_archive: ::DOMINO_REST_API_INSTALLER:: # Domino_REST_API_V1_Installer.tar.gz
+      
+      ## ORGNAME_CUSTOMCOLLECTION_variables:
+      ## Define Variables that the ORGNAME.CUSTOMCOLLECTION Roles will use if any.
+      #git_repo_url: "https://github.com/your/repo.git"
+
 
     collections: ## Note to SHI Devs, this is new and is required
       - startcloud.startcloud_roles
-      - startcloud.hcl_roles
+      - startcloud.hcl_roles # https://github.com/Moonshine-IDE/moonshine-vagrant-mxhx-demo
       #- ORGNAME.CUSTOMCOLLECTION
-      ## How to Create a Custom Ansible Role Collection:
+      ## How to Create a Custom Ansible Role Collection: 
       ## https://www.cherryservers.com/blog/ansible-roles-tutorial
       ## https://docs.ansible.com/ansible/latest/dev_guide/developing_collections_creating.html
       ## My Instructions
       ## 1. Install Ansible on your Local machine (or I guess do this inside the VM since it has Ansible already installed, though you will need to figure out how to auth with git)
-      ## 2. On your local machine, not the VM, navigate (cd) to Current instance of SHI provisioner files
+      ## 2. On your local machine, not the VM, navigate (cd) to Current instance of SHI provisioner files 
       ##     IE: C:\Users\mgilbert\AppData\Roaming\SuperHumanInstallerDev\servers\demo-tasks\5225\provisioners\ansible\ansible_collections\
-      ## 3. Create a new directory that corresponds to your organization, ie startcloud, cd into that directory. (Note it is recommend to create a Repo for each org)       
+      ## 3. Create a new directory that corresponds to your organization, ie startcloud, cd into that directory. (Note it is recommend to create a Repo for each org)
       ## 4. Create the Collection Folder, and cd into that directory, then Create a(nother) Github Repo, git init (It is recommended to prepare this repo as a git submodule if you created a repo for your org)
       ## 5. Create the roles folder, then navigate into that folder
       ## 6. Initialize the Role ansible-galaxy init CUSTOMROLE
@@ -238,8 +243,9 @@ and
       ##     We could use git, to clone their repo into this path
       ## 2. We have SHI, pass the github URL to the custom collection, and seperate role called startcloud_roles.custom_collections,
       ##      will then download that role and then execute it (caveat this only downloads the collection into the VM and NOT into the Local copy of the SHI provisoner -- Role to be created based on feedback)
-      ## 3. SHI updates the requirements.yml, which if Hosts.yml, the ansible provisioner has "remote_collections: true", then it will install the collection in the VM     
+      ## 3. SHI updates the requirements.yml, which if Hosts.yml, the ansible provisioner has "remote_collections: true", then it will install the collection in the VM
 
+    ## Note to SHI Devs, each role has a meta/main.yml, If you want to know the roles Description, check this file.
     roles:
       - name: startcloud.startcloud_roles.setup
       - name: startcloud.startcloud_roles.networking
