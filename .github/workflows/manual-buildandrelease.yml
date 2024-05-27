@@ -1,6 +1,6 @@
 name: MANUAL - Build, Release and Publish
 
-on:    
+on: 
   workflow_dispatch:
     inputs:
       env:
