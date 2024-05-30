@@ -3,6 +3,7 @@
 vault.yml
 ## Don't Save Log Files
 *.log
+support-bundle.zip
 
 # Don't Include Vagrant support files
 .vagrant
