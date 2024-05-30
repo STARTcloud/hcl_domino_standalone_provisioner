@@ -70,7 +70,7 @@ public class CreateNamesDatabase {
             //template = session.getDatabase("", "/local/notesdata/pubnames.ntf", false);
             //template = session.getDatabase("", "pubnames.ntf", false);
             template = session.getDatabase("", "pernames.ntf", false);
-            //template = session.getDatabase("domino-49.prominic.net", "pubnames.ntf", false);
+            //template = session.getDatabase("domino-01.startcloud.com", "pubnames.ntf", false);
             if (null == template || !template.isOpen()) {
                 throw new Exception("Could not open template.");
             }
