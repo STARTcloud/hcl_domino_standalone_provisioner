@@ -1,7 +1,6 @@
-#jinja2:lstrip_blocks: True
-# core_provisioner_version: {{ core_provisioner_version }}
-# provisioner_name: {{ provisioner_name }}
-# provisioner_version: {{ provisioner_version }}
+# core_provisioner_version: 0.2.8
+# provisioner_name: hcl_domino_standalone_provisioner
+# provisioner_version: 0.1.22
 ---
 hosts:
   -

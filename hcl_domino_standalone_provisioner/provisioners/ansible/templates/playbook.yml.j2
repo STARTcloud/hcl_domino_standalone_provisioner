@@ -14,9 +14,9 @@
     {{ key }}: {{ value }}
     {% endfor %}
   {% endif %}
-  {% if collections is defined and collections and collections != "" %}
+  {% if playbook_collections is defined and playbook_collections and playbook_collections != "" %}
   collections:
-    {% for key, value in collections.items() %}
+    {% for key, value in playbook_collections.items() %}
     {{ key }}: {{ value }}
     {% endfor %}
   {% endif %}
@@ -24,8 +24,18 @@
     {% for role in provision_roles %}
     -
       role: {{ role.name }}
+      {% set tag_list = role.tags | default([]) %}
       {% if role.when is defined %}
       when: {{ role.when }}
+      {% endif %}
+      {% if tag_list is iterable and tag_list is not string and tag_list | length > 0 %}
+      tags:
+        {% for tag in tag_list %}
+          - {{ tag }}
+        {% endfor %}
+      {% elif tag_list is string and tag_list != "" %}
+      tags:
+        - {{ tag_list }}
       {% endif %}
       {% if role.vars is defined or role.port_forwards is defined %}
       vars:

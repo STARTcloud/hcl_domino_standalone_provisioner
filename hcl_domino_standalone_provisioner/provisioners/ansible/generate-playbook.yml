@@ -8,7 +8,7 @@
     -
       name: "Dynamically generating template playbook for SHI"
       ansible.builtin.template:
-        dest: "Hosts.template.yml"
+        dest: "Hosts.template.yml.SHI"
         mode: a+x
         src: "Hosts.template.yml.j2"
     -
