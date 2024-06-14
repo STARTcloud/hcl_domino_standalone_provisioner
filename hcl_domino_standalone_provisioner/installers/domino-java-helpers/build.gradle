@@ -14,7 +14,7 @@ if (!notesInstallation) {
 }
 if (!(new File(notesInstallation).exists())) {
     // try this as a Linux environment instead
-    notesInstallation = '/opt/hcl/domino/notes/latest/linux'
+    notesInstallation = '{{ domino_install_dir }}'
 }
 if (!(new File(notesInstallation).exists())) {
     throw new GradleException("Invalid configured path for Notes installation ($notesInstallation).  Check notesInstallation in build.gradle.")
@@ -56,7 +56,7 @@ else { // treat as Windows
 
 // build a jar path to use for Notes.jar
 // Supports local and Linux server executions
-String jarClassPath = "./Notes.jar /opt/hcl/domino/notes/latest/linux/jvm/lib/ext/Notes.jar ${notesJarPath.replaceAll(' ', '%20').replaceAll('^\\w+:', '/$0')}"
+String jarClassPath = "./Notes.jar {{ domino_install_dir }}/jvm/lib/ext/Notes.jar ${notesJarPath.replaceAll(' ', '%20').replaceAll('^\\w+:', '/$0')}"
 
 logger.debug "Environment"
 System.env.each {

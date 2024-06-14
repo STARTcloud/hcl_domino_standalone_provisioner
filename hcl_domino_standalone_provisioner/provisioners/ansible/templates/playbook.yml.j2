@@ -20,6 +20,13 @@
     {{ key }}: {{ value }}
     {% endfor %}
   {% endif %}
+  {% if provision_pre_tasks is defined and provision_pre_tasks and provision_pre_tasks != "" %}
+  pre_tasks:
+    {% for pre_task in provision_pre_tasks %}
+    -
+      {{ pre_task }}
+    {% endfor %}
+  {% endif %}
   roles:
     {% for role in provision_roles %}
     -
@@ -61,3 +68,10 @@
         {% endif %}
       {% endif %}
     {% endfor %}
+  {% if provision_post_tasks is defined and provision_post_tasks and provision_post_tasks != "" %}
+  post_tasks:
+    {% for post_task in provision_post_tasks %}
+    -
+      {{ post_task }}
+    {% endfor %}
+  {% endif %}
