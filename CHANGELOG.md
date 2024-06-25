@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.23](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.22...hcl_domino_standalone_provisioner/v0.1.23) (2024-06-25)
+
+
+### Bug Fixes
+
+* CA root cert inclusion ([1503924](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/150392429eb67a166a1651d757e1767c5bc01e96))
+* current issues, STARTcloud/hcl_roles/issues/1, STARTcloud/hcl_roles/issues/2, STARTcloud/hcl_roles/issues/3, STARTcloud/hcl_roles/issues/4, STARTcloud/hcl_roles/issues/5, STARTcloud/hcl_roles/issues/6, STARTcloud/hcl_domino_standalone_provisioner/issues/3, STARTcloud/hcl_domino_standalone_provisioner/issues/4, ([81d8032](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/81d8032580ec7278211be9b0fde4ad94753b7a80))
+* haproxy, servletexample, Vagranfile symlink ([1c60a60](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/1c60a60194bc4e8a6b86751b93d7cea1b5d173d9))
+* Hosts.template.yml ([2c3dcd7](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/2c3dcd7e0990949f479f48480c1966d15ffeee17))
+* including moonshine_roles ([aa77802](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/aa778023264fcc252358f30ed4c427fa918879c9))
+* including moonshine_roles ([f7f399f](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/f7f399f96209e6782c203ce8f97aeb057337a393))
+* remove extraneous file ([5fd05e1](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/5fd05e1998925f0a8a91374755727fd9aa966af0))
+* Updating Hosts.rb ([09c74ca](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/09c74ca22f810b64866a167d6468dfc819e14fa3))
+
 ## [0.1.22](https://github.com/DominoVagrant/demo-tasks/compare/demo-tasks/v0.1.21...demo-tasks/v0.1.22) (2023-09-20)
 
 
