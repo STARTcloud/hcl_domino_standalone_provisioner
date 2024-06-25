@@ -43,3 +43,4 @@ test_files/
 */installers/*/archives/*.gz
 */installers/*/archives/*.tgz
 
+.vscode/settings.json

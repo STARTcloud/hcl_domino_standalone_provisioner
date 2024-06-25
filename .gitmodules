@@ -10,7 +10,3 @@
 	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/hcl_roles
 	url = https://github.com/STARTcloud/hcl_roles
 	branch = main
-[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/moonshine/moonshine_roles"]
-	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/moonshine/moonshine_roles
-	url = https://github.com/Moonshine-IDE/moonshine_roles
-	branch = main
