@@ -5,7 +5,12 @@
   become: true
   gather_facts: true
   hosts: all
-  {% if role_vars is defined and role_vars and role_vars != "" %}
+{% if role_vars is defined and role_vars and role_vars != "" %}
+{% if role_vars.proxy_server is defined and role_vars.use_proxy %}
+  environment:
+    http_proxy: http://{{ role_vars.proxy_server }}:3128
+    https_proxy: http://{{ role_vars.proxy_server }}:3128
+{% endif %}
   vars:
     core_provisioner_version: {{ core_provisioner_version }}
     provisioner_name: {{ provisioner_name }}
