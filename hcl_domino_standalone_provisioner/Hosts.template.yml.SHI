@@ -22,7 +22,7 @@ hosts:
       # Box information
       box: 'STARTcloud/debian12-server'
       box_url: 'https://vagrantcloud.com'
-      box_version: 0.0.4
+      box_version: 0.0.8
 
       # Provider Specific Settings
       provider-type: virtualbox
@@ -208,20 +208,22 @@ hosts:
       - name: startcloud.hcl_roles.domino_genesis_applications
       - name: startcloud.hcl_roles.domino_cross_certify
       #- name: startcloud.hcl_roles.domino_java_app_example ## Uncomment Me to build your own Domino Java Servlet
-      ::ROLE_LEAP:: 
-      ::ROLE_NOMADWEB::
-      ::ROLE_TRAVELER:: 
-      ::ROLE_TRAVELER_HTMO:: 
-      ::ROLE_VERSE:: 
-      ::ROLE_APPDEVPACK:: 
-      ::ROLE_RESTAPI:: ## Note to SHI devs, This should be called ROLE_DOMINO_RESTAPI, as this is different than startcloud.hcl_roles.domino_vagrant_rest_api
+      ::ROLE_LEAP:: #- name: startcloud.hcl_roles.domino_leap
+      ::ROLE_NOMADWEB:: #- name: startcloud.hcl_roles.domino_nomadweb
+      ::ROLE_TRAVELER:: #- name: startcloud.hcl_roles.domino_traveler
+      ::ROLE_TRAVELER_HTMO:: #- name: startcloud.hcl_roles.domino_traveler_htmo
+      ::ROLE_VERSE:: #- name: startcloud.hcl_roles.domino_verse
+      ::ROLE_APPDEVPACK:: #- name: startcloud.hcl_roles.domino_appdevpack
+      ## Note to SHI devs, This should be called ROLE_DOMINO_RESTAPI, as this is different than startcloud.hcl_roles.domino_vagrant_rest_api
+      ::ROLE_RESTAPI:: #- name: startcloud.hcl_roles.domino_rest_api
       - name: startcloud.hcl_roles.domino_vagrant_readme
-      ::ROLE_MARIADB::  
-      ::ROLE_DOCKER::  
-      ::ROLE_VOLTMX_DOCKER::
-      ::ROLE_VOLTMX::
+      ::ROLE_MARIADB::  #- name: startcloud.hcl_roles.mariadb
+      ::ROLE_DOCKER:: #- name: startcloud.hcl_roles.docker
+      ::ROLE_VOLTMX_DOCKER::  #TODO
+      ::ROLE_VOLTMX::  #- name: startcloud.hcl_roles.voltmx
       - name: startcloud.startcloud_roles.quick_start # ::ROLE_STARTCLOUD_QUICK_START::
         tags: always
-      ::ROLE_STARTCLOUD_HAPROXY::
-      ::ROLE_STARTCLOUD_VAGRANT_README::
+      # TODO:  additional properties?
+      ::ROLE_STARTCLOUD_HAPROXY:: #- name: startcloud.hcl_roles.haproxy
+      ::ROLE_STARTCLOUD_VAGRANT_README:: #- name: startcloud.startcloud_roles.vagrant_readme
       - name: startcloud.startcloud_roles.lockdown
