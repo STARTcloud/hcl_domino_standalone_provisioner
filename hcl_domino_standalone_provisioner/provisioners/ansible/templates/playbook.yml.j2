@@ -5,8 +5,8 @@
   become: true
   gather_facts: true
   hosts: all
-{% if role_vars is defined and role_vars and role_vars != "" and role_vars.proxy_port is defined and role_vars.proxy_port and role_vars.proxy_port != "" %}
-{% if role_vars.proxy_server is defined and role_vars.use_proxy and role_vars.proxy_port is defined %}
+{% if role_vars is defined and role_vars and role_vars != "" %}
+{% if role_vars.proxy_server is defined and role_vars.use_proxy and role_vars.proxy_port is defined and role_vars.proxy_port != "" %}
   environment:
     http_proxy: http://{{ role_vars.proxy_server }}:{{ role_vars.proxy_port }}
     https_proxy: http://{{ role_vars.proxy_server }}:{{ role_vars.proxy_port }}
