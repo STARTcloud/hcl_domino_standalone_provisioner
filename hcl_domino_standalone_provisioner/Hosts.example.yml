@@ -289,6 +289,6 @@ hosts:
       - name: startcloud.startcloud_roles.quick_start # ::ROLE_STARTCLOUD_QUICK_START::
         tags: always
       # TODO:  additional properties?
-      #- name: startcloud.hcl_roles.haproxy
-      #- name: startcloud.startcloud_roles.vagrant_readme
+      - name: startcloud.startcloud_roles.haproxy
+      - name: startcloud.startcloud_roles.vagrant_readme
       - name: startcloud.startcloud_roles.lockdown
