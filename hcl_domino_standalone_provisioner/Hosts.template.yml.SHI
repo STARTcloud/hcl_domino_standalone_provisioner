@@ -135,9 +135,9 @@ hosts:
 
       # Domino Installer Variables
       domino_hash: ::DOMINO_HASH::
-      domino_major_version: ::DOMINO_MAJOR_VERSION::
-      domino_minor_version: ::DOMINO_MINOR_VERSION::
-      domino_patch_version: ::DOMINO_PATCH_VERSION::
+      domino_major_version: ::DOMINO_INSTALLER_MAJOR_VERSION::
+      domino_minor_version: ::DOMINO_INSTALLER_MINOR_VERSION::
+      domino_patch_version: ::DOMINO_INSTALLER_PATCH_VERSION::
 
       # Domino fixpack Variables
       domino_fp_hash: ::DOMINO_FP_HASH::
