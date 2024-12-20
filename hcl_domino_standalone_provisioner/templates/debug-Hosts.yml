@@ -2,7 +2,7 @@
 # core_provisioner_version: {{ core_provisioner_version }}
 # provisioner_name: {{ provisioner_name }}
 # provisioner_version: {{ provisioner_version }}
-# The Debug Hosts.yml is Mark's copy that he uses on all his machines
+# Author: Mark Gilbert
 # It is not templated
 # It's goal is to be a Hosts.yml that works on Bhyve and Virtualbox simultaneously
 

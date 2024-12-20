@@ -35,7 +35,7 @@ hosts:
 
       # Box information
       box: 'STARTcloud/debian12-server'
-      box_url: 'https://vagrantcloud.com'
+      box_url: 'https://boxvault.startcloud.com'
       box_version: 0.0.9
 
       # Provider Specific Settings
