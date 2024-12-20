@@ -10,27 +10,40 @@
 hosts:
   -
     settings:
+      # Identifiers
       debug_build: true
       hostname: standalone-demo
       domain: startcloud.com
       server_id: '4020'
+
+      # Resources
       vcpus: 4
       memory: 16G
+
+      # Console Access
+      consoleport: 4020
+      consolehost: 0.0.0.0
+      show_console: false
+
+      # Box information
       box: 'STARTcloud/debian12-server'
       box_url: 'https://boxvault.startcloud.com'
       box_version: 0.0.9
-      os_type: 'Debian_64'
+
+      # Provider Specific Settings
       provider-type: virtualbox
+      os_type: 'Debian_64'
       firmware_type: UEFI
-      consoleport: 4020
-      consolehost: 0.0.0.0
+
+      # Setup Variables
       setup_wait: 300
+
+      # Vagrant Configurations
       vagrant_user_private_key_path: ./id_rsa
       vagrant_user: startcloud
       vagrant_user_pass: 'XaVuzq2vRV4fTk'
       vagrant_insert_key: true
       ssh_forward_agent: true
-      show_console: false
       post_provision: true
 
     zones:
@@ -61,6 +74,7 @@ hosts:
       - vagrant-scp-sync
 
     networks:
+      # Future iteration may omit this to skip attaching a bridged adpater, the below block will need to be template unto itself
       -
         type: external
         address: 192.168.255.255
@@ -117,7 +131,7 @@ hosts:
                 remote_collections: false
                 collections: []
               -
-                description: "This generates runs the generated playbook, This playbook configures the machine"
+                description: "This runs the generated Ansible playbook, This playbook configures the machine"
                 playbook: ansible/playbook.yml
                 ansible_python_interpreter: /usr/bin/python3
                 compatibility_mode: 2.0
@@ -181,6 +195,10 @@ hosts:
         syncback: true
 
     vars:
+      secrets:
+        domino_installer_base_url: "https://downloads.prominic.net"
+        domino_installer_url_user: "downloads@prominic.net"
+        domino_installer_url_pass: "dUse1234"
       # Provisioner Name
       provisioner: hcl_domino_standalone_provisioner
 
@@ -206,16 +224,7 @@ hosts:
 
       # Safe-ids to cross-certify
       user_safe_id: SAFE.ids
-
-      domino_server_installer_tar: Domino_14.0_Linux_English.tar
-      domino_major_version: 14
-      domino_minor_version: 0
-      domino_patch_version: 0
-
-      # Domino fixpack Variables
-      domino_installer_fixpack_install: true
-      domino_fixpack_version: FP3
-      domino_server_fixpack_tar: Domino_140FP3_Linux.tar
+      #domino_admin_notes_id_password:
 
       # Additional server options
       generate_server_id_count: 0
@@ -225,9 +234,67 @@ hosts:
       existing_server: "standalone-demo.startcloud.com"
       existing_server_ip: "192.168.2.255"
 
+      # Genesis Variables
       genesis_packages:
         - netmonitor
         - SuperHumanPortal
+
+      # Domino Installer Variables
+      #domino_hash: 
+      domino_server_installer_tar: Domino_14.0_Linux_English.tar
+      domino_major_version: 14
+      domino_minor_version: 0
+      domino_patch_version: 0
+
+     # Domino fixpack Variables
+      #domino_fp_hash: 
+      domino_installer_fixpack_install: true
+      domino_fixpack_version: FP3
+      domino_server_fixpack_tar: Domino_140FP3_Linux.tar
+
+      # Domino Hotfix Variables
+      #domino_hf_hash:
+      domino_installer_hotfix_install:
+      domino_hotfix_version:
+      domino_server_hotfix_tar:
+
+      # Domino Interim Fix Variables
+      #domino_if_hash:
+      domino_installer_interimfix_install:
+      domino_interimfix_version:
+      domino_server_interimfix_tar:
+
+      # Leap Variables
+      #leap_hash:
+      #leap_archive:
+      #leap_version:
+
+      # Nomad Web Variables
+      #nomadweb_hash:
+      #nomadweb_archive:
+      #nomadweb_version:
+
+      # Traveler Variables
+      #traveler_hash:
+      #traveler_archive:
+      #traveler_base_version:
+      #traveler_fixpack_archive:
+      #traveler_fixpack_version:
+
+      # Verse Variables
+      #verse_hash:
+      #verse_archive:
+      #verse_base_version:
+
+      # AppDev Web Pack Variables
+      #appdevpack_hash:
+      #appdevpack_archive:
+      #appdevpack_version:
+
+      # Domino Rest API Variables
+      #domino_rest_api_hash:
+      #domino_rest_api_version:
+      #domino_rest_api_archive:
 
       # Hosts entries for /etc/hosts
       #etc_hosts_entries:
@@ -270,8 +337,8 @@ hosts:
       #- name: startcloud.hcl_roles.domino_rest_api
       - name: startcloud.hcl_roles.domino_nomadweb
       - name: startcloud.hcl_roles.domino_vagrant_readme
-      - name: startcloud.startcloud_roles.vagrant_readme
       - name: startcloud.startcloud_roles.quick_start
         tags: always
       - name: startcloud.startcloud_roles.haproxy
+      - name: startcloud.startcloud_roles.vagrant_readme
       - name: startcloud.startcloud_roles.lockdown
