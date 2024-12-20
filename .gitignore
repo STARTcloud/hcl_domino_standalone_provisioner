@@ -1,5 +1,5 @@
 ## Don't Save Secrets That pertain to Secure details
-.secrets.yml
+#.secrets.yml
 vault.yml
 ## Don't Save Log Files
 *.log
