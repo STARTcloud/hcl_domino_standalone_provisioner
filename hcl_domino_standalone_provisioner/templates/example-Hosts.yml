@@ -186,7 +186,7 @@ hosts:
       # You need to add a file matching this name to id-files/user-safe-ids
       user_safe_id: REPLACEME #safe.ids
       domino_admin_notes_id_password: password
-      generate_server_id_count: 0
+      ots_generate_server_id_count: 0
 
       # Additional server options
       is_additional_server: false

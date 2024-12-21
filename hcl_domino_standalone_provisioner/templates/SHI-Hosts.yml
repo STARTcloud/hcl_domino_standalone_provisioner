@@ -1,6 +1,3 @@
-# core_provisioner_version: 0.2.8
-# provisioner_name: hcl_domino_standalone_provisioner
-# provisioner_version: 0.1.22
 
 ---
 hosts:
@@ -19,11 +16,11 @@ hosts:
       # Console Access
       consoleport: ::SERVER_ID::
       consolehost: 0.0.0.0
-      show_console: false ## Some people have reported issues when VBox doesn't show the Console
+      show_console: ::SHOW_CONSOLE:: ## Some people have reported issues when VBox doesn't show the Console, default to false
 
       # Box information
       box: 'STARTcloud/debian12-server'
-      box_url: 'https://boxvault.startcloud.com'
+      box_url: ::BOX_URL:: # Should default to 'https://boxvault.startcloud.com' but can be set to 'https://vagrantcloud.com'
       box_version: 0.0.9
 
       # Provider Specific Settings
@@ -40,13 +37,14 @@ hosts:
       vagrant_user_pass: ::SERVER_DEFAULT_USER_PASS:: # 'STARTcloud24@!' 
       vagrant_insert_key: true
       ssh_forward_agent: true
-      post_provision: true
+      post_provision: ::POST_PROVISION:: ## This calls extra things after Ansible completes, like syncing the new SSH key from the lockdown role, or the id_files or the support bundle
 
     plugins:
       - vagrant-scp-sync
 
     networks:
-      # Future iteration may omit this to skip attaching a bridged adpater, the below block will need to be template unto itself
+      # if ::NO_BRIDGE_INTERFACE::
+      # TO SHI DEVs, if user wants to to disable the external bridged interface, then you should remove the below block
       -
         type: external
         address: ::NETWORK_ADDRESS::
@@ -55,7 +53,7 @@ hosts:
         autoconf: false
         vlan: 
         dhcp4: ::NETWORK_DHCP4::
-        dhcp6: false # false
+        dhcp6: false
         is_control: false
         route: default
         provisional: false
@@ -75,16 +73,18 @@ hosts:
         size: 48G
     
       additional_disks:
+      # if ::ADDITIONAL_DISK::
       # TO SHI DEVs, if user wants to store thier data on a secondary disk, you would enable this block
       #  - array: null
       #    dataset: null
       #    sparse: true
       #    live: false
       #    filesystem: xfs
-      #    mount: /local
-      #    size: 50.0G
+      #    mount: ::ADDITIONAL_DISK_MOUNT_POINT::
+      #    size: ::ADDITIONAL_DISK_SIZE::
       #    port: 5
       #    volume_name: disk1
+
     provisioning:
       shell:
         enabled: false
@@ -96,7 +96,7 @@ hosts:
         playbooks:
           - local:
               -
-                description: "This generates a Ansible Playbook on the VM with all the variables in Hosts.yml"
+                description: "This playbook imports Hosts.yml variables into a generated playbook: /vagrant/ansible/playbook.yml"
                 playbook: ansible/generate-playbook.yml
                 ansible_python_interpreter: /usr/bin/python3
                 compatibility_mode: 2.0
@@ -108,7 +108,7 @@ hosts:
                 remote_collections: false
                 collections: []
               -
-                description: "This runs the generated playbook, This playbook configures the machine"
+                description: "This playbook configures the machine using the generated playbook: /vagrant/ansible/playbook.yml"
                 playbook: ansible/playbook.yml
                 ansible_python_interpreter: /usr/bin/python3
                 compatibility_mode: 2.0
@@ -122,7 +122,7 @@ hosts:
                   - startcloud.startcloud_roles
                   - startcloud.hcl_roles
               -
-                description: "This Playbook is a special provisioner that will always run, ie vagrant up, vagrant reload"
+                description: "This playbook configures the machine for roles tagged as always, using the generated playbook: /vagrant/ansible/playbook.yml"
                 playbook: ansible/always-playbook.yml
                 ansible_python_interpreter: /usr/bin/python3
                 compatibility_mode: 2.0
@@ -169,14 +169,17 @@ hosts:
         map: ./id-files
         to: /id-files
         type: rsync
-        syncback: true
+        syncback: ::SYNCBACK_ID_FILES::
 
     vars:
-      # Provisioner Name
-      provisioner: hcl_domino_standalone_provisioner
+      # Secrets Override: If you don't want to use a secrets file you can override secrets here
+      #secrets:
+      #  domino_installer_base_url: ::DOWNLOAD_BASE_URL::
+      #  domino_installer_url_user: ::DOWNLOAD_AUTH_USER::
+      #  domino_installer_url_pass: ::DOWNLOAD_AUTH_PASS::
 
       ## Debug
-      debug_all: true
+      debug_all: ::DEBUG_ALL_ANSIBLE_TASKS::
 
       ## SSL
       selfsigned_enabled: ::CERT_SELFSIGNED::
@@ -186,26 +189,26 @@ hosts:
 
       ## Use Proxy for downloads and updates
       use_proxy: false
-      proxy_server: 255.255.255.255
-      proxy_port: 3128
+      proxy_server: ::HTTP_PROXY_HOST::
+      proxy_port: ::HTTP_PROXY_PORT::
 
       # Extra Packages
       extra_packages: ['htop']
 
       # Domino Configuration Variables
       domino_organization: ::SERVER_ORGANIZATION::
+      domino_admin_notes_id_password: ::DOMINO_ADMIN_PASSWORD::
 
       # Safe-ids to cross-certify
       user_safe_id: ::USER_SAFE_ID::
-      domino_admin_notes_id_password: ::DOMINO_ADMIN_PASSWORD::
 
       # Additional server options
-      generate_server_id_count: ::DOMINO_SERVER_CLUSTERMATES::
+      ots_generate_server_id_count: ::DOMINO_SERVER_CLUSTERMATES::
       is_additional_server: ::DOMINO_IS_ADDITIONAL_INSTANCE::
-      use_existing_server_id: true
-      #existing_server_id: "additional-demo.id"
-      #existing_server: "standalone-demo.startcloud.com"
-      #existing_server_ip: "192.168.2.255"
+      use_domino_server_id: true
+      domino_server_id: ::DOMINO_SERVER_ID::
+      origin_server: ::DOMINO_ORIGIN_HOSTNAME::.::DOMINO_ORIGIN_DOMAIN::  ## Note to SHI dev, may be able to use ::SERVER_DOMAIN:: instead of ::DOMINO_ORIGIN_DOMAIN::
+      origin_server_ip: ::DOMINO_ORIGIN_SERVER_IP::
 
       # Genesis Variables
       genesis_packages:
@@ -236,6 +239,7 @@ hosts:
       domino_installer_interimfix_install: ::DOMINO_INSTALLER_INTERIMFIX_INSTALL::
       domino_interimfix_version: ::DOMINO_INSTALLER_INTERIMFIX_VERSION::
       domino_server_interimfix_tar: ::DOMINO_INSTALLER_INTERIMFIX::
+
       # Leap Variables
       leap_hash: ::LEAP_HASH::
       leap_archive: ::LEAP_INSTALLER::
@@ -268,6 +272,13 @@ hosts:
       domino_rest_api_version: ::DOMINO_REST_API_INSTALLER_VERSION::
       domino_rest_api_archive: ::DOMINO_REST_API_INSTALLER::
 
+      # Hosts entries for /etc/hosts
+      etc_hosts_entries:
+        - hostname: ::DOMINO_ORIGIN_HOSTNAME::.::DOMINO_ORIGIN_DOMAIN::
+          aliases:
+            - ::DOMINO_ORIGIN_HOSTNAME::
+          ip: ::DOMINO_ORIGIN_SERVER_IP::
+
     roles:
       - name: startcloud.startcloud_roles.setup
       - name: startcloud.startcloud_roles.networking
@@ -282,7 +293,9 @@ hosts:
       - name: startcloud.startcloud_roles.sdkman_maven
       - name: startcloud.startcloud_roles.sdkman_gradle
       - name: startcloud.startcloud_roles.ssl
-      ::ROLE_DOMINO_RESET:: #- name: startcloud.hcl_roles.domino_reset 
+      - name: startcloud.hcl_roles.domino_reset
+        vars:
+          run_tasks: ::ROLE_DOMINO_RESET::
       - name: startcloud.hcl_roles.domino_install
       - name: startcloud.hcl_roles.domino_vagrant_rest_api
       - name: startcloud.hcl_roles.domino_service_nash
@@ -294,21 +307,48 @@ hosts:
       - name: startcloud.hcl_roles.domino_genesis_applications
       - name: startcloud.hcl_roles.domino_cross_certify
       - name: startcloud.hcl_roles.domino_java_app_example
-      ::ROLE_LEAP:: #- name: startcloud.hcl_roles.domino_leap
-      ::ROLE_TRAVELER:: #- name: startcloud.hcl_roles.domino_traveler
-      ::ROLE_TRAVELER_HTMO:: #- name: startcloud.hcl_roles.domino_traveler_htmo
-      ::ROLE_VERSE:: #- name: startcloud.hcl_roles.domino_verse
-      ::ROLE_APPDEVPACK:: #- name: startcloud.hcl_roles.domino_appdevpack
-      ::ROLE_DOMINO_RESTAPI:: #- name: startcloud.hcl_roles.domino_rest_api
-      ::ROLE_NOMADWEB:: #- name: startcloud.hcl_roles.domino_nomadweb
+      - name: startcloud.hcl_roles.domino_leap
+        vars:
+          run_tasks: ::ROLE_LEAP::
+      - name: startcloud.hcl_roles.domino_traveler
+        vars:
+          run_tasks: ::ROLE_TRAVELER::
+      - name: startcloud.hcl_roles.domino_traveler_htmo
+        vars:
+          run_tasks: ::ROLE_TRAVELER_HTMO::
+      - name: startcloud.hcl_roles.domino_verse
+        vars:
+          run_tasks: ::ROLE_VERSE::
+      - name: startcloud.hcl_roles.domino_appdevpack
+        vars:
+          run_tasks: ::ROLE_APPDEVPACK::
+      - name: startcloud.hcl_roles.domino_rest_api
+        vars:
+          run_tasks: ::ROLE_DOMINO_RESTAPI::
+      - name: startcloud.hcl_roles.domino_nomadweb
+        vars:
+          run_tasks: ::ROLE_NOMADWEB::
       - name: startcloud.hcl_roles.domino_vagrant_readme
-      ::ROLE_MARIADB::  #- name: startcloud.hcl_roles.mariadb
-      ::ROLE_DOCKER:: #- name: startcloud.hcl_roles.docker
-      ::ROLE_VOLTMX_DOCKER::  #TODO
-      ::ROLE_VOLTMX::  #- name: startcloud.hcl_roles.voltmx
-      - name: startcloud.startcloud_roles.quick_start # ::ROLE_STARTCLOUD_QUICK_START::
+      - name: startcloud.startcloud_roles.mariadb
+        vars:
+          run_tasks: ::ROLE_MARIADB::
+      - name: startcloud.startcloud_roles.docker
+        vars:
+          run_tasks: ::ROLE_DOCKER::
+      - name: startcloud.hcl_roles.voltmx_docker
+        vars:
+          run_tasks: ::ROLE_VOLTMX_DOCKER::
+      - name: startcloud.hcl_roles.voltmx
+        vars:
+          run_tasks: ::ROLE_VOLTMX::
+      - name: startcloud.startcloud_roles.quick_start
         tags: always
-      # TODO:  additional properties?
-      ::ROLE_STARTCLOUD_HAPROXY:: #- name: startcloud.startcloud_roles.haproxy
-      ::ROLE_STARTCLOUD_VAGRANT_README:: #- name: startcloud.startcloud_roles.vagrant_readme
+        vars:
+          run_tasks: ::ROLE_STARTCLOUD_QUICK_START::
+      - name: startcloud.startcloud_roles.haproxy
+        vars:
+          run_tasks: ::ROLE_STARTCLOUD_HAPROXY::
+      - name: startcloud.startcloud_roles.vagrant_readme
+        vars:
+          run_tasks: ::ROLE_STARTCLOUD_VAGRANT_README::
       - name: startcloud.startcloud_roles.lockdown
