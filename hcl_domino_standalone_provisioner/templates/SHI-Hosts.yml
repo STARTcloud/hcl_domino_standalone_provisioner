@@ -343,18 +343,6 @@ hosts:
         vars:
           run_tasks: ::ROLE_NOMADWEB::
       - name: startcloud.hcl_roles.domino_vagrant_readme
-      - name: startcloud.startcloud_roles.mariadb
-        vars:
-          run_tasks: ::ROLE_MARIADB::
-      - name: startcloud.startcloud_roles.docker
-        vars:
-          run_tasks: ::ROLE_DOCKER::
-      - name: startcloud.hcl_roles.voltmx_docker
-        vars:
-          run_tasks: ::ROLE_VOLTMX_DOCKER::
-      - name: startcloud.hcl_roles.voltmx
-        vars:
-          run_tasks: ::ROLE_VOLTMX::
       - name: startcloud.startcloud_roles.quick_start
         tags: always
         vars:
