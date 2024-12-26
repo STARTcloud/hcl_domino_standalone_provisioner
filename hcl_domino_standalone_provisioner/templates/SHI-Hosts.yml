@@ -37,7 +37,7 @@ hosts:
 
       # Vagrant Configurations
       vagrant_user: ::SERVER_DEFAULT_USER:: #  startcloud
-      vagrant_user_pass: ::SERVER_DEFAULT_USER_PASS:: # 'STARTcloud24@!' 
+      vagrant_user_pass: ::SERVER_DEFAULT_USER_PASS:: # 'STARTcloud24@!'
       vagrant_user_private_key_path: ./id_rsa
       vagrant_ssh_insert_key: true
       vagrant_ssh_forward_agent: true
@@ -226,7 +226,7 @@ hosts:
 
       # ots: Use One Touch Setup to generate the ID (server names are incremented, ie mail1 mail2 mail3 . .)
       # asja: Use Custom Additional Server Java Applet to generate the additional server ID
-      domino_server_id_creation_tool: ::DOMINO_SERVER_ID_CREATION_TOOL::
+      #domino_server_id_creation_tool: ::DOMINO_SERVER_ID_CREATION_TOOL::
 
       # For use in Domino 14 and above
       #ots_generate_server_names:
@@ -239,7 +239,6 @@ hosts:
       #  - ::DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::.id
       #  - ::OTHER_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::.id
       #  - ::THIRD_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::.id
-
 
       ## Genesis Variables
       genesis_packages:
