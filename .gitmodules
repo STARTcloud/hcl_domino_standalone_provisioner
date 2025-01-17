@@ -2,11 +2,9 @@
 	path = hcl_domino_standalone_provisioner/core
 	url = https://github.com/STARTcloud/core_provisioner
 	branch = submodule
-[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/startcloud_roles"]
-	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/startcloud_roles
-	url = https://github.com/STARTcloud/startcloud_roles
-	branch = main
-[submodule "hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/hcl_roles"]
-	path = hcl_domino_standalone_provisioner/provisioners/ansible/ansible_collections/startcloud/hcl_roles
+[submodule "hcl_domino_standalone_provisioner/provisioners/ansible_collections/startcloud/hcl_roles"]
+	path = hcl_domino_standalone_provisioner/provisioners/ansible_collections/startcloud/hcl_roles
 	url = https://github.com/STARTcloud/hcl_roles
-	branch = main
+[submodule "hcl_domino_standalone_provisioner/provisioners/ansible_collections/startcloud/startcloud_roles"]
+	path = hcl_domino_standalone_provisioner/provisioners/ansible_collections/startcloud/startcloud_roles
+	url = https://github.com/STARTcloud/startcloud_roles
