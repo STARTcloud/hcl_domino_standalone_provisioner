@@ -168,7 +168,7 @@ hosts:
         description: "Directory for Ansible Collections"
         map: ./provisioners/ansible_collections/
         to: /vagrant/ansible_collections/
-        type: rsync
+        type: ::SYNC_METHOD:: ## rsync or scp
         args:
           - '--verbose'
           - '--archive'
@@ -243,6 +243,7 @@ hosts:
       # asja: Use Custom Additional Server Java Applet to generate the additional server ID
       #domino_server_id_creation_tool: ::DOMINO_SERVER_ID_CREATION_TOOL::
 
+      ## OTS Additional Server Settings
       # For use in Domino 14 and above
       #ots_generate_server_names:
       #  - ::DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
@@ -250,10 +251,22 @@ hosts:
       # For use in Domino 12 and below
       #ots_generate_server_id_count:  ::DOMINO_SERVER_CLUSTERMATES::
       #ots_generate_server_id_pattern: ::DOMINO_SERVER_CLUSTERMATES_PATTERN::
+
+      ## ASJA Server Settings
       #asja_generate_server_ids:
-      #  - ::DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::.id
-      #  - ::OTHER_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::.id
-      #  - ::THIRD_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::.id
+      #  - name: ::DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
+      #    pass: ""
+      #  - name: ::OTHER_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
+      #    pass: ""
+      #  - name: ::THIRD_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
+      #    pass: ""
+
+      asja_generate_server_ids:
+        - name: additional-demo.startcloud.com
+          pass: ""
+      #  - ::DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
+      #  - ::OTHER_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
+      #  - ::THIRD_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
 
       ## Genesis Variables
       genesis_packages:
