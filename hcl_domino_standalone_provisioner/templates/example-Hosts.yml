@@ -257,10 +257,6 @@ hosts:
       # You need to add a file matching this name to id-files/user-safe-ids
       domino_admin_notes_id_password: password
 
-      ## Domino Configuration Variables
-      domino_organization: STARTcloud
-      #domino_admin_notes_id_password: password
-
       ## Safe-ids to cross-certify
       user_safe_id: REPLACEME #safe.ids
 
