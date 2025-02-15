@@ -382,9 +382,9 @@ hosts:
       - name: startcloud.hcl_roles.domino_nomadweb
         vars:
           run_tasks: ::ROLE_NOMADWEB::
-      #- name: startcloud.hcl_roles.domino_jedi
-      #  vars:
-      #    run_tasks: ::ROLE_JEDI::
+      - name: startcloud.hcl_roles.domino_jedi
+        vars:
+          run_tasks: ::ROLE_JEDI::
       - name: startcloud.hcl_roles.domino_vagrant_readme
       - name: startcloud.startcloud_roles.quick_start
         tags: always
