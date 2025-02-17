@@ -292,6 +292,9 @@ hosts:
       domino_hotfix_version: ::DOMINO_INSTALLER_HOTFIX_VERSION::
       domino_server_hotfix_tar: ::DOMINO_INSTALLER_HOTFIX::
 
+      ## Jedi Overrides
+      jedi_enabled: true ## If you prefer Nashed Domino Management, but want to have Jedi Installed, set this to False, otherwise if you want Jedi to manage domino, set this to true
+
       ## Leap Variables
       leap_hash: ::LEAP_HASH::
       leap_archive: ::LEAP_INSTALLER::

@@ -18,7 +18,7 @@ hosts:
       server_id: '4021'
 
       # Extra Actions
-      post_provision: true
+      post_provision: true ## This calls extra things after Ansible completes, like syncing the new SSH key from the lockdown role, or the id_files or the support bundle
 
       # Resources
       vcpus: 4
@@ -233,6 +233,8 @@ hosts:
 
     vars:
       # Secrets Override: If you don't want to use a secrets file you can override secrets here
+      # Uncomment and fill in these lines if you want to download the installers for this instance
+      # Note that the installer names must match the names on the download server.
       #secrets:
       #  domino_installer_base_url: "https://XXXXXXXXX.XXXXXXXXX.XXX"
       #  domino_installer_url_user: "XXXXXXXXXXXX@XXXXXXXXXXX"
@@ -269,6 +271,7 @@ hosts:
       #domino_admin_notes_id_password: password
 
       ## Safe-ids to cross-certify
+      # You need to add a file matching this name to id-files/user-safe-ids
       user_safe_id: SAFE.ids
 
       ## Additional server options
@@ -296,9 +299,6 @@ hosts:
       asja_generate_server_ids:
         - name: additional-demo.startcloud.com
           pass: ""
-      #  - ::DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
-      #  - ::OTHER_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
-      #  - ::THIRD_DOMINO_ADITIONAL_HOSTNAME::.::SERVER_DOMAIN::
 
       ## Genesis Variables
       genesis_packages:
@@ -314,15 +314,18 @@ hosts:
 
       ## Domino fixpack Variables
       #domino_fp_hash: 
-      domino_installer_fixpack_install: true
-      domino_fixpack_version: FP3
-      domino_server_fixpack_tar: Domino_1400FP3_Linux.tar
+      #domino_installer_fixpack_install: true
+      #domino_fixpack_version:
+      #domino_server_fixpack_tar:
 
       ## Domino Hotfix Variables
       #domino_hf_hash:
-      domino_installer_hotfix_install: true
-      domino_hotfix_version: HF16
-      domino_server_hotfix_tar: "140FP3HF16-linux64.tar"
+      #domino_installer_hotfix_install: true
+      #domino_hotfix_version:
+      #domino_server_hotfix_tar:
+
+      ## Jedi Overrides
+      jedi_enabled: true ## If you prefer Nashed Domino Management, but want to have Jedi Installed, set this to False, otherwise if you want Jedi to manage domino, set this to true
 
       ## Leap Variables
       #leap_hash:
