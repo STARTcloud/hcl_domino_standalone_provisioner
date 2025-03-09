@@ -265,7 +265,7 @@ hosts:
       #domino_admin_notes_id_password: password
 
       # Domino OIDC Configurations
-      debug_oidc: false
+      domino_oidc_debug: false
       domino_oidc_provider_enabled: true
       domino_oidc_provider_federation_enabled: true
       domino_oidc_provider_nomad_enabled: true
