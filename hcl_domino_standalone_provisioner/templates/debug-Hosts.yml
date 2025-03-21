@@ -290,8 +290,8 @@ hosts:
 
       ## OTS Additional Server Settings
       # For use in Domino 14 and above, uncomment out these and set as needed
-      ots_generate_server_names:
-        - additional-demo.startcloud.com
+      #ots_generate_server_names:
+      #  - additional-demo.startcloud.com
       #  - ADDITIONAL-demo.startcloud.com
       
       # For use in Domino 12 and below
