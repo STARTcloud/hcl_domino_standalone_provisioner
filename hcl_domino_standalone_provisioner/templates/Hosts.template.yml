@@ -25,11 +25,11 @@ hosts:
       # Box information
       box: 'STARTcloud/debian12-server'
       box_url: ::BOX_URL:: # Should default to 'https://boxvault.startcloud.com' but can be set to 'https://vagrantcloud.com'
-      box_version: 2025.4.30
-      box_arch: amd64
+      box_version: 2025.5.24
+      box_arch: amd64 ## Next release needs to be changed to this ::BOX_ARCH::
 
       # Provider Specific Settings
-      provider_type: ::VAGRANT_PROVIDER::
+      provider_type: virtualbox ## Next release needs to be chagned to this ::VAGRANT_PROVIDER:: 
       os_type: 'Debian_64'
       firmware_type: UEFI
 
@@ -52,6 +52,17 @@ hosts:
       remove:
         -
           name: vagrant-scp
+
+    # UTM Provider Specific Settings
+    utm:
+      notes: "Vagrant: For testing plugin development"  # Custom VM notes/description
+      check_guest_additions: false                       # Check for qemu-guest-agent
+      functional_9pfs: false                            # VirtFS 9P filesystem support
+      customizations:                                  # Custom AppleScript commands
+        # - event: "pre-boot"
+        #   command: ["customize_vm.applescript", ":id", "--some-option", "value"]
+        # - event: "post-boot"
+        #   command: ["some_script.applescript", ":id", "--another-option"]                                 # Custom AppleScript commands
 
     networks:
       # if ::NO_BRIDGE_INTERFACE::
@@ -323,11 +334,6 @@ hosts:
       verse_archive: ::VERSE_INSTALLER::
       verse_base_version: ::VERSE_INSTALLER_VERSION::
 
-      ## AppDev Web Pack Variables
-      #appdevpack_hash: ::APPDEVPACK_HASH::
-      appdevpack_archive: ::APPDEVPACK_INSTALLER::
-      appdevpack_version: ::APPDEVPACK_INSTALLER_VERSION::
-
       ## Domino Rest API Variables
       #domino_rest_api_hash: ::DOMINO_REST_API_HASH::
       domino_rest_api_version: ::DOMINO_REST_API_INSTALLER_VERSION::
@@ -355,8 +361,7 @@ hosts:
       - name: startcloud.startcloud_roles.sdkman_gradle
       - name: startcloud.startcloud_roles.ssl
       - name: startcloud.hcl_roles.domino_reset
-        vars:
-          run_tasks: ::ROLE_DOMINO_RESET::
+        when: ::ROLE_DOMINO_RESET::
       - name: startcloud.hcl_roles.domino_install
       - name: startcloud.hcl_roles.domino_vagrant_rest_api
       - name: startcloud.hcl_roles.domino_service_nash
@@ -368,49 +373,30 @@ hosts:
       - name: startcloud.hcl_roles.domino_genesis_applications
       - name: startcloud.hcl_roles.domino_cross_certify
       - name: startcloud.hcl_roles.domino_java_app_example
-        vars:
-          run_tasks: true
+        when:  true
       - name: startcloud.hcl_roles.domino_oidc
-        vars:
-          run_tasks: ::ROLE_OIDC:: # Default to true
+        when: ::ROLE_OIDC:: # Default to true
       - name: startcloud.hcl_roles.domino_leap
-        vars:
-          run_tasks: ::ROLE_LEAP::
+        when: ::ROLE_LEAP::
       - name: startcloud.hcl_roles.domino_traveler
-        vars:
-          run_tasks: ::ROLE_TRAVELER::
+        when: ::ROLE_TRAVELER::
       - name: startcloud.hcl_roles.domino_traveler_htmo
-        vars:
-          run_tasks: ::ROLE_TRAVELER_HTMO::
+        when: ::ROLE_TRAVELER_HTMO::
       - name: startcloud.hcl_roles.domino_verse
-        vars:
-          run_tasks: ::ROLE_VERSE::
-      # Deprecated -- See: https://support.hcl-software.com/csm?id=kb_article&sysparm_article=KB0105781
-      - name: startcloud.hcl_roles.domino_appdevpack
-        vars:
-          run_tasks: ::ROLE_APPDEVPACK::
+        when: ::ROLE_VERSE::
       - name: startcloud.hcl_roles.domino_rest_api
-        vars:
-          run_tasks: ::ROLE_DOMINO_RESTAPI::
+        when: ::ROLE_DOMINO_RESTAPI::
       - name: startcloud.hcl_roles.domino_nomadweb
-        vars:
-          run_tasks: ::ROLE_NOMADWEB::
+        when: ::ROLE_NOMADWEB::
       - name: startcloud.hcl_roles.domino_jedi
-        vars:
-          run_tasks: ::ROLE_JEDI::
+        when: ::ROLE_JEDI::
       - name: startcloud.hcl_roles.domino_vagrant_readme
-        vars:
-          run_tasks: true
+        when: true
       - name: startcloud.startcloud_roles.quick_start
         tags: always
-        vars:
-          run_tasks: ::ROLE_STARTCLOUD_QUICK_START::
+        when: ::ROLE_STARTCLOUD_QUICK_START::
       - name: startcloud.startcloud_roles.haproxy
-        vars:
-          run_tasks: ::ROLE_STARTCLOUD_HAPROXY::
+        when: ::ROLE_STARTCLOUD_HAPROXY::
       - name: startcloud.startcloud_roles.vagrant_readme
-        vars:
-          run_tasks: ::ROLE_STARTCLOUD_VAGRANT_README::
+        when: ::ROLE_STARTCLOUD_VAGRANT_README::
       - name: startcloud.startcloud_roles.lockdown
-        vars:
-          run_tasks: true

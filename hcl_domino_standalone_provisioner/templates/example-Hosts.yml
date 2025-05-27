@@ -247,9 +247,9 @@ hosts:
       # Uncomment and fill in these lines if you want to download the installers for this instance
       # Note that the installer names must match the names on the download server.
       #secrets:
-      #  domino_installer_base_url: "replacme"
-      #  domino_installer_url_user: "replaceme"
-      #  domino_installer_url_pass: "replaceme"
+      #  installer_base_url: "replacme"
+      #  installer_url_user: "replaceme"
+      #  installer_url_pass: "replaceme"
 
       ## Provisioner Debug
       debug_all: true
