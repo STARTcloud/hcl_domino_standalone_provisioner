@@ -25,10 +25,11 @@ hosts:
       # Box information
       box: 'STARTcloud/debian12-server'
       box_url: ::BOX_URL:: # Should default to 'https://boxvault.startcloud.com' but can be set to 'https://vagrantcloud.com'
-      box_version: 2025.2.9
+      box_version: 2025.4.30
+      box_arch: amd64
 
       # Provider Specific Settings
-      provider_type: virtualbox
+      provider_type: ::VAGRANT_PROVIDER::
       os_type: 'Debian_64'
       firmware_type: UEFI
 
@@ -204,9 +205,9 @@ hosts:
       # Uncomment and fill in these lines if you want to download the installers for this instance
       # Note that the installer names must match the names on the download server.
       #secrets:
-      #  domino_installer_base_url: ::DOWNLOAD_BASE_URL::
-      #  domino_installer_url_user: ::DOWNLOAD_AUTH_USER::
-      #  domino_installer_url_pass: ::DOWNLOAD_AUTH_PASS::
+      #  installer_base_url: ::DOWNLOAD_BASE_URL::
+      #  installer_url_user: ::DOWNLOAD_AUTH_USER::
+      #  installer_url_pass: ::DOWNLOAD_AUTH_PASS::
 
       ## Provisioner Debug
       debug_all: ::DEBUG_ALL_ANSIBLE_TASKS::
