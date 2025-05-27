@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.1.23](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.22...hcl_domino_standalone_provisioner/v0.1.23) (2025-05-27)
+
+
+### Bug Fixes
+
+* adding UTM Networking configs to networking role ([b7c4407](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/b7c4407b693b6f5769cee383b7d1a68fd2ab58bb))
+* CA root cert inclusion ([1503924](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/150392429eb67a166a1651d757e1767c5bc01e96))
+* current issues, STARTcloud/hcl_roles/issues/1, STARTcloud/hcl_roles/issues/2, STARTcloud/hcl_roles/issues/3, STARTcloud/hcl_roles/issues/4, STARTcloud/hcl_roles/issues/5, STARTcloud/hcl_roles/issues/6, STARTcloud/hcl_domino_standalone_provisioner/issues/3, STARTcloud/hcl_domino_standalone_provisioner/issues/4, ([81d8032](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/81d8032580ec7278211be9b0fde4ad94753b7a80))
+* haproxy, servletexample, Vagranfile symlink ([1c60a60](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/1c60a60194bc4e8a6b86751b93d7cea1b5d173d9))
+* Hosts.template.yml ([2c3dcd7](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/2c3dcd7e0990949f479f48480c1966d15ffeee17))
+* including moonshine_roles ([aa77802](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/aa778023264fcc252358f30ed4c427fa918879c9))
+* including moonshine_roles ([f7f399f](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/f7f399f96209e6782c203ce8f97aeb057337a393))
+* letsencrypt ([b520895](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/b5208954d904912a361a8b83f7cd28a9113c482b))
+* nteworking ([d00520a](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/d00520a813529c3b6bef69614aa7cc6b50533411))
+* password for bhyve using shi provisioner ([5d730fb](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/5d730fbadd7b78ca25c91589b6cc94dfabd664f3))
+* Release 0.1.24 ([f97a84e](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/f97a84ec8bb6e1e89fc5f44af9ca472e91712ff0))
+* remove extraneous file ([5fd05e1](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/5fd05e1998925f0a8a91374755727fd9aa966af0))
+* Updating Core to support UTM, updating submodules and templates ([7252fdb](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/7252fdb2875f45513d4989c4f16204c36c9877af))
+* Updating Hosts.rb ([09c74ca](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/09c74ca22f810b64866a167d6468dfc819e14fa3))
+* updating mdns ([da35859](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/da35859ed5ae0799efac3a1745ad7937dc80fc67))
+* updating mdns ([3587864](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/35878649b537c5b77d97081fdd058321493556e2))
+* updating ssl ([d0de729](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/d0de729488e1cc30111cbb3ef6af41dfebe1b3e0))
+
 ## [0.1.22](https://github.com/DominoVagrant/demo-tasks/compare/demo-tasks/v0.1.21...demo-tasks/v0.1.22) (2023-09-20)
 
 
