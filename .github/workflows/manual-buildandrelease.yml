@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: STARTcloud/core_provisioner
-          path: "${{ env.app_name }}/" 
+          path: "${{ env.app_name }}/core" 
           clean: false
           ref: "submodule"
 
@@ -72,9 +72,10 @@ jobs:
 
       -
         name: "Removing .git directories"
-        uses: JesseTG/rm@v1.0.3
-        with:
-          path: "${{ env.app_name }}/provisioners/ansible/roles/.git"
+        run: |
+          rm -rf "${{ env.app_name }}/core/.git"
+          rm -rf "${{ env.app_name }}/provisioners/ansible_collections/startcloud/startcloud_roles/.git"
+          rm -rf "${{ env.app_name }}/provisioners/ansible_collections/startcloud/hcl_roles/.git"
 
       -
         name: Zipping Output
