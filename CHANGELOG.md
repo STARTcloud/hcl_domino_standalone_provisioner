@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.24](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.23...hcl_domino_standalone_provisioner/v0.1.24) (2025-06-20)
+
+
+### Bug Fixes
+
+* manual release process ([4c97874](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/4c97874e44d80e5cdd54cd5df81eba8d0777a9fd))
+* manual release process ([546cd11](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/546cd11581e8fbc9143163377330d80919e95e1c))
+* manual release process ([321ae17](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/321ae170d6cd9f962cb02bedc0ef6d27da6781d0))
+* updating submodules ([c18a8c0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/c18a8c000fd936d2c78d8735789287547190aaa8))
+
 ## [0.1.23](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.22...hcl_domino_standalone_provisioner/v0.1.23) (2025-05-27)
 
 
