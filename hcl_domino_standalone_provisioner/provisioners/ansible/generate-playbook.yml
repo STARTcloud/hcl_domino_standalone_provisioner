@@ -28,7 +28,7 @@
     -
       name: "Dynamically generating template playbook for SHI"
       ansible.builtin.template:
-        dest: "Hosts.template.yml"
+        dest: "/vagrant/ansible/Hosts.template.yml"
         mode: a+x
         src: "Hosts.template.yml.j2"
 
