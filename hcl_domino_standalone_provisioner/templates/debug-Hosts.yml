@@ -71,7 +71,7 @@ hosts:
       console: webvnc
       debug: false
       debug_boot: false
-      hostbridge: i440fx
+      hostbridge: q35
       acpi: on
       autostart: true
       setup_method: zlogin
