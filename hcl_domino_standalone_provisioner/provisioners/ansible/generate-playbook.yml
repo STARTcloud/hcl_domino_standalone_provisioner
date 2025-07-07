@@ -77,7 +77,7 @@
           ansible.builtin.template:
             dest: "playbook.yml"
             mode: a+x
-            src: "win-playbook.yml.j2"
+            src: "playbook.yml.j2"
           delegate_to: localhost
 
         -
