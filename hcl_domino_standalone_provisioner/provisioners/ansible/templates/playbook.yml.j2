@@ -2,7 +2,7 @@
 ---
 -
   name: "Default Ansible Provisioning Playbook"
-  become: true
+  become: {{ become }}
   gather_facts: true
   hosts: all
 {% if role_vars is defined and role_vars and role_vars != "" %}
