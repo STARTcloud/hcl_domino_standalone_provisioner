@@ -24,6 +24,7 @@ hosts:
       box: 'STARTcloud/debian12-server'
       box_url: 'https://boxvault.startcloud.com'
       box_version: 0.0.4
+      box_arch: amd64
 
       # Provider Specific Settings
       provider_type: virtualbox
@@ -39,6 +40,7 @@ hosts:
       vagrant_user_pass: ::SERVER_DEFAULT_USER_PASS:: # 'STARTcloud24@!' 
       vagrant_ssh_insert_key: true
       vagrant_ssh_forward_agent: true
+      vagrant_communicator: ssh
 
     networks:
       # Future iteration may omit this to skip attaching a bridged adpater, the below block will need to be template unto itself
