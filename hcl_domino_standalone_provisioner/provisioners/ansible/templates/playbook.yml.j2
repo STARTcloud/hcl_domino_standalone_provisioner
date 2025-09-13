@@ -60,7 +60,7 @@
     - role: startcloud.startcloud_roles.progress
       vars:
         _progress_role_is_setup_run: true
-        _progress_role_definitions_to_calculate: "{{ _progress_setup_role_definitions }}"
+        _progress_role_definitions_to_calculate: {{ _progress_setup_role_definitions | default([]) }}
 
     # Original roles loop
     {% for role in provision_roles %}
