@@ -18,6 +18,12 @@
     {% for key, value in role_vars.items() %}
     {{ key }}: {{ value }}
     {% endfor %}
+    {% if secrets is defined and secrets %}
+    secrets:
+    {% for key, value in secrets.items() %}
+      {{ key }}: {{ value }}
+    {% endfor %}
+    {% endif %}
     all_roles:
     {% for role in provision_roles %}
       - {{ role.name }}
