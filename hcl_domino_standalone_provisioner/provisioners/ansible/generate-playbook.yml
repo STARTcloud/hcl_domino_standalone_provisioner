@@ -32,7 +32,7 @@
         -
           name: "Setting Become"
           ansible.builtin.set_fact:
-            become: true
+            enable_become: true
 
         -
           name: "Dynamically generating template playbook for SHI"
@@ -62,7 +62,7 @@
         -
           name: "Setting Become"
           ansible.builtin.set_fact:
-            become: false
+            enable_become: false
 
         -
           name: "Dynamically generating template playbook for SHI"
