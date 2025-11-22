@@ -1,5 +1,43 @@
 # Changelog
 
+## [0.1.24](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.23...hcl_domino_standalone_provisioner/v0.1.24) (2025-11-22)
+
+
+### Bug Fixes
+
+* ansible deprecations ([3ae24c4](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/3ae24c47333784ba2fa0d239f3a76d2065578b4a))
+* manual release process ([4c97874](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/4c97874e44d80e5cdd54cd5df81eba8d0777a9fd))
+* manual release process ([546cd11](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/546cd11581e8fbc9143163377330d80919e95e1c))
+* manual release process ([321ae17](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/321ae170d6cd9f962cb02bedc0ef6d27da6781d0))
+* updating ansible deprecations ([27e3697](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/27e369701b04fae09c4a83e7006c7e018bfceca3))
+* updating progress role ([1ca43de](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/1ca43debcd916b30c97ab2fa53c6f55f6394605f))
+* updating progress role ([e4b9ece](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/e4b9ece7da028fe1a778e3f9b8b458735c487d68))
+* updating progress role ([1cf37b5](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/1cf37b5fac805cca396d43ec6ec1aa138a431b4c))
+* updating progress role ([acf5bb9](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/acf5bb9a7094266b57e8ee3570622aefaf300c1e))
+* updating submodules ([bb18170](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/bb18170afc4789854cad37afd1190674de8c9946))
+* updating submodules ([47c7b09](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/47c7b091b979a40f37c952757d0259df5c8d7530))
+* updating submodules ([98adc75](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/98adc75bdee1955bd90da54da60203e107bd8521))
+* updating submodules ([e2ee80c](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/e2ee80cf3305c4b8041ddd7f22db35273409e311))
+* updating submodules ([b263b32](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/b263b326fe7524d7305ca09bf5e5b3723e96142e))
+* updating submodules ([6e35c4b](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/6e35c4b72de65ab45746172632814966cfa06b46))
+* updating submodules ([ee43ed4](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/ee43ed45dc18ec71ae5bf96b204246f1aad3c660))
+* updating submodules ([d1bf975](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/d1bf97587f5177dea4e04275dcae27f8fafee49c))
+* updating submodules ([ee29530](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/ee29530412d64a20664fb5a8bacd19940ee782d9))
+* updating submodules ([c18a8c0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/c18a8c000fd936d2c78d8735789287547190aaa8))
+* windows networking ([294ecc0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/294ecc0a3f9dc7f0dc62a647e926bf6cc07aa9d2))
+* windows networking ([b754ca3](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/b754ca3ee73055b7e99c3ae71ec4e18fd913f402))
+* windows notes install ([4775d3f](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/4775d3f7cbb08615be820727ea433c1f25176124))
+* windows notes install ([a8e47cb](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/a8e47cb86dea446cc4f80f509825d073d3612742))
+* windows notes install ([4b9ec80](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/4b9ec803b239aa69b28a215d9cdedb6e07ab2ac5))
+* windows notes install ([e3ea2a5](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/e3ea2a50992354f7410ba02fe6b9e78d5557762a))
+* windows notes install ([68b862d](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/68b862d2ba52657b8e0b8d2beacf2bb011c3c46d))
+* windows notes install ([647a3e5](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/647a3e584125b3cd3ed58acf76ee0a8c2baaa449))
+* windows notes install ([2987911](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/29879116fedbd692ff00a9adee2e208123ad9b40))
+* windows notes install ([4680578](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/46805784a996d3c0ba8b52bc768ae7dc15f5579e))
+* windows notes installs ([4846d0b](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/4846d0baceb830cc03f1b802b3a0dd91b2198c8a))
+* windows notes installs ([713e90e](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/713e90e3d3896bb2a1ff369348171ef48de7fbb8))
+* windows notes installs ([6c6f2e6](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/6c6f2e68225ddd6a40715f5dddd5d505a1be6817))
+
 ## [0.1.23](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/hcl_domino_standalone_provisioner/v0.1.22...hcl_domino_standalone_provisioner/v0.1.23) (2025-05-27)
 
 
