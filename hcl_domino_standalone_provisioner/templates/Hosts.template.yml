@@ -122,8 +122,10 @@ hosts:
       haproxy_ssl_redirect: true
       
       # GitHub Runner Variables
-      git_runner_org: "your-org"  # or git_runner_repo: "owner/repo"
-      git_runner_labels: ["self-hosted", "linux", "domino"]
+      git_runner_org: "your-org"  # or git_runner_repo: "owner/repo" ::GIT_RUNNER_REPO::
+      git_runner_labels: ["self-hosted", "linux", "domino"] # ::GIT_RUNNER_LABELS::
+      git_runner_name: "my-runner-test" #::GIT_RUNNER_NAME::
+      git_runner_ephemeral: false  # Set to true for JIT (one-job) runners, false for persistent #::GIT_RUNNER_EPHEMERAL::
 
       # Domino Configuration Variables
       domino_organization: ::SERVER_ORGANIZATION::
@@ -203,8 +205,8 @@ hosts:
       - name: startcloud.hcl_roles.domino_service_nash
       - name: startcloud.hcl_roles.domino_java_config
       - name: startcloud.hcl_roles.domino_java_tools
-      - name: startcloud.startcloud_roles.git_runner
-        when: true
+      ::ROLE_GIT_RUNNER::
+      #- name: startcloud.startcloud_roles.git_runner
       - name: startcloud.hcl_roles.domino_updatesite
       - name: startcloud.hcl_roles.domino_config 
       - name: startcloud.hcl_roles.domino_genesis
