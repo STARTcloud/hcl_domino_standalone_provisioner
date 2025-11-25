@@ -382,7 +382,7 @@ hosts:
       - name: startcloud.hcl_roles.domino_java_config
       - name: startcloud.hcl_roles.domino_java_tools
       - name: startcloud.startcloud_roles.git_runner
-        when: ::ROLE_GIT_RUNNER::
+        when: false # ::ROLE_GIT_RUNNER::
       - name: startcloud.hcl_roles.domino_updatesite
       - name: startcloud.hcl_roles.domino_config 
       - name: startcloud.hcl_roles.domino_genesis
