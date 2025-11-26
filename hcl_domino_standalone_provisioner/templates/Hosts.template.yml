@@ -226,13 +226,11 @@ hosts:
       ## Provisioner Debug
       debug_all: ::DEBUG_ALL_ANSIBLE_TASKS::
 
-      ## SSL
-      
       # GitHub Runner Variables
-      git_runner_org: "your-org"  # or git_runner_repo: "owner/repo" ::GIT_RUNNER_REPO::
-      git_runner_labels: ["self-hosted", "linux", "domino"] # ::GIT_RUNNER_LABELS::
-      git_runner_name: "my-runner-test" #::GIT_RUNNER_NAME::
-      git_runner_ephemeral: false  # Set to true for JIT (one-job) runners, false for persistent #::GIT_RUNNER_EPHEMERAL::
+      git_runner_github_token: ::SECRETS_github_runner_token::
+      git_runner_org: ::SECRETS_github_runner_org::
+      git_runner_name: ::SECRETS_github_runner_name::
+      git_runner_ephemeral: ::SECRETS_github_runner_ephemeral::
 
       ## SSL
       selfsigned_enabled: ::CERT_SELFSIGNED::
@@ -382,7 +380,7 @@ hosts:
       - name: startcloud.hcl_roles.domino_java_config
       - name: startcloud.hcl_roles.domino_java_tools
       - name: startcloud.startcloud_roles.git_runner
-        when: false # ::ROLE_GIT_RUNNER::
+        when: ::SECRETS_github_runner::
       - name: startcloud.hcl_roles.domino_updatesite
       - name: startcloud.hcl_roles.domino_config 
       - name: startcloud.hcl_roles.domino_genesis
