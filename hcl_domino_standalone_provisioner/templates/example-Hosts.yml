@@ -391,6 +391,11 @@ hosts:
       - name: startcloud.startcloud_roles.service_user
       - name: startcloud.startcloud_roles.sdkman_install
       - name: startcloud.startcloud_roles.sdkman_java
+        vars:
+          java_version: 17.0.16-zulu
+      - name: startcloud.startcloud_roles.sdkman_java
+        vars:
+          java_version: LATEST
       - name: startcloud.startcloud_roles.sdkman_maven
       - name: startcloud.startcloud_roles.sdkman_gradle
       - name: startcloud.startcloud_roles.ssl
