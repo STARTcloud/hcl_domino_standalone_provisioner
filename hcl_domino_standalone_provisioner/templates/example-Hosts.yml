@@ -254,6 +254,9 @@ hosts:
       ## Provisioner Debug
       debug_all: true
 
+      ## Controls the Python Web Server Welcome Page Helper, when enabled help page is a massive security vulnerabilty, off for production machines
+      quick_start: false
+
       ## SSL
       selfsigned_enabled: true
       haproxy_ssl_redirect: true
@@ -442,6 +445,7 @@ hosts:
       - name: startcloud.hcl_roles.domino_vagrant_readme
         vars:
           run_tasks: true
+      - name: startcloud.startcloud_roles.support_bundle
       - name: startcloud.startcloud_roles.quick_start
         tags: always
         vars:

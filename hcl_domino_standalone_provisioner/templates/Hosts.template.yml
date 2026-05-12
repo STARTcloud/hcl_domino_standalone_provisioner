@@ -120,6 +120,9 @@ hosts:
       debug_all: true
       selfsigned_enabled: ::CERT_SELFSIGNED::
       haproxy_ssl_redirect: true
+
+      ## Controls the Python Web Server Welcome Page Helper, when enabled help page is a massive security vulnerabilty, off for production machines
+      quick_start: true
       
       # Domino Configuration Variables
       domino_organization: ::SERVER_ORGANIZATION::
@@ -216,6 +219,7 @@ hosts:
       ::ROLE_DOCKER::  
       ::ROLE_VOLTMX_DOCKER::
       ::ROLE_VOLTMX::
+      - name: startcloud.startcloud_roles.support_bundle
       - name: startcloud.startcloud_roles.quick_start # ::ROLE_STARTCLOUD_QUICK_START::
         tags: always
       ::ROLE_STARTCLOUD_HAPROXY::

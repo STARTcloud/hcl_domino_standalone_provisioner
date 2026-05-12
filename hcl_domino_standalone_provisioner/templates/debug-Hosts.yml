@@ -243,6 +243,9 @@ hosts:
       #  installer_url_user: "XXXXXXXXXXXX@XXXXXXXXXXX"
       #  installer_url_pass: "XXXXXXXXXXXX"
 
+      ## Controls the Python Web Server Welcome Page Helper, when enabled help page is a massive security vulnerabilty, off for production machines
+      quick_start: true
+
       ## Provisioner Debug
       debug_all: true
 
@@ -433,6 +436,7 @@ hosts:
       - name: startcloud.hcl_roles.domino_vagrant_readme
         vars:
           run_tasks: true
+      - name: startcloud.startcloud_roles.support_bundle
       - name: startcloud.startcloud_roles.quick_start
         tags: always
         vars:
