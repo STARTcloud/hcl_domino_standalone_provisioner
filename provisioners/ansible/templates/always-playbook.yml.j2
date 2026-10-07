@@ -11,7 +11,7 @@
     provisioner_name: {{ provisioner_name }}
     provisioner_version: {{ provisioner_version }}
     {% for key, value in role_vars.items() %}
-    {{ key }}: {{ value }}
+    {{ key }}: {{ value | to_json }}
     {% endfor %}
   {% endif %}
   {% if collections is defined and collections and collections != "" %}
@@ -21,14 +21,17 @@
     {% endfor %}
   {% endif %}
   roles:
+    {# Only always-tagged roles are rendered: the once-roles used to be listed
+       with when-guards, which skipped them but still walked every task and
+       emitted a second full progress sequence — breaking anything tracking
+       the play's PROGRESS output. #}
     {% for role in provision_roles %}
+    {% set tag_list = role.tags | default([]) %}
+    {% if 'always' in tag_list %}
     -
       role: {{ role.name }}
-      {% set tag_list = role.tags | default(['once']) %}
       {% if role.when is defined %}
       when: {{ role.when }}
-      {% elif 'always' not in tag_list %}
-      when: "'once' in ansible_run_tags"
       {% endif %}
       {% if tag_list is iterable and tag_list is not string %}
       tags:
@@ -39,17 +42,20 @@
       tags:
         - {{ tag_list }}
       {% endif %}
-      {% if role.vars is defined or role.port_forwards is defined %}
+      {% if role.vars is defined %}
+      {# Role-entry vars render as role PARAMS (scoped to this role instance only). #}
+      {# The vars keyword on a roles entry is play-scoped in Ansible: one role's #}
+      {# run_tasks: false would silently disable every other role in the play. #}
+      {% for key, value in role.vars.items() %}
+      {{ key }}: {{ value | to_json }}
+      {% endfor %}
+      {% endif %}
+      {% if role.port_forwards is defined %}
+      {# port_forwards stay play-scoped on purpose: other roles consume them. #}
       vars:
-        {% if role.vars is defined %}
-        {% for key, value in role.vars.items() %}
-        {{ key }}: {{ value }}
-        {% endfor %}
-        {% endif %}
-        {% if role.port_forwards is defined %}
         {{ role.name }}_port_forwards:
           {% for ports in role.port_forwards %}
-            - 
+            -
               guest: {{ ports.guest }}
               host: {{ ports.host }}
               ip: {{ ports.ip }}
@@ -60,6 +66,6 @@
               proxied: {{ ports.proxied }}
               {% endif %}
           {% endfor %}
-        {% endif %}
       {% endif %}
+    {% endif %}
     {% endfor %}

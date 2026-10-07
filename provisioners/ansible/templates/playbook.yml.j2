@@ -17,12 +17,12 @@
     provisioner_name: {{ provisioner_name }}
     provisioner_version: {{ provisioner_version }}
     {% for key, value in role_vars.items() %}
-    {{ key }}: {{ value }}
+    {{ key }}: {{ value | to_json }}
     {% endfor %}
     {% if secrets is defined and secrets %}
     secrets:
     {% for key, value in secrets.items() %}
-      {{ key }}: {{ value }}
+      {{ key }}: {{ value | to_json }}
     {% endfor %}
     {% endif %}
   {% endif %}
@@ -64,7 +64,7 @@
       {# run_tasks: false would silently disable every other role in the play. #}
       {# Values meant to be shared across roles belong in the host-level vars block. #}
       {% for key, value in role.vars.items() %}
-      {{ key }}: {{ value }}
+      {{ key }}: {{ value | to_json }}
       {% endfor %}
       {% endif %}
       {% if role.port_forwards is defined %}
