@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.2.0...v0.3.0) (2026-10-07)
+
+
+### Features
+
+* add the domino_iq role with endpoint and model fields ([9e770bf](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/9e770bfbf7e61586b36abff74efe4669271cf181))
+
+
+### Bug Fixes
+
+* bump hcl_roles to v0.4.0 ([4a0e0c0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/4a0e0c078279ca593df0916c2fe31384224a162c))
+* bump hcl_roles to v0.4.0 ([966e560](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/966e5601cc7378919bbefb80e29dec81f7bd69f3))
+* bump startcloud_roles to v0.4.0 ([d552e4e](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/d552e4e420dc260916abc631f089c8ae2a75b439))
+* bump startcloud_roles to v0.4.0 ([588f480](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/588f480e20e43040dc28bea441d90dc061b704a9))
+
 ## [0.2.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.1.23...v0.2.0) (2026-10-07)
 
 
