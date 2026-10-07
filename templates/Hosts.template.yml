@@ -521,6 +521,14 @@ hosts:
       domino_rest_api_version: {{ DOMINO_REST_API_INSTALLER_VERSION }}
       {% endif %}
 
+      {% if DOMINO_IQ_ENDPOINT_URL %}
+      domino_iq_endpoint_url: '{{ DOMINO_IQ_ENDPOINT_URL }}'
+      {% endif %}
+      {% if DOMINO_IQ_MODEL %}
+      domino_iq_model: '{{ DOMINO_IQ_MODEL }}'
+      {% endif %}
+      domino_iq_use_max_completion_tokens: {{ DOMINO_IQ_USE_MAX_COMPLETION_TOKENS | default(false) }}
+
       ## Hosts entries for /etc/hosts
       #etc_hosts_entries:
       #  - hostname:
@@ -598,6 +606,9 @@ hosts:
       - name: startcloud.hcl_roles.domino_verse
         vars:
           run_tasks: {{ domino_verse | default(false) }}
+      - name: startcloud.hcl_roles.domino_iq
+        vars:
+          run_tasks: {{ domino_iq | default(false) }}
       - name: startcloud.hcl_roles.domino_rest_api
         vars:
           run_tasks: {{ domino_rest_api | default(false) }}

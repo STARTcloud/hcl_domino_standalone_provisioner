@@ -14,6 +14,8 @@ metadata:
         label: Domino
       - name: ssl
         label: SSL
+      - name: domino_iq
+        label: Domino IQ
       - name: installers
         label: Installer Archives
         advanced: true
@@ -102,6 +104,29 @@ metadata:
         default: false
         show_if:
           LETSENCRYPT_ENABLED: true
+      - name: DOMINO_IQ_ENDPOINT_URL
+        label: Domino IQ Endpoint URL
+        tooltip: >-
+          HTTPS chat completions URL of the OpenAI compatible AI endpoint Domino
+          IQ sends requests to in Remote mode — the API key goes in .secrets.yml
+          as domino_iq_api_key; Remote mode RAG needs Domino 14.5.1 with FP1
+        type: text
+        group: domino_iq
+        default: https://webui.assistant.prominic.net/api/chat/completions
+      - name: DOMINO_IQ_MODEL
+        label: Domino IQ Model
+        tooltip: Name of the model the AI endpoint serves, sent in every chat completions request
+        type: text
+        group: domino_iq
+        default: llama3.1:latest
+      - name: DOMINO_IQ_USE_MAX_COMPLETION_TOKENS
+        label: Use max_completion_tokens
+        tooltip: >-
+          Sets DOMIQ_USE_MAX_COMPLETION_TOKENS=1 in notes.ini, required by GPT-5.1
+          style remote models
+        type: checkbox
+        group: domino_iq
+        default: false
       - name: DOMINO_INSTALLER
         label: Domino Server Installer Archive
         tooltip: >-
@@ -425,6 +450,13 @@ metadata:
       description: Installs the HCL Verse web mail client from the configured archive
       depends_on:
         - domino
+    - name: domino_iq
+      label: HCL Domino IQ
+      description: >-
+        Enables HCL Domino IQ and points it at the configured AI endpoint —
+        Remote mode RAG needs Domino 14.5.1 with FP1
+      depends_on:
+        - domino_genesis
     - name: domino_rest_api
       label: Domino REST API
       description: Installs the HCL Domino REST API from the configured archive
