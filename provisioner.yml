@@ -1,5 +1,5 @@
 name: hcl_domino_standalone_provisioner
-version: 0.2.0
+version: 0.3.0
 label: HCL Domino Standalone Provisioner
 description: Provisions a standalone HCL Domino server that creates a new Domino domain
 author: STARTcloud
@@ -115,15 +115,17 @@ metadata:
         default: https://webui.assistant.prominic.net/api/chat/completions
       - name: DOMINO_IQ_MODEL
         label: Domino IQ Model
-        tooltip: Name of the model the AI endpoint serves, sent in every chat completions request
+        tooltip: >-
+          Name of the model the AI endpoint serves, sent in every chat
+          completions request
         type: text
         group: domino_iq
         default: llama3.1:latest
       - name: DOMINO_IQ_USE_MAX_COMPLETION_TOKENS
         label: Use max_completion_tokens
         tooltip: >-
-          Sets DOMIQ_USE_MAX_COMPLETION_TOKENS=1 in notes.ini, required by GPT-5.1
-          style remote models
+          Sets DOMIQ_USE_MAX_COMPLETION_TOKENS=1 in notes.ini, required by
+          GPT-5.1 style remote models
         type: checkbox
         group: domino_iq
         default: false

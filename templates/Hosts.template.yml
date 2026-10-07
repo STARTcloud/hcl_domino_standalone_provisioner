@@ -1,5 +1,5 @@
 # provisioner_name: hcl_domino_standalone_provisioner
-# provisioner_version: 0.2.0 # x-release-please-version
+# provisioner_version: 0.3.0 # x-release-please-version
 # Platform Hosts template — true Jinja2, rendered by the agents at machine create.
 # Context supplied by the platform: structured settings/networks/roles + manifest field answers.
 # Goal: renders a Hosts.yml that works on Bhyve and Virtualbox simultaneously.
