@@ -1,0 +1,85 @@
+name: Dev Release
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: ['main']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dev-release-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    name: Publish dev prerelease
+    if: >-
+      ${{ github.event.action != 'closed' &&
+          startsWith(github.event.pull_request.head.ref, 'bump/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Compose dev version
+        id: ver
+        run: |
+          BASE="$(sed -nE 's/^version:[[:space:]]*"?([0-9]+\.[0-9]+\.[0-9]+[0-9A-Za-z.+-]*)"?.*/\1/p' provisioner.yml | head -n1)"
+          VERSION="$BASE-dev.pr${{ github.event.pull_request.number }}"
+          echo "Dev version: $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Mint App token
+        id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Stage seed archive from the PR head
+        id: stage
+        uses: ./.github/actions/stage-seed
+        with:
+          version: ${{ steps.ver.outputs.version }}
+          make-latest-alias: 'false'
+          token: ${{ steps.app.outputs.token }}
+
+      - name: Replace the PR's prerelease
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.ver.outputs.version }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          TAG="v$VERSION"
+          gh release delete "$TAG" --yes --cleanup-tag || true
+          gh release create "$TAG" \
+            --prerelease \
+            --target "$HEAD_SHA" \
+            --title "$TAG" \
+            --notes "Dev build of PR #${{ github.event.pull_request.number }} at $HEAD_SHA. Replaced on every push; deleted when the PR closes." \
+            "${{ steps.stage.outputs.artifact }}" \
+            "${{ steps.stage.outputs.artifact }}.sha256"
+
+  cleanup:
+    name: Delete the PR's dev prereleases
+    if: >-
+      ${{ github.event.action == 'closed' &&
+          startsWith(github.event.pull_request.head.ref, 'bump/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete every dev prerelease tagged for this PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release list --repo "${{ github.repository }}" \
+            --json tagName --jq '.[].tagName' \
+            | grep -E -- "-dev\.pr${{ github.event.pull_request.number }}$" \
+            | while read -r TAG; do
+                echo "Deleting $TAG"
+                gh release delete "$TAG" --repo "${{ github.repository }}" --yes --cleanup-tag
+              done

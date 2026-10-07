@@ -1,0 +1,17 @@
+name: Validate
+
+on:
+  workflow_call:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  catalog:
+    name: Provisioner Catalog Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run provisioner-catalog validation
+        uses: STARTcloud/provisioner-catalog@main

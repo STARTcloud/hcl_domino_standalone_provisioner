@@ -1,0 +1,62 @@
+name: Build Provisioner Artifact
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: 'Version to build (must match provisioner.yml)'
+        required: true
+        type: string
+      tag_name:
+        description: 'GitHub release tag'
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build (must match provisioner.yml)'
+        required: true
+        type: string
+      tag_name:
+        description: 'GitHub release tag'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-upload:
+    name: Build & Upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the release tag
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.tag_name }}
+
+      - name: Mint App token
+        id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Stage seed archive from the release tag
+        id: stage
+        uses: ./.github/actions/stage-seed
+        with:
+          version: ${{ inputs.version }}
+          make-latest-alias: 'true'
+          token: ${{ steps.app.outputs.token }}
+
+      - name: Upload seed archives to the release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ inputs.tag_name }}" \
+            "${{ steps.stage.outputs.artifact }}" \
+            "${{ steps.stage.outputs.artifact }}.sha256" \
+            "${{ steps.stage.outputs.latest_artifact }}" \
+            "${{ steps.stage.outputs.latest_artifact }}.sha256" --clobber

@@ -1,0 +1,463 @@
+name: hcl_domino_standalone_provisioner
+version: 0.1.23
+label: HCL Domino Standalone Provisioner
+description: >-
+  Provisions a standalone HCL Domino server that creates a new Domino domain
+author: STARTcloud
+icon: https://startcloud.com/brand-assets/startcloud.svg
+homepage: https://startcloud.com/
+metadata:
+  configuration:
+    groups:
+      - name: provider
+        label: Provider
+      - name: domino
+        label: Domino
+      - name: ssl
+        label: SSL
+      - name: installers
+        label: Installer Archives
+        advanced: true
+      - name: packages
+        label: Packages
+      - name: sync
+        label: File Sync
+        advanced: true
+      - name: proxy
+        label: Download Proxy
+        advanced: true
+      - name: debug
+        label: Debugging
+        advanced: true
+    fields:
+      - name: VAGRANT_PROVIDER
+        label: Vagrant Provider
+        tooltip: >-
+          Hypervisor provider the machine is created on — VirtualBox on
+          desktops, Bhyve/zones on illumos hosts
+        type: select
+        group: provider
+        default: virtualbox
+        options:
+          - label: VirtualBox
+            value: virtualbox
+          - label: Bhyve/Zones (illumos)
+            value: zones
+      - name: SERVER_ORGANIZATION
+        label: Domino Organization
+        tooltip: The Domino organization (O=) this standalone server creates
+        type: text
+        group: domino
+        required: true
+      - name: DOMINO_ADMIN_PASSWORD
+        label: Domino Admin Password
+        tooltip: Password for the Domino administrator's Notes ID
+        type: text
+        group: domino
+        default: password
+      - name: USER_SAFE_ID
+        label: User Safe ID
+        tooltip: >-
+          Filename of the safe ID placed in id-files/user-safe-ids used for
+          cross-certification
+        type: text
+        group: domino
+        default: SAFE.ids
+      - name: DOMINO_SERVER_CLUSTERMATES
+        label: Additional Server IDs to Generate
+        tooltip: >-
+          Number of additional server IDs this standalone server pre-generates
+          for clustermates that join the new domain later
+        type: number
+        group: domino
+        default: 0
+        validate:
+          min: 0
+      - name: CERT_SELFSIGNED
+        label: Use Self-Signed Certificate
+        tooltip: Generate a self-signed certificate for this server's web services
+        type: checkbox
+        group: ssl
+        default: true
+      - name: HAPROXY_SSL_REDIRECT
+        label: Redirect HTTP to HTTPS
+        tooltip: Have HAProxy redirect all plain HTTP requests to HTTPS
+        type: checkbox
+        group: ssl
+        default: true
+      - name: LETSENCRYPT_ENABLED
+        label: Use Let's Encrypt
+        tooltip: >-
+          Request a certificate from Let's Encrypt instead of using a
+          self-signed one — requires a publicly resolvable hostname
+        type: checkbox
+        group: ssl
+        default: false
+      - name: LETSENCRYPT_STAGING_ENABLED
+        label: Use Let's Encrypt Staging Environment
+        tooltip: >-
+          Use the Let's Encrypt staging CA to avoid production rate limits while
+          testing
+        type: checkbox
+        group: ssl
+        default: false
+        show_if:
+          LETSENCRYPT_ENABLED: true
+      - name: DOMINO_INSTALLER
+        label: Domino Server Installer Archive
+        tooltip: >-
+          Filename of the Domino server installer tar placed in
+          installers/domino/archives or downloaded from your installer server
+        type: text
+        group: installers
+        default: Domino_14.0_Linux_English.tar
+      - name: DOMINO_HASH
+        label: Domino Installer SHA256 Hash
+        tooltip: Optional SHA256 checksum used to verify the Domino installer archive
+        type: text
+        group: installers
+      - name: DOMINO_INSTALLER_MAJOR_VERSION
+        label: Domino Major Version
+        tooltip: Major version of the Domino installer, for example 14
+        type: number
+        group: installers
+        default: 14
+      - name: DOMINO_INSTALLER_MINOR_VERSION
+        label: Domino Minor Version
+        tooltip: Minor version of the Domino installer, for example 0
+        type: number
+        group: installers
+        default: 0
+      - name: DOMINO_INSTALLER_PATCH_VERSION
+        label: Domino Patch Version
+        tooltip: Patch version of the Domino installer, for example 0
+        type: number
+        group: installers
+        default: 0
+      - name: DOMINO_INSTALLER_FIXPACK_INSTALL
+        label: Install a Domino Fixpack
+        tooltip: Apply a Domino fixpack after the base install
+        type: checkbox
+        group: installers
+        default: false
+      - name: DOMINO_INSTALLER_FIXPACK
+        label: Domino Fixpack Archive
+        tooltip: Filename of the Domino fixpack archive in installers/domino/fixpack
+        type: text
+        group: installers
+        show_if:
+          DOMINO_INSTALLER_FIXPACK_INSTALL: true
+      - name: DOMINO_INSTALLER_FIXPACK_VERSION
+        label: Domino Fixpack Version
+        tooltip: Fixpack designation, for example FP1
+        type: text
+        group: installers
+        show_if:
+          DOMINO_INSTALLER_FIXPACK_INSTALL: true
+      - name: DOMINO_FP_HASH
+        label: Domino Fixpack SHA256 Hash
+        tooltip: Optional SHA256 checksum used to verify the fixpack archive
+        type: text
+        group: installers
+        show_if:
+          DOMINO_INSTALLER_FIXPACK_INSTALL: true
+      - name: DOMINO_INSTALLER_HOTFIX_INSTALL
+        label: Install a Domino Hotfix
+        tooltip: Apply a Domino hotfix after the base install and any fixpack
+        type: checkbox
+        group: installers
+        default: false
+      - name: DOMINO_INSTALLER_HOTFIX
+        label: Domino Hotfix Archive
+        tooltip: Filename of the Domino hotfix archive in installers/domino/hotfix
+        type: text
+        group: installers
+        show_if:
+          DOMINO_INSTALLER_HOTFIX_INSTALL: true
+      - name: DOMINO_INSTALLER_HOTFIX_VERSION
+        label: Domino Hotfix Version
+        tooltip: Hotfix designation, for example HF123
+        type: text
+        group: installers
+        show_if:
+          DOMINO_INSTALLER_HOTFIX_INSTALL: true
+      - name: DOMINO_HF_HASH
+        label: Domino Hotfix SHA256 Hash
+        tooltip: Optional SHA256 checksum used to verify the hotfix archive
+        type: text
+        group: installers
+        show_if:
+          DOMINO_INSTALLER_HOTFIX_INSTALL: true
+      - name: LEAP_INSTALLER
+        label: Leap Installer Archive
+        tooltip: >-
+          Filename of the HCL Leap installer archive in installers/leap/archives
+          — required when the Leap role is enabled
+        type: text
+        group: installers
+      - name: LEAP_INSTALLER_VERSION
+        label: Leap Version
+        tooltip: Version of the Leap installer, for example 1.1.2
+        type: text
+        group: installers
+      - name: LEAP_HASH
+        label: Leap Installer SHA256 Hash
+        tooltip: Optional SHA256 checksum used to verify the Leap archive
+        type: text
+        group: installers
+      - name: NOMADWEB_INSTALLER
+        label: Nomad Web Installer Archive
+        tooltip: >-
+          Filename of the HCL Nomad Web archive in installers/nomadweb/archives
+          — required when the Nomad Web role is enabled
+        type: text
+        group: installers
+      - name: NOMADWEB_VERSION
+        label: Nomad Web Version
+        tooltip: Version of the Nomad Web archive, for example 1.0.15
+        type: text
+        group: installers
+      - name: NOMADWEB_HASH
+        label: Nomad Web Installer SHA256 Hash
+        tooltip: Optional SHA256 checksum used to verify the Nomad Web archive
+        type: text
+        group: installers
+      - name: TRAVELER_INSTALLER
+        label: Traveler Installer Archive
+        tooltip: >-
+          Filename of the HCL Traveler archive in installers/traveler/archives —
+          required when the Traveler role is enabled
+        type: text
+        group: installers
+      - name: TRAVELER_INSTALLER_VERSION
+        label: Traveler Version
+        tooltip: Version of the Traveler installer, for example 14.0.0
+        type: text
+        group: installers
+      - name: TRAVELER_FP_INSTALLER
+        label: Traveler Fixpack Archive
+        tooltip: Optional Traveler fixpack archive in installers/traveler/archives
+        type: text
+        group: installers
+      - name: TRAVELER_FP_INSTALLER_VERSION
+        label: Traveler Fixpack Version
+        tooltip: Version of the Traveler fixpack when one is provided
+        type: text
+        group: installers
+      - name: VERSE_INSTALLER
+        label: Verse Installer Archive
+        tooltip: >-
+          Filename of the HCL Verse archive in installers/verse/archives —
+          required when the Verse role is enabled
+        type: text
+        group: installers
+      - name: VERSE_INSTALLER_VERSION
+        label: Verse Version
+        tooltip: Version of the Verse installer, for example 3.2.0
+        type: text
+        group: installers
+      - name: DOMINO_REST_API_INSTALLER
+        label: Domino REST API Installer Archive
+        tooltip: >-
+          Filename of the Domino REST API archive in
+          installers/domino-rest-api/archives — required when the REST API role
+          is enabled
+        type: text
+        group: installers
+      - name: DOMINO_REST_API_INSTALLER_VERSION
+        label: Domino REST API Version
+        tooltip: Version of the Domino REST API installer, for example 1.0.9
+        type: text
+        group: installers
+      - name: EXTRA_PACKAGES
+        label: Extra Packages
+        tooltip: Additional Debian packages installed during provisioning
+        type: multiselect
+        group: packages
+        default:
+          - htop
+        options:
+          - htop
+          - tmux
+          - vim
+          - curl
+          - wget
+          - ncdu
+          - iotop
+      - name: SYNC_METHOD
+        label: Folder Sync Method
+        tooltip: Vagrant synced-folder mechanism — rsync or scp
+        type: text
+        group: sync
+        default: rsync
+      - name: SYNCBACK_ID_FILES
+        label: Sync ID Files Back to Host
+        tooltip: >-
+          Copy generated Domino ID files from the guest back to the host
+          id-files directory after provisioning
+        type: checkbox
+        group: sync
+        default: true
+      - name: USE_PROXY
+        label: Use HTTP Proxy for Downloads
+        tooltip: Route installer downloads and package updates through an HTTP proxy
+        type: checkbox
+        group: proxy
+        default: false
+      - name: PROXY_SERVER
+        label: Proxy Server
+        tooltip: Hostname or IP address of the HTTP proxy
+        type: text
+        group: proxy
+        required: true
+        show_if:
+          USE_PROXY: true
+      - name: PROXY_PORT
+        label: Proxy Port
+        tooltip: TCP port of the HTTP proxy
+        type: number
+        group: proxy
+        default: 3128
+        show_if:
+          USE_PROXY: true
+        validate:
+          min: 1
+          max: 65535
+      - name: DEBUG_ALL
+        label: Verbose Provisioner Debug
+        tooltip: Enable verbose output for all Ansible provisioning tasks
+        type: checkbox
+        group: debug
+        default: true
+  presentation: {}
+  roles:
+    - name: domino
+      label: Domino Server
+      description: Installs the HCL Domino server from the configured installer archive
+    - name: domino_reset
+      label: Domino Reset
+      description: >-
+        Resets an existing Domino installation back to a pre-setup state before
+        configuring
+      depends_on:
+        - domino
+    - name: domino_service_nash
+      label: Nash Service Manager
+      description: Manages the Domino server as a systemd service via Nash
+      depends_on:
+        - domino
+    - name: domino_java_config
+      label: Domino Java Configuration
+      description: Configures Java for Domino agents and applications
+      depends_on:
+        - domino
+    - name: domino_java_tools
+      label: Domino Java Tools
+      description: Installs Java-based Domino management tools
+      depends_on:
+        - domino
+    - name: domino_updatesite
+      label: Domino Update Site
+      description: Deploys the Eclipse update site database used to install Domino plugins
+      depends_on:
+        - domino
+    - name: domino_vagrant_rest_api
+      label: Vagrant REST API
+      description: >-
+        Installs the REST API used by Super.Human.Installer and the platform to
+        manage the guest
+      depends_on:
+        - domino
+    - name: domino_config
+      label: Domino Configuration
+      description: Runs Domino One Touch Setup to register and configure the server
+      depends_on:
+        - domino
+    - name: domino_genesis
+      label: Genesis
+      description: >-
+        Installs the Genesis directory used to deploy Domino applications
+        automatically
+      depends_on:
+        - domino
+    - name: domino_genesis_applications
+      label: Genesis Applications
+      description: >-
+        Deploys the configured Genesis packages such as netmonitor and
+        SuperHumanPortal
+      depends_on:
+        - domino_genesis
+    - name: domino_cross_certify
+      label: Cross Certify Safe IDs
+      description: >-
+        Cross-certifies user safe IDs against the server certifier — standalone
+        servers only
+      depends_on:
+        - domino
+    - name: domino_java_app_example
+      label: Java Servlet Example
+      description: Deploys an example Domino Java servlet application
+      depends_on:
+        - domino_java_config
+    - name: domino_oidc
+      label: Domino OIDC Provider
+      description: Configures Domino as an OIDC identity provider
+      depends_on:
+        - domino
+    - name: domino_leap
+      label: HCL Leap
+      description: >-
+        Installs HCL Leap low-code application platform from the configured
+        archive
+      depends_on:
+        - domino
+    - name: domino_traveler
+      label: HCL Traveler
+      description: Installs HCL Traveler for mobile mail and PIM synchronization
+      depends_on:
+        - domino
+    - name: domino_traveler_htmo
+      label: Traveler HTMO
+      description: Installs HCL Traveler for Microsoft Outlook on top of Traveler
+      depends_on:
+        - domino_traveler
+    - name: domino_verse
+      label: HCL Verse
+      description: Installs the HCL Verse web mail client from the configured archive
+      depends_on:
+        - domino
+    - name: domino_rest_api
+      label: Domino REST API
+      description: Installs the HCL Domino REST API from the configured archive
+      depends_on:
+        - domino
+    - name: domino_nomadweb
+      label: HCL Nomad Web
+      description: Installs HCL Nomad Web for browser-based Notes client access
+      depends_on:
+        - domino
+    - name: domino_jedi
+      label: Jedi
+      description: Installs Jedi for Domino process management as an alternative to Nash
+      depends_on:
+        - domino
+    - name: haproxy
+      label: HAProxy
+      description: >-
+        Installs HAProxy as the TLS-terminating reverse proxy in front of Domino
+        web services
+      depends_on:
+        - ssl
+    - name: quick_start
+      label: Quick Start Page
+      description: Serves the provisioning status and welcome page during and after setup
+    - name: vagrant_readme
+      label: Vagrant README
+      description: >-
+        Generates a README on the guest describing access details for this
+        machine
+    - name: lockdown
+      label: Lockdown
+      description: >-
+        Hardens the guest at the end of provisioning — rotates credentials and
+        applies the configured user password

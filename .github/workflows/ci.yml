@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  workflow_call:
+  pull_request:
+    branches: ['main']
+
+permissions:
+  contents: read
+  security-events: write
+  packages: read
+  actions: read
+
+jobs:
+  format:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Check Prettier formatting
+        run: npx --yes prettier --check .
+
+  ansible-lint:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Mint App token
+        id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Stage the pinned driver and collections
+        uses: ./.github/actions/stage-seed
+        with:
+          make-latest-alias: 'false'
+          token: ${{ steps.app.outputs.token }}
+
+      - name: Run ansible-lint (strict)
+        uses: ansible/ansible-lint@main
+        env:
+          ANSIBLE_COLLECTIONS_PATH: ${{ github.workspace }}/provisioners/ansible_collections
+          ANSIBLE_ROLES_PATH: /home/runner/.ansible/roles
+          ANSIBLE_VAULT_PASSWORD_FILE: ${{ github.workspace }}/provisioners/ansible/git_vault_password
+        with:
+          args: '--strict'
+          working_directory: provisioners/ansible
+
+  preflight:
+    name: Repository visibility
+    runs-on: ubuntu-latest
+    outputs:
+      private: ${{ steps.repo.outputs.private }}
+    steps:
+      - name: Read repository visibility
+        id: repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: echo "private=$(gh api "repos/${{ github.repository }}" --jq .private)" >> "$GITHUB_OUTPUT"
+
+  codeql-analysis:
+    name: CodeQL
+    needs: [preflight]
+    if: ${{ needs.preflight.outputs.private == 'false' }}
+    uses: ./.github/workflows/codeql.yml
+
+  ci-ok:
+    name: CI OK
+    needs: [format, ansible-lint, preflight, codeql-analysis]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail when any dependency failed
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: exit 1
+
+      - name: All checks green
+        run: echo "CI OK"

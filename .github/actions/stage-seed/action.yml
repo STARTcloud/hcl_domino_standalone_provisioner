@@ -1,0 +1,126 @@
+name: 'Stage Seed Archive'
+description: >-
+  Fetches the core driver release pinned in driver.version and the
+  startcloud_roles collection release pinned in collection.version (both
+  sha256-verified), stages the registry-shaped provisioner tree
+  (<name>/<version>/...), and builds the seed archive(s) + .sha256 sidecars
+  the provisioner-catalog contract requires. Shared by build-provisioner.yml
+  (releases, with the version-less "latest" alias) and dev-release.yml (PR
+  prereleases, versioned archive only). The caller checks out the ref; this
+  action fetches the two pinned dependencies into the workspace and stages it.
+
+inputs:
+  version:
+    description: >-
+      Full artifact version. Either the release version exactly as stamped in
+      provisioner.yml (X.Y.Z), or a dev version derived from it
+      (X.Y.Z-dev.prN). The X.Y.Z base must match provisioner.yml — the action
+      refuses otherwise. Empty means the version stamped in provisioner.yml.
+    required: false
+    default: ''
+  make-latest-alias:
+    description: >-
+      'true' to also produce the version-less alias archive + sidecar
+      (release builds); 'false' to skip it (dev prereleases — the
+      releases/latest/download URL ignores prereleases anyway).
+    required: false
+    default: 'true'
+  token:
+    description: >-
+      GitHub token used to download the pinned release assets — private
+      dependency repos need it; bare release URLs cannot serve their assets.
+    required: true
+
+outputs:
+  artifact:
+    description: Filename of the versioned seed archive
+    value: ${{ steps.stage.outputs.artifact }}
+  latest_artifact:
+    description: Filename of the version-less alias archive (empty when skipped)
+    value: ${{ steps.stage.outputs.latest_artifact }}
+
+runs:
+  using: composite
+  steps:
+    - name: Fetch pinned core driver
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+      run: |
+        TAG="$(tr -d '[:space:]' < driver.version)"
+        VERSION="${TAG#v}"
+        ARCHIVE="core_provisioner-${VERSION}.tar.gz"
+        REPO="STARTcloud/core_provisioner"
+        echo "Fetching core driver ${TAG}"
+        gh release download "$TAG" --repo "$REPO" --pattern "$ARCHIVE" --pattern "$ARCHIVE.sha256" --dir "$RUNNER_TEMP"
+        EXPECTED="$(awk '{print $1}' "$RUNNER_TEMP/$ARCHIVE.sha256")"
+        ACTUAL="$(sha256sum "$RUNNER_TEMP/$ARCHIVE" | awk '{print $1}')"
+        if [ "$EXPECTED" != "$ACTUAL" ]; then
+          echo "Checksum mismatch for $ARCHIVE: expected $EXPECTED, got $ACTUAL" >&2
+          exit 1
+        fi
+        tar -xzf "$RUNNER_TEMP/$ARCHIVE" -C .
+        test -f driver/Hosts.rb || { echo "driver/Hosts.rb missing after extraction" >&2; exit 1; }
+
+    - name: Fetch pinned roles collections
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+      run: |
+        for PIN in collections/*.version; do
+          BASENAME="${PIN##*/}"
+          BASENAME="${BASENAME%.version}"
+          NAMESPACE="${BASENAME%%.*}"
+          NAME="${BASENAME#*.}"
+          read -r REPO TAG < "$PIN"
+          VERSION="${TAG#v}"
+          ARCHIVE="${NAMESPACE}-${NAME}-${VERSION}.tar.gz"
+          DEST="provisioners/ansible_collections/${NAMESPACE}/${NAME}"
+          echo "Fetching ${NAMESPACE}.${NAME} ${TAG} from ${REPO}"
+          gh release download "$TAG" --repo "$REPO" --pattern "$ARCHIVE" --pattern "$ARCHIVE.sha256" --dir "$RUNNER_TEMP"
+          EXPECTED="$(awk '{print $1}' "$RUNNER_TEMP/$ARCHIVE.sha256")"
+          ACTUAL="$(sha256sum "$RUNNER_TEMP/$ARCHIVE" | awk '{print $1}')"
+          if [ "$EXPECTED" != "$ACTUAL" ]; then
+            echo "Checksum mismatch for $ARCHIVE: expected $EXPECTED, got $ACTUAL" >&2
+            exit 1
+          fi
+          mkdir -p "$DEST"
+          tar -xzf "$RUNNER_TEMP/$ARCHIVE" -C "$DEST"
+          test -f "$DEST/MANIFEST.json" || { echo "$DEST/MANIFEST.json missing after extraction" >&2; exit 1; }
+        done
+
+    - name: Stage registry-shaped tree and build seed archive
+      id: stage
+      shell: bash
+      env:
+        FULL_VERSION: ${{ inputs.version }}
+        MAKE_LATEST: ${{ inputs.make-latest-alias }}
+      run: |
+        NAME="$(sed -nE 's/^name:[[:space:]]*"?([A-Za-z0-9._-]+)"?.*/\1/p' provisioner.yml | head -n1)"
+        VERSION="$(sed -nE 's/^version:[[:space:]]*"?([0-9]+\.[0-9]+\.[0-9]+[0-9A-Za-z.+-]*)"?.*/\1/p' provisioner.yml | head -n1)"
+        FULL_VERSION="${FULL_VERSION:-$VERSION}"
+        BASE_VERSION="${FULL_VERSION%%-dev.*}"
+        echo "Parsed name=$NAME version=$VERSION requested=$FULL_VERSION"
+        if [ "$VERSION" != "$BASE_VERSION" ]; then
+          echo "provisioner.yml version ($VERSION) does not match requested version base ($BASE_VERSION)" >&2
+          exit 1
+        fi
+        STAGE="$RUNNER_TEMP/seed/$NAME/$FULL_VERSION"
+        mkdir -p "$STAGE"
+        rsync -a \
+          --exclude='.git' \
+          --exclude='.github' \
+          --exclude='.gitattributes' \
+          --exclude='release-please-config.json' \
+          --exclude='.release-please-manifest.json' \
+          ./ "$STAGE/"
+        tar -czf "$NAME-$FULL_VERSION.tar.gz" -C "$RUNNER_TEMP/seed" "$NAME"
+        sha256sum "$NAME-$FULL_VERSION.tar.gz" > "$NAME-$FULL_VERSION.tar.gz.sha256"
+        echo "artifact=$NAME-$FULL_VERSION.tar.gz" >> "$GITHUB_OUTPUT"
+        if [ "$MAKE_LATEST" = "true" ]; then
+          cp "$NAME-$FULL_VERSION.tar.gz" "$NAME.tar.gz"
+          sha256sum "$NAME.tar.gz" > "$NAME.tar.gz.sha256"
+          echo "latest_artifact=$NAME.tar.gz" >> "$GITHUB_OUTPUT"
+        else
+          echo "latest_artifact=" >> "$GITHUB_OUTPUT"
+        fi

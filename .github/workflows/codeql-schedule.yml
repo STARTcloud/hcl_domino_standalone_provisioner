@@ -1,0 +1,30 @@
+name: 'CodeQL Schedule'
+
+on:
+  schedule:
+    - cron: '17 5 * * 4'
+
+permissions:
+  contents: read
+  security-events: write
+  packages: read
+  actions: read
+
+jobs:
+  preflight:
+    name: Repository visibility
+    runs-on: ubuntu-latest
+    outputs:
+      private: ${{ steps.repo.outputs.private }}
+    steps:
+      - name: Read repository visibility
+        id: repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: echo "private=$(gh api "repos/${{ github.repository }}" --jq .private)" >> "$GITHUB_OUTPUT"
+
+  codeql-analysis:
+    name: CodeQL
+    needs: [preflight]
+    if: ${{ needs.preflight.outputs.private == 'false' }}
+    uses: ./.github/workflows/codeql.yml

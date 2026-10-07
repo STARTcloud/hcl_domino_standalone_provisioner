@@ -7,24 +7,36 @@ support-bundle.zip
 .claude
 # Don't Include Vagrant support files
 .vagrant
-hcl_domino_standalone_provisioner/id_rsa
-hcl_domino_standalone_provisioner/Hosts.yml
-hcl_domino_standalone_provisioner/results.yml
-hcl_domino_standalone_provisioner/templates/auto-SHI-Hosts.yml
-# Don't include your ID Files!
-id-files/*.ids
-id-files/*.id
-id-files/*.IDS
-id-files/*.ID
+id_rsa
+# Anchored: only the root working copy — examples/Hosts.yml IS committed
+# (the catalog's gold.example_hosts rule reads it from the release archive)
+/Hosts.yml
+results.yml
+
+# The core_provisioner driver is fetched at build/bootstrap from the release
+# pinned in driver.version — never committed. Its ssls/ subtree is the
+# canonical SSL location (synced to /secure/; BYO certs drop in there too).
+driver/
+
+# Role collections are fetched at build from the releases pinned in
+# collections/*.version — no longer submodules, never committed.
+provisioners/ansible_collections/
+templates/auto-SHI-Hosts.yml
 DeployKey_rsa
 *.vdi
 vault-Docova.yml
+notifications.md
 
+# Don't include your ID Files!
 *.IDS
 *.ID
 *.id
 *.ids
 SAFE.IDS
+# Except org certifier SAFE copies (public cert only, no private key) —
+# needed so new domains can cross certify the org out of the box
+!id-files/org-safe-ids/*.id
+!id-files/org-safe-ids/*.ids
 
 # Build Files to Ignore
 .DS_Store
@@ -37,9 +49,10 @@ SAFE.IDS
 build/
 test_files/
 
-*/installers/*/archives/*.tar.xz
-*/installers/*/archives/*.tar.gz
-*/installers/*/archives/*.tar
-*/installers/*/archives/*.zip
-*/installers/*/archives/*.gz
-*/installers/*/archives/*.tgz
+# Installer binaries never get committed
+installers/*/archives/*.tar.xz
+installers/*/archives/*.tar.gz
+installers/*/archives/*.tar
+installers/*/archives/*.zip
+installers/*/archives/*.gz
+installers/*/archives/*.tgz

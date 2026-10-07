@@ -1,0 +1,624 @@
+# provisioner_name: hcl_domino_standalone_provisioner
+# provisioner_version: 0.1.23 # x-release-please-version
+# Platform Hosts template — true Jinja2, rendered by the agents at machine create.
+# Context supplied by the platform: structured settings/networks/roles + manifest field answers.
+# Goal: renders a Hosts.yml that works on Bhyve and Virtualbox simultaneously.
+---
+hosts:
+  -
+    settings:
+      # Vagrant Debug
+      debug_build: {{ settings.debug_build | default(true) }}
+
+      # Identifiers
+      hostname: {{ settings.hostname }}
+      domain: {{ settings.domain }}
+      server_id: '{{ settings.server_id }}'
+
+      # Extra Actions
+      post_provision: {{ settings.post_provision | default(true) }} ## This calls extra things after Ansible completes, like syncing the new SSH key from the lockdown role, or the id_files or the support bundle
+
+      # Resources
+      vcpus: {{ settings.vcpus | int }}
+      memory: {{ settings.memory }}
+
+      # Console Access — consoleport only renders when the wizard sends one; absent = no VRDE console
+      {% if settings.consoleport %}
+      consoleport: {{ settings.consoleport }}
+      {% endif %}
+      consolehost: {{ settings.consolehost | default("0.0.0.0") }}
+      show_console: {{ settings.show_console | default(false) }}
+
+      # Box information
+      box: '{{ settings.box | default("STARTcloud/debian12-server") }}'
+      box_url: '{{ settings.box_url | default("https://boxvault.startcloud.com") }}'
+      box_version: {{ settings.box_version | default("2025.4.30") }}
+      box_arch: {{ settings.box_arch | default("amd64") }}
+
+      # Provider Specific Settings — the VAGRANT_PROVIDER manifest answer wins;
+      # the platform's own provider setting is the fallback
+      provider_type: {{ VAGRANT_PROVIDER | default(settings.provider_type | default("virtualbox")) }}
+      os_type: '{{ settings.os_type | default("Debian_64") }}'
+      firmware_type: {{ settings.firmware_type | default("UEFI") }}
+
+      # Setup Variables
+      setup_wait: {{ settings.setup_wait | default(420) }}
+
+      # Vagrant Configurations
+      vagrant_user: {{ settings.vagrant_user | default("startcloud") }}
+      vagrant_user_pass: '{{ settings.vagrant_user_pass | default("STARTcloud24@!") }}'
+      vagrant_user_private_key_path: {{ settings.vagrant_user_private_key_path | default("./id_rsa") }}
+      vagrant_ssh_insert_key: {{ settings.vagrant_ssh_insert_key | default(true) }}
+      vagrant_ssh_forward_agent: {{ settings.vagrant_ssh_forward_agent | default(true) }}
+      vagrant_ssh_keep_alive: {{ settings.vagrant_ssh_keep_alive | default(true) }}
+      vagrant_communicator: {{ settings.vagrant_communicator | default("ssh") }}
+
+    plugins:
+      install:
+        -
+          name: vagrant-scp-sync
+          version: latest
+#        -
+#          name: vagrant-zones
+#          version: latest
+      remove:
+        -
+          name: vagrant-scp
+
+    zones:
+      vmtype: production
+      brand: bhyve
+      on_demand_vnics: true
+      post_provision_boot: false
+      console_onboot: false
+      console: webvnc
+      debug: false
+      debug_boot: false
+      hostbridge: i440fx
+      acpi: on
+      autostart: true
+      # setup_method: one of 'zlogin', 'dhcp', 'qga'. zlogin drives the bhyve serial
+      # console via PTY+expect to log in and run setup commands. dhcp relies on the
+      # host-side dhcpd serving the etherstub. qga talks to qemu-guest-agent over a
+      # virtio-console UNIX socket (requires guest virtio-console + qemu-guest-agent
+      # and brand=bhyve).
+      setup_method: zlogin
+      # qga_slot: bhyve PCI slot reserved for the virtio-console qga channel. Only
+      # consulted when setup_method='qga'. Default is 9; bump if slot 9 conflicts
+      # with another device on this zone.
+      #qga_slot: 9
+      # qga_network_script: optional host-side script run via guest-exec instead of
+      # the built-in backend chain (netplan/NetworkManager/systemd-networkd/ifupdown
+      # on Linux; netsh on Windows; dladm on illumos; rc.conf on FreeBSD). The
+      # driver passes VAGRANT_QGA_VNIC/_MAC/_IP/_NETMASK/_GATEWAY/_DNS env vars per NIC.
+      #qga_network_script: ./scripts/qga-network.sh
+      diskif: virtio
+      netif: virtio-net-viona
+      booted_string: 'Web console:'
+      lcheck_string: ':~$'
+      alcheck_string: 'login:'
+      safe_restart: 'sudo shutdown -r'
+      safe_shutdown: 'sudo init 0 || true'
+      clean_shutdown_time: 200
+      snapshot_script: '/opt/vagrant/bin/Snapshooter.sh'
+      cpu_configuration: simple
+
+    networks:
+      {% for network in networks %}
+      -
+        type: {{ network.type | default("external") }}
+        address: {{ network.address }}
+        netmask: {{ network.netmask }}
+        gateway: {{ network.gateway }}
+        autoconf: {{ network.autoconf | default(false) }}
+        vlan: {{ network.vlan }}
+        dhcp4: {{ network.dhcp4 | default(true) }}
+        dhcp6: {{ network.dhcp6 | default(false) }}
+        is_control: {{ network.is_control | default(false) }}
+        route: {{ network.route | default("default") }}
+        provisional: {{ network.provisional | default(false) }}
+        bridge: "{{ network.bridge }}"
+        nic_type: {{ network.nic_type | default("virtio") }}
+        mac: {{ network.mac | default("auto") }}
+        {% if network.dns %}
+        dns:
+          {% for nameserver in network.dns %}
+          - nameserver: {{ nameserver }}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+
+    disks:
+      {% if disks %}
+      {% if disks.boot %}
+      boot:
+        type: {{ disks.boot.type | default("template") }}
+        {% if disks.boot.path %}
+        path: {{ disks.boot.path }}
+        {% endif %}
+        {% if disks.boot.size %}
+        size: {{ disks.boot.size }}
+        {% endif %}
+        {% if disks.boot.sparse is defined %}
+        sparse: {{ disks.boot.sparse }}
+        {% endif %}
+        {% if disks.boot.volume_name %}
+        volume_name: {{ disks.boot.volume_name }}
+        {% endif %}
+        {% if disks.boot.clone_strategy %}
+        clone_strategy: {{ disks.boot.clone_strategy }}
+        {% endif %}
+        {% if disks.boot.pool %}
+        pool: {{ disks.boot.pool }}
+        {% endif %}
+        {% if disks.boot.dataset %}
+        dataset: {{ disks.boot.dataset }}
+        {% endif %}
+        {% if disks.boot.controller %}
+        controller: {{ disks.boot.controller }}
+        {% endif %}
+        {% if disks.boot.port is defined %}
+        port: {{ disks.boot.port }}
+        {% endif %}
+        {% if disks.boot.diskif %}
+        diskif: {{ disks.boot.diskif }}
+        {% endif %}
+        {% if disks.boot.mount %}
+        mount: {{ disks.boot.mount }}
+        {% endif %}
+        {% if disks.boot.filesystem %}
+        filesystem: {{ disks.boot.filesystem }}
+        {% endif %}
+        {% if disks.boot.force %}
+        force: true
+        {% endif %}
+      {% endif %}
+      {% if disks.additional_disks %}
+      additional_disks:
+        {% for disk in disks.additional_disks %}
+        -
+          {% if disk.type %}
+          type: {{ disk.type }}
+          {% endif %}
+          {% if disk.path %}
+          path: {{ disk.path }}
+          {% endif %}
+          {% if disk.size %}
+          size: {{ disk.size }}
+          {% endif %}
+          {% if disk.sparse is defined %}
+          sparse: {{ disk.sparse }}
+          {% endif %}
+          {% if disk.volume_name %}
+          volume_name: {{ disk.volume_name }}
+          {% endif %}
+          {% if disk.pool %}
+          pool: {{ disk.pool }}
+          {% endif %}
+          {% if disk.dataset %}
+          dataset: {{ disk.dataset }}
+          {% endif %}
+          {% if disk.controller %}
+          controller: {{ disk.controller }}
+          {% endif %}
+          {% if disk.port is defined %}
+          port: {{ disk.port }}
+          {% endif %}
+          {% if disk.diskif %}
+          diskif: {{ disk.diskif }}
+          {% endif %}
+          {% if disk.mount %}
+          mount: {{ disk.mount }}
+          {% endif %}
+          {% if disk.filesystem %}
+          filesystem: {{ disk.filesystem }}
+          {% endif %}
+          {% if disk.force %}
+          force: true
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if disks.cdroms %}
+      cdroms:
+        {% for cdrom in disks.cdroms %}
+        -
+          {% if cdrom.iso %}
+          iso: {{ cdrom.iso }}
+          {% endif %}
+          {% if cdrom.path %}
+          path: {{ cdrom.path }}
+          {% endif %}
+          {% if cdrom.controller %}
+          controller: {{ cdrom.controller }}
+          {% endif %}
+          {% if cdrom.port is defined %}
+          port: {{ cdrom.port }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if disks.controllers %}
+      controllers:
+        {% for controller in disks.controllers %}
+        -
+          {% if controller.name %}
+          name: {{ controller.name }}
+          {% endif %}
+          {% if controller.type %}
+          type: {{ controller.type }}
+          {% endif %}
+          {% if controller.ports %}
+          ports: {{ controller.ports }}
+          {% endif %}
+          {% if controller.bootable is defined %}
+          bootable: {{ controller.bootable }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% else %}
+      # Package default — rendered only when the wizard sends no disks.
+      # No size (the box image's own size governs) and no baked placement
+      # (absent pool/controller/port = the agent's own frozen defaults).
+      boot:
+        type: template
+        volume_name: boot
+        mount: /
+
+      additional_disks:
+        -
+          type: blank
+          size: 50G
+          sparse: true
+          volume_name: disk1
+          mount: /local
+          filesystem: xfs
+          driver: virtio-scsi
+      {% endif %}
+
+    provisioning:
+      shell:
+        enabled: false
+        scripts:
+          - './scripts/aliases.sh'
+
+      ansible:
+        enabled: true
+        playbooks:
+          - local:
+              -
+                description: "This playbook imports Hosts.yml variables into a generated playbook: /vagrant/ansible/playbook.yml"
+                playbook: ansible/generate-playbook.yml
+                config_file: /vagrant/ansible/ansible.cfg
+                ansible_python_interpreter: /usr/bin/python3
+                compatibility_mode: 2.0
+                install_mode: pip
+                ssh_pipelining: true
+                verbose: false
+                callbacks: profile_tasks
+                run: always
+                remote_collections: false
+                collections: []
+              -
+                description: "This playbook configures the machine using the generated playbook: /vagrant/ansible/playbook.yml"
+                playbook: ansible/playbook.yml
+                config_file: /vagrant/ansible/ansible.cfg
+                ansible_python_interpreter: /usr/bin/python3
+                compatibility_mode: 2.0
+                install_mode: pip
+                ssh_pipelining: true
+                verbose: false
+                callbacks: profile_tasks
+                run: once
+                remote_collections: false
+                collections:
+                  - startcloud.startcloud_roles
+                  - startcloud.hcl_roles
+              -
+                description: "This playbook configures the machine for roles tagged as always, using the generated playbook: /vagrant/ansible/playbook.yml"
+                playbook: ansible/always-playbook.yml
+                config_file: /vagrant/ansible/ansible.cfg
+                ansible_python_interpreter: /usr/bin/python3
+                compatibility_mode: 2.0
+                install_mode: pip
+                ssh_pipelining: true
+                verbose: false
+                callbacks: profile_tasks
+                run: not_first
+                remote_collections: false
+                collections:
+                  - startcloud.startcloud_roles
+
+    folders:
+      -
+        description: "Disables VBoxSF, do not enable"
+        map: .
+        to: /vagrant
+        type: virtualbox
+        disabled: true
+        automount: true
+
+      -
+        description: "Directory for Ansible Scripts"
+        map: ./provisioners/ansible/
+        to: /vagrant/ansible/
+        type: {{ SYNC_METHOD | default("rsync") }}
+        args:
+          - '--verbose'
+          - '--archive'
+          - '--delete'
+          - '-z'
+          - '--copy-links'
+
+      -
+        description: "Directory for Ansible Collections"
+        map: ./provisioners/ansible_collections/
+        to: /vagrant/ansible_collections/
+        type: {{ SYNC_METHOD | default("rsync") }}
+        args:
+          - '--verbose'
+          - '--archive'
+          - '--delete'
+          - '-z'
+          - '--copy-links'
+
+      -
+        description: "Directory for Application Installers"
+        map: ./installers/
+        to: /vagrant/installers/
+        type: {{ SYNC_METHOD | default("rsync") }}
+
+      -
+        description: "Directory for Pre-Signed SSLs"
+        map: ./driver/ssls/
+        to: /secure/
+        type: {{ SYNC_METHOD | default("rsync") }}
+
+      -
+        description: "Directory for Server and User IDs"
+        map: ./id-files/
+        to: /id-files/
+        type: {{ SYNC_METHOD | default("rsync") }}
+        syncback: {{ SYNCBACK_ID_FILES | default(true) }}
+
+    vars:
+      ## Applied by the lockdown role so the agent-provided password takes effect
+      lockdown_new_password: '{{ settings.vagrant_user_pass | default("STARTcloud24@!") }}'
+
+      ## Provisioner Debug
+      debug_all: {{ DEBUG_ALL | default(true) }}
+
+      ## SSL
+      selfsigned_enabled: {{ CERT_SELFSIGNED | default(true) }}
+      haproxy_ssl_redirect: {{ HAPROXY_SSL_REDIRECT | default(true) }}
+      letsencrypt_enabled: {{ LETSENCRYPT_ENABLED | default(false) }}
+      letsencrypt_staging_enabled: {{ LETSENCRYPT_STAGING_ENABLED | default(false) }}
+
+      ## Use Proxy for downloads and updates
+      use_proxy: {{ USE_PROXY | default(false) }}
+      {% if USE_PROXY %}
+      proxy_server: {{ PROXY_SERVER }}
+      proxy_port: {{ PROXY_PORT | default(3128) }}
+      {% else %}
+      proxy_server: 255.255.255.255
+      proxy_port: 3128
+      {% endif %}
+
+      ## Extra Packages
+      {% if EXTRA_PACKAGES %}
+      extra_packages:
+        {% for package in EXTRA_PACKAGES %}
+        - {{ package }}
+        {% endfor %}
+      {% else %}
+      extra_packages: []
+      {% endif %}
+
+      ## Domino Configuration Variables
+      #domino_server_name: "DoMiNO-iS-dVMb" # Defaults to settings.hostname if not set
+      #domino_server_domain: "some-domino-org-different-than-vms-domain.tld" # Defaults to settings.domain if not set
+      domino_organization: {{ SERVER_ORGANIZATION }}
+      domino_admin_notes_id_password: '{{ DOMINO_ADMIN_PASSWORD | default("password") }}'
+      user_safe_id: '{{ USER_SAFE_ID | default("SAFE.ids") }}'
+
+      org_safe_ids:
+        - pni_safe.id
+
+      ## Domino OIDC Configurations
+      domino_oidc_provider_enabled: true
+      domino_oidc_provider_federation_enabled: true
+
+      #domino_oidc_external_providers:
+      #  - name: null
+      #    base_url: null
+      #    client_id: null
+      #    client_secret: null
+
+      ## Additional server options
+      is_additional_server: false
+
+      # ots: Use One Touch Setup to generate the ID (server names are incremented, ie mail1 mail2 mail3 . .)
+      # asja: Use Custom Additional Server Java Applet to generate the additional server ID
+      #domino_server_id_creation_tool: asja
+
+      ## OTS Additional Server Settings
+      # For use in Domino 14 and above, uncomment out these and set as needed
+      #ots_generate_server_names:
+      #  - additional-demo.startcloud.com
+
+      # For use in Domino 12 and below
+      ots_generate_server_id_count: {{ DOMINO_SERVER_CLUSTERMATES | default(0) }}
+      #ots_generate_server_id_pattern: mail
+
+      ## ASJA Server Settings
+      # If using ASJA instead of OTS to generated Server IDs uncomment these lines
+      #asja_generate_server_ids:
+      #  - name: additional-demo.startcloud.com
+      #    pass: ""
+
+      ## Genesis Variables
+      genesis_packages:
+        - netmonitor
+        - SuperHumanPortal
+
+      ## Domino Installer Variables
+      domino_server_installer_tar: {{ DOMINO_INSTALLER | default("Domino_14.0_Linux_English.tar") }}
+      domino_hash: {{ DOMINO_HASH | default("") }}
+      domino_major_version: {{ DOMINO_INSTALLER_MAJOR_VERSION | default(14) }}
+      domino_minor_version: {{ DOMINO_INSTALLER_MINOR_VERSION | default(0) }}
+      domino_patch_version: {{ DOMINO_INSTALLER_PATCH_VERSION | default(0) }}
+
+      ## Domino fixpack Variables
+      domino_installer_fixpack_install: {{ DOMINO_INSTALLER_FIXPACK_INSTALL | default(false) }}
+      {% if DOMINO_INSTALLER_FIXPACK_INSTALL %}
+      domino_server_fixpack_tar: {{ DOMINO_INSTALLER_FIXPACK }}
+      domino_fixpack_version: {{ DOMINO_INSTALLER_FIXPACK_VERSION }}
+      domino_fp_hash: {{ DOMINO_FP_HASH | default("") }}
+      {% endif %}
+
+      ## Domino Hotfix Variables
+      domino_installer_hotfix_install: {{ DOMINO_INSTALLER_HOTFIX_INSTALL | default(false) }}
+      {% if DOMINO_INSTALLER_HOTFIX_INSTALL %}
+      domino_server_hotfix_tar: {{ DOMINO_INSTALLER_HOTFIX }}
+      domino_hotfix_version: {{ DOMINO_INSTALLER_HOTFIX_VERSION }}
+      domino_hf_hash: {{ DOMINO_HF_HASH | default("") }}
+      {% endif %}
+
+      ## Jedi Overrides
+      jedi_enabled: true ## If you prefer Nashed Domino Management, but want to have Jedi Installed, set this to False, otherwise if you want Jedi to manage domino, set this to true
+
+      ## Leap Variables
+      {% if LEAP_INSTALLER %}
+      leap_archive: {{ LEAP_INSTALLER }}
+      leap_version: {{ LEAP_INSTALLER_VERSION }}
+      leap_hash: {{ LEAP_HASH | default("") }}
+      {% endif %}
+
+      ## Nomad Web Variables
+      {% if NOMADWEB_INSTALLER %}
+      nomadweb_archive: {{ NOMADWEB_INSTALLER }}
+      nomadweb_version: {{ NOMADWEB_VERSION }}
+      nomadweb_hash: {{ NOMADWEB_HASH | default("") }}
+      {% endif %}
+
+      ## Traveler Variables
+      {% if TRAVELER_INSTALLER %}
+      traveler_archive: {{ TRAVELER_INSTALLER }}
+      traveler_base_version: {{ TRAVELER_INSTALLER_VERSION }}
+      {% if TRAVELER_FP_INSTALLER %}
+      traveler_fixpack_archive: {{ TRAVELER_FP_INSTALLER }}
+      traveler_fixpack_version: {{ TRAVELER_FP_INSTALLER_VERSION }}
+      {% endif %}
+      {% endif %}
+
+      ## Verse Variables
+      {% if VERSE_INSTALLER %}
+      verse_archive: {{ VERSE_INSTALLER }}
+      verse_base_version: {{ VERSE_INSTALLER_VERSION }}
+      {% endif %}
+
+      ## Domino Rest API Variables
+      {% if DOMINO_REST_API_INSTALLER %}
+      domino_rest_api_archive: {{ DOMINO_REST_API_INSTALLER }}
+      domino_rest_api_version: {{ DOMINO_REST_API_INSTALLER_VERSION }}
+      {% endif %}
+
+      ## Hosts entries for /etc/hosts
+      #etc_hosts_entries:
+      #  - hostname:
+      #    aliases:
+      #      -
+      #    ip:
+
+    roles:
+      # Foundation — always applied
+      - name: startcloud.startcloud_roles.setup
+      - name: startcloud.startcloud_roles.networking
+        tags: always
+      - name: startcloud.startcloud_roles.disks
+      - name: startcloud.startcloud_roles.hostname
+      - name: startcloud.startcloud_roles.dependencies
+      - name: startcloud.startcloud_roles.mdns
+      - name: startcloud.startcloud_roles.service_user
+      - name: startcloud.startcloud_roles.sdkman_install
+      - name: startcloud.startcloud_roles.sdkman_java
+      - name: startcloud.startcloud_roles.sdkman_maven
+      - name: startcloud.startcloud_roles.sdkman_gradle
+      - name: startcloud.startcloud_roles.ssl
+
+      # Picked roles — every role stays listed so its vars/defaults load;
+      # run_tasks (from the role picker's enabled flags) controls whether its
+      # tasks actually run. when: only guards environment, never picking.
+      - name: startcloud.hcl_roles.domino_reset
+        vars:
+          run_tasks: {{ domino_reset | default(false) }}
+      - name: startcloud.hcl_roles.domino_install
+        vars:
+          run_tasks: {{ domino | default(true) }}
+      - name: startcloud.hcl_roles.domino_vagrant_rest_api
+        vars:
+          run_tasks: {{ domino_vagrant_rest_api | default(true) }}
+      - name: startcloud.hcl_roles.domino_service_nash
+        vars:
+          run_tasks: {{ domino_service_nash | default(true) }}
+      - name: startcloud.hcl_roles.domino_java_config
+        vars:
+          run_tasks: {{ domino_java_config | default(true) }}
+      - name: startcloud.hcl_roles.domino_java_tools
+        vars:
+          run_tasks: {{ domino_java_tools | default(true) }}
+      - name: startcloud.hcl_roles.domino_updatesite
+        vars:
+          run_tasks: {{ domino_updatesite | default(true) }}
+      - name: startcloud.hcl_roles.domino_config
+        vars:
+          run_tasks: {{ domino_config | default(true) }}
+      - name: startcloud.hcl_roles.domino_genesis
+        vars:
+          run_tasks: {{ domino_genesis | default(true) }}
+      - name: startcloud.hcl_roles.domino_genesis_applications
+        vars:
+          run_tasks: {{ domino_genesis_applications | default(true) }}
+      - name: startcloud.hcl_roles.domino_cross_certify
+        vars:
+          run_tasks: {{ domino_cross_certify | default(true) }}
+      - name: startcloud.hcl_roles.domino_java_app_example
+        vars:
+          run_tasks: {{ domino_java_app_example | default(true) }}
+      - name: startcloud.hcl_roles.domino_oidc
+        vars:
+          run_tasks: {{ domino_oidc | default(true) }}
+      - name: startcloud.hcl_roles.domino_leap
+        vars:
+          run_tasks: {{ domino_leap | default(false) }}
+      - name: startcloud.hcl_roles.domino_traveler
+        vars:
+          run_tasks: {{ domino_traveler | default(false) }}
+      - name: startcloud.hcl_roles.domino_traveler_htmo
+        vars:
+          run_tasks: {{ domino_traveler_htmo | default(false) }}
+      - name: startcloud.hcl_roles.domino_verse
+        vars:
+          run_tasks: {{ domino_verse | default(false) }}
+      - name: startcloud.hcl_roles.domino_rest_api
+        vars:
+          run_tasks: {{ domino_rest_api | default(false) }}
+      - name: startcloud.hcl_roles.domino_nomadweb
+        vars:
+          run_tasks: {{ domino_nomadweb | default(false) }}
+      - name: startcloud.hcl_roles.domino_jedi
+        vars:
+          run_tasks: {{ domino_jedi | default(false) }}
+      - name: startcloud.hcl_roles.domino_vagrant_readme
+      - name: startcloud.startcloud_roles.support_bundle
+      - name: startcloud.startcloud_roles.quick_start
+        tags: always
+        vars:
+          run_tasks: {{ quick_start | default(true) }}
+      - name: startcloud.startcloud_roles.haproxy
+        vars:
+          run_tasks: {{ haproxy | default(true) }}
+      - name: startcloud.startcloud_roles.vagrant_readme
+        vars:
+          run_tasks: {{ vagrant_readme | default(false) }}
+      - name: startcloud.startcloud_roles.lockdown
+        vars:
+          run_tasks: {{ lockdown | default(false) }}

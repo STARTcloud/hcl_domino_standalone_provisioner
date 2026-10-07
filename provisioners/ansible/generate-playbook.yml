@@ -1,0 +1,53 @@
+---
+-
+  name: "Generating the local playbook for {{ provisioner_name | default('provisioner') }}"
+  gather_facts: true
+  hosts: all
+  tasks:
+    -
+      name: "Generating Playbooks for Non Windows Guests"
+      when: not (settings.os_type | lower is search("windows"))
+      block:
+        -
+          name: "Setting Become"
+          ansible.builtin.set_fact:
+            enable_become: true
+
+        -
+          name: "Dynamically generating playbook"
+          ansible.builtin.template:
+            dest: "/vagrant/ansible/playbook.yml"
+            mode: a+x
+            src: "playbook.yml.j2"
+
+        -
+          name: "Dynamically generating playbook"
+          ansible.builtin.template:
+            dest: "/vagrant/ansible/always-playbook.yml"
+            mode: a+x
+            src: "always-playbook.yml.j2"
+
+    -
+      name: "Generating Playbooks for Windows Guests"
+      when: settings.os_type | lower is search("windows")
+      block:
+        -
+          name: "Setting Become"
+          ansible.builtin.set_fact:
+            enable_become: false
+
+        -
+          name: "Dynamically generating playbook"
+          ansible.builtin.template:
+            dest: "playbook.yml"
+            mode: a+x
+            src: "playbook.yml.j2"
+          delegate_to: localhost
+
+        -
+          name: "Dynamically generating playbook"
+          ansible.builtin.template:
+            dest: "always-playbook.yml"
+            mode: a+x
+            src: "always-playbook.yml.j2"
+          delegate_to: localhost

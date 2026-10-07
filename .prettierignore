@@ -1,0 +1,16 @@
+CHANGELOG.md
+LICENSE.md
+.ansible-lint
+.yamllint
+.ansible/
+provisioners/
+driver/
+collections/
+installers/
+id-files/
+templates/
+examples/
+.github/
+Hosts.yml
+provisioner.yml
+secrets.yml

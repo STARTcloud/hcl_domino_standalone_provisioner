@@ -1,17 +1,32 @@
 {
-    "packages": {
-        ".": {
-            "changelog-path": "CHANGELOG.md",
-            "release-type": "ruby",
-            "bump-minor-pre-major": true,
-            "bump-patch-for-minor-pre-major": true,
-            "package-name": "hcl_domino_standalone_provisioner",
-            "draft": false,
-            "version-file": "hcl_domino_standalone_provisioner/version.rb",
-            "prerelease": false,
-            "default-branch" : "main",
-            "component": "hcl_domino_standalone_provisioner"
+  "packages": {
+    ".": {
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "ruby",
+      "package-name": "hcl_domino_standalone_provisioner",
+      "draft": false,
+      "version-file": "version.rb",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "provisioner.yml",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "generic",
+          "path": "templates/Hosts.template.yml"
+        },
+        {
+          "type": "generic",
+          "path": "examples/Hosts.yml"
         }
-    },
-    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+      ],
+      "prerelease": false,
+      "default-branch": "main",
+      "component": "hcl_domino_standalone_provisioner",
+      "include-component-in-tag": false,
+      "bootstrap-sha": "5159daa8027bd23b1178afee27c530eb048c1b74"
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
 }
