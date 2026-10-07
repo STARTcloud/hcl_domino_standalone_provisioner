@@ -44,6 +44,7 @@ SAFE.IDS
 .classpath
 .project
 .vscode/
+.ansible/
 .settings/
 .gradle/
 build/
