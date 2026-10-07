@@ -1,8 +1,7 @@
 name: hcl_domino_standalone_provisioner
-version: 0.1.23
+version: 0.2.0
 label: HCL Domino Standalone Provisioner
-description: >-
-  Provisions a standalone HCL Domino server that creates a new Domino domain
+description: Provisions a standalone HCL Domino server that creates a new Domino domain
 author: STARTcloud
 icon: https://startcloud.com/brand-assets/startcloud.svg
 homepage: https://startcloud.com/
