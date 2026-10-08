@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.3.0...v0.3.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* bump hcl_roles to v0.4.1 ([3a33f3b](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/3a33f3ba2cf52987db2351223dbe32b4bc55ef45))
+* bump hcl_roles to v0.4.1 ([82d5757](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/82d5757d9ad19119f3f65b1eda32d7a061b45c4d))
+
 ## [0.3.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.2.0...v0.3.0) (2026-10-07)
 
 
