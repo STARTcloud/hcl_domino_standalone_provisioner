@@ -9,6 +9,32 @@ id_files:
   safe_id_dir: user-safe-ids
   keep_original_name: false
 metadata:
+  defaults:
+    settings:
+      box: STARTcloud/debian12-server
+      box_url: https://boxvault.startcloud.com
+      box_version: 2025.4.30
+      box_arch: amd64
+      os_type: Debian_64
+      firmware_type: UEFI
+      setup_wait: 420
+      vagrant_user: startcloud
+    disks:
+      boot:
+        type: template
+        volume_name: boot
+        mount: /
+      additional_disks:
+        - type: blank
+          size: 50G
+          sparse: true
+          volume_name: disk1
+          mount: /local
+          filesystem: xfs
+          driver: virtio-scsi
+    networks:
+      - type: external
+        dhcp4: true
   configuration:
     groups:
       - name: provider
@@ -36,17 +62,11 @@ metadata:
     fields:
       - name: VAGRANT_PROVIDER
         label: Vagrant Provider
-        help: >-
-          Hypervisor provider the machine is created on — VirtualBox on
-          desktops, Bhyve/zones on illumos hosts
+        help: Hypervisor the machine is created on, seeded from the host
         type: select
         group: provider
         default: virtualbox
-        options:
-          - label: VirtualBox
-            value: virtualbox
-          - label: Bhyve/Zones (illumos)
-            value: zones
+        options_source: hypervisor
       - name: SERVER_ORGANIZATION
         label: Domino Organization
         help: The Domino organization (O=) this standalone server creates
@@ -61,22 +81,45 @@ metadata:
         default: password
       - name: USER_SAFE_ID
         label: User Safe ID
-        help: >-
-          Filename of the safe ID placed in id-files/user-safe-ids used for
-          cross-certification
-        type: text
+        help: Safe ID placed in id-files/user-safe-ids and used for cross-certification
+        type: file
+        kind: id_file
+        role: safe_id
         group: domino
         default: SAFE.ids
-      - name: DOMINO_SERVER_CLUSTERMATES
+      - name: DOMINO_ADDITIONAL_SERVER_IDS
         label: Additional Server IDs to Generate
-        help: >-
-          Number of additional server IDs this standalone server pre-generates
-          for clustermates that join the new domain later
+        help: Number of additional server IDs this standalone server pre-generates for servers that join the domain later
         type: number
         group: domino
         default: 0
         validate:
           min: 0
+      - name: DOMINO_SERVER_ID_CREATION_TOOL
+        label: Server ID Creation Tool
+        help: Tool that generates the additional server IDs
+        type: select
+        group: domino
+        default: asja
+        options:
+          - label: One Touch Setup
+            value: ots
+          - label: ASJA
+            value: asja
+        show_if:
+          DOMINO_ADDITIONAL_SERVER_IDS:
+            gte: 1
+      - name: DOMINO_ADDITIONAL_SERVER_NAMES
+        label: Additional Server Names
+        help: Fully qualified name of each additional server ID to generate
+        type: list
+        items: fqdn
+        group: domino
+        validate:
+          min_items: 1
+        show_if:
+          DOMINO_ADDITIONAL_SERVER_IDS:
+            gte: 1
       - name: CERT_SELFSIGNED
         label: Use Self-Signed Certificate
         help: Generate a self-signed certificate for this server's web services
