@@ -110,6 +110,9 @@ metadata:
             value: ots
           - label: ASJA
             value: asja
+        show_if:
+          DOMINO_ADDITIONAL_SERVER_NAMES:
+            min_items: 1
       - name: CERT_SELFSIGNED
         label: Use Self-Signed Certificate
         help: Generate a self-signed certificate for this server's web services
