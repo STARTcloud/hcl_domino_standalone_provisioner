@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.3.3...v0.4.0) (2026-10-19)
+
+
+### Features
+
+* list every role in the manifest and render the roles loop from it ([5609cf6](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/5609cf6228170c347e5c4f73de51959ea45e930d))
+* take the field types the agent now accepts ([c9e7910](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/c9e79101f4a3b2619cc8b1d2971b663e686874e5))
+
 ## [0.3.3](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.3.2...v0.3.3) (2026-10-08)
 
 
