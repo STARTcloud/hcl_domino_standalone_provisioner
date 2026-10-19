@@ -1,5 +1,5 @@
 name: hcl_domino_standalone_provisioner
-version: 0.4.0
+version: 0.5.0
 label: HCL Domino Standalone Provisioner
 description: Provisions a standalone HCL Domino server that creates a new Domino domain
 author: STARTcloud
@@ -193,7 +193,9 @@ metadata:
         default: false
       - name: INSTALLER_SERVER
         label: Installer Server
-        help: URL, user and password of the installer server the roles download archives from
+        help: >-
+          URL, user and password of the installer server the roles download
+          archives from
         type: secret
         kind: basic_auth
         profile: installer_server
@@ -201,7 +203,9 @@ metadata:
         group: installers
       - name: INSTALLER_BEARER
         label: Installer Server Bearer Token
-        help: Bearer token the roles send the installer server before falling back to the user and password
+        help: >-
+          Bearer token the roles send the installer server before falling back
+          to the user and password
         type: secret
         kind: api_key
         profile: installer_server

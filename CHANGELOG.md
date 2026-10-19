@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.4.0...v0.5.0) (2026-10-19)
+
+
+### Features
+
+* pick the installer server and the Domino IQ key from the host's secrets ([9f2c8d0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/9f2c8d065034efe30084296280f8737892d959c6))
+* pick the installer server and the Domino IQ key from the host's secrets ([c92ef9b](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/c92ef9b094364b720d1483fbc4687ab83b509dc1))
+
+
+### Bug Fixes
+
+* ship the org safe ID and cross-certify it on every standalone install ([002becc](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/002becc854b9023588d5f6138cb1e04305850c61))
+
 ## [0.4.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.3.3...v0.4.0) (2026-10-19)
 
 
