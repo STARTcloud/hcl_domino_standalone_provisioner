@@ -498,15 +498,21 @@ hosts:
       nomadweb_version: {{ NOMADWEB_VERSION }}
       nomadweb_hash: {{ NOMADWEB_HASH | default("") }}
       {% endif %}
+      nomad_hotfix_install: {{ NOMADWEB_HOTFIX_INSTALL | default(false) }}
+      {% if NOMADWEB_HOTFIX_INSTALL %}
+      nomad_hotfix_archive: {{ NOMADWEB_HOTFIX }}
+      nomad_hotfix_version: {{ NOMADWEB_HOTFIX_VERSION }}
+      {% endif %}
 
       ## Traveler Variables
       {% if TRAVELER_INSTALLER %}
       traveler_archive: {{ TRAVELER_INSTALLER }}
-      traveler_base_version: {{ TRAVELER_INSTALLER_VERSION }}
-      {% if TRAVELER_FP_INSTALLER %}
+      traveler_version: {{ TRAVELER_INSTALLER_VERSION }}
+      {% endif %}
+      traveler_fixpack_install: {{ TRAVELER_FP_INSTALL | default(false) }}
+      {% if TRAVELER_FP_INSTALL %}
       traveler_fixpack_archive: {{ TRAVELER_FP_INSTALLER }}
       traveler_fixpack_version: {{ TRAVELER_FP_INSTALLER_VERSION }}
-      {% endif %}
       {% endif %}
 
       ## Verse Variables
@@ -527,6 +533,9 @@ hosts:
       {% if DOMINO_IQ_MODEL %}
       domino_iq_model: '{{ DOMINO_IQ_MODEL }}'
       {% endif %}
+      {% if DOMINO_IQ_API_KEY %}
+      domino_iq_api_key: '{{ DOMINO_IQ_API_KEY }}'
+      {% endif %}
       domino_iq_use_max_completion_tokens: {{ DOMINO_IQ_USE_MAX_COMPLETION_TOKENS | default(false) }}
 
       ## Hosts entries for /etc/hosts
@@ -537,99 +546,17 @@ hosts:
       #    ip:
 
     roles:
-      # Foundation — always applied
-      - name: startcloud.startcloud_roles.setup
-      - name: startcloud.startcloud_roles.networking
-        tags: always
-      - name: startcloud.startcloud_roles.disks
-      - name: startcloud.startcloud_roles.hostname
-      - name: startcloud.startcloud_roles.dependencies
-      - name: startcloud.startcloud_roles.mdns
-      - name: startcloud.startcloud_roles.service_user
-      - name: startcloud.startcloud_roles.sdkman_install
-      - name: startcloud.startcloud_roles.sdkman_java
-      - name: startcloud.startcloud_roles.sdkman_maven
-      - name: startcloud.startcloud_roles.sdkman_gradle
-      - name: startcloud.startcloud_roles.ssl
-
-      # Picked roles — every role stays listed so its vars/defaults load;
-      # run_tasks (from the role picker's enabled flags) controls whether its
-      # tasks actually run. when: only guards environment, never picking.
-      - name: startcloud.hcl_roles.domino_reset
+      {% for role in roles %}
+      - name: {{ role.collection }}.{{ role.name }}
+        {% if role.tags %}
+        tags:
+          {% for tag in role.tags %}
+          - {{ tag }}
+          {% endfor %}
+        {% endif %}
         vars:
-          run_tasks: {{ domino_reset | default(false) }}
-      - name: startcloud.hcl_roles.domino_install
-        vars:
-          run_tasks: {{ domino | default(true) }}
-      - name: startcloud.hcl_roles.domino_vagrant_rest_api
-        vars:
-          run_tasks: {{ domino_vagrant_rest_api | default(true) }}
-      - name: startcloud.hcl_roles.domino_service_nash
-        vars:
-          run_tasks: {{ domino_service_nash | default(true) }}
-      - name: startcloud.hcl_roles.domino_java_config
-        vars:
-          run_tasks: {{ domino_java_config | default(true) }}
-      - name: startcloud.hcl_roles.domino_java_tools
-        vars:
-          run_tasks: {{ domino_java_tools | default(true) }}
-      - name: startcloud.hcl_roles.domino_updatesite
-        vars:
-          run_tasks: {{ domino_updatesite | default(true) }}
-      - name: startcloud.hcl_roles.domino_config
-        vars:
-          run_tasks: {{ domino_config | default(true) }}
-      - name: startcloud.hcl_roles.domino_genesis
-        vars:
-          run_tasks: {{ domino_genesis | default(true) }}
-      - name: startcloud.hcl_roles.domino_genesis_applications
-        vars:
-          run_tasks: {{ domino_genesis_applications | default(true) }}
-      - name: startcloud.hcl_roles.domino_cross_certify
-        vars:
-          run_tasks: {{ domino_cross_certify | default(true) }}
-      - name: startcloud.hcl_roles.domino_java_app_example
-        vars:
-          run_tasks: {{ domino_java_app_example | default(true) }}
-      - name: startcloud.hcl_roles.domino_oidc
-        vars:
-          run_tasks: {{ domino_oidc | default(true) }}
-      - name: startcloud.hcl_roles.domino_leap
-        vars:
-          run_tasks: {{ domino_leap | default(false) }}
-      - name: startcloud.hcl_roles.domino_traveler
-        vars:
-          run_tasks: {{ domino_traveler | default(false) }}
-      - name: startcloud.hcl_roles.domino_traveler_htmo
-        vars:
-          run_tasks: {{ domino_traveler_htmo | default(false) }}
-      - name: startcloud.hcl_roles.domino_verse
-        vars:
-          run_tasks: {{ domino_verse | default(false) }}
-      - name: startcloud.hcl_roles.domino_iq
-        vars:
-          run_tasks: {{ domino_iq | default(false) }}
-      - name: startcloud.hcl_roles.domino_rest_api
-        vars:
-          run_tasks: {{ domino_rest_api | default(false) }}
-      - name: startcloud.hcl_roles.domino_nomadweb
-        vars:
-          run_tasks: {{ domino_nomadweb | default(false) }}
-      - name: startcloud.hcl_roles.domino_jedi
-        vars:
-          run_tasks: {{ domino_jedi | default(false) }}
-      - name: startcloud.hcl_roles.domino_vagrant_readme
-      - name: startcloud.startcloud_roles.support_bundle
-      - name: startcloud.startcloud_roles.quick_start
-        tags: always
-        vars:
-          run_tasks: {{ quick_start | default(true) }}
-      - name: startcloud.startcloud_roles.haproxy
-        vars:
-          run_tasks: {{ haproxy | default(true) }}
-      - name: startcloud.startcloud_roles.vagrant_readme
-        vars:
-          run_tasks: {{ vagrant_readme | default(false) }}
-      - name: startcloud.startcloud_roles.lockdown
-        vars:
-          run_tasks: {{ lockdown | default(false) }}
+          run_tasks: {{ role.enabled }}
+          {% for key, value in role.vars.items() %}
+          {{ key }}: {{ value | tojson }}
+          {% endfor %}
+      {% endfor %}
