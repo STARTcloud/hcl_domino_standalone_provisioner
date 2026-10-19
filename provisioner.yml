@@ -35,6 +35,9 @@ metadata:
     networks:
       - type: external
         dhcp4: true
+    tags:
+      - domino
+      - standalone
   configuration:
     groups:
       - name: provider
