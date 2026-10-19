@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.6.0...v0.6.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* name the role each field group belongs to ([013b6e7](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/commit/013b6e78edfeb75652ba7589a06aded3e5424abf))
+
 ## [0.6.0](https://github.com/STARTcloud/hcl_domino_standalone_provisioner/compare/v0.5.1...v0.6.0) (2026-10-19)
 
 
