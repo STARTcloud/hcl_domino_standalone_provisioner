@@ -1,5 +1,5 @@
 name: hcl_domino_standalone_provisioner
-version: 0.3.3
+version: 0.4.0
 label: HCL Domino Standalone Provisioner
 description: Provisions a standalone HCL Domino server that creates a new Domino domain
 author: STARTcloud
@@ -81,7 +81,9 @@ metadata:
         default: password
       - name: USER_SAFE_ID
         label: User Safe ID
-        help: Safe ID placed in id-files/user-safe-ids and used for cross-certification
+        help: >-
+          Safe ID placed in id-files/user-safe-ids and used for
+          cross-certification
         type: file
         kind: id_file
         role: safe_id
@@ -89,7 +91,9 @@ metadata:
         default: SAFE.ids
       - name: DOMINO_ADDITIONAL_SERVER_IDS
         label: Additional Server IDs to Generate
-        help: Number of additional server IDs this standalone server pre-generates for servers that join the domain later
+        help: >-
+          Number of additional server IDs this standalone server pre-generates
+          for servers that join the domain later
         type: number
         group: domino
         default: 0
@@ -169,7 +173,9 @@ metadata:
         default: llama3.1:latest
       - name: DOMINO_IQ_API_KEY
         label: Domino IQ API Key
-        help: API key the remote AI endpoint requires on every chat completions request
+        help: >-
+          API key the remote AI endpoint requires on every chat completions
+          request
         type: password
         group: domino_iq
         show_if:
@@ -315,7 +321,9 @@ metadata:
         default: false
       - name: NOMADWEB_HOTFIX
         label: Nomad Web Hotfix Archive
-        help: Filename of the HCL Nomad Web interim fix archive in installers/nomadweb/archives
+        help: >-
+          Filename of the HCL Nomad Web interim fix archive in
+          installers/nomadweb/archives
         type: text
         group: installers
         default: HCL_Nomad_server_1.0.21-IF1_linux.tgz
@@ -351,7 +359,9 @@ metadata:
         default: false
       - name: TRAVELER_FP_INSTALLER
         label: Traveler Fixpack Archive
-        help: Filename of the Traveler fixpack archive in installers/traveler/archives
+        help: >-
+          Filename of the Traveler fixpack archive in
+          installers/traveler/archives
         type: text
         group: installers
         default: Traveler_14.5.1FP1_Linux_ML.tar.gz
@@ -458,7 +468,9 @@ metadata:
   roles:
     - name: setup
       label: Setup
-      description: Sets the timezone and creates the completion and support bundle directories
+      description: >-
+        Sets the timezone and creates the completion and support bundle
+        directories
       collection: startcloud.startcloud_roles
       default_enabled: true
       required: true
@@ -533,7 +545,9 @@ metadata:
         - sdkman_install
     - name: ssl
       label: SSL
-      description: Generates or imports the server certificates and exports the PFX, PEM and JKS bundles
+      description: >-
+        Generates or imports the server certificates and exports the PFX, PEM
+        and JKS bundles
       collection: startcloud.startcloud_roles
       default_enabled: true
       required: true
