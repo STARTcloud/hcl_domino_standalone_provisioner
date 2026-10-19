@@ -84,11 +84,11 @@ metadata:
         help: >-
           Safe ID placed in id-files/user-safe-ids and used for
           cross-certification
-        type: file
-        kind: id_file
-        role: safe_id
+        type: secret
+        kind: file
+        profile: notes_id
+        secret_key: user_safe_id
         group: domino
-        default: SAFE.ids
       - name: DOMINO_ADDITIONAL_SERVER_IDS
         label: Additional Server IDs to Generate
         help: >-

@@ -417,7 +417,7 @@ hosts:
       #domino_server_domain: "some-domino-org-different-than-vms-domain.tld" # Defaults to settings.domain if not set
       domino_organization: {{ SERVER_ORGANIZATION }}
       domino_admin_notes_id_password: '{{ DOMINO_ADMIN_PASSWORD | default("password") }}'
-      user_safe_id: '{{ USER_SAFE_ID | default("SAFE.ids") }}'
+      user_safe_id: "{{ '{{' }} secrets.user_safe_id | default('SAFE.ids') {{ '}}' }}"
 
       org_safe_ids:
         - pni_safe.id
@@ -461,6 +461,7 @@ hosts:
 
       ## Installer Server
       installer_base_url: "{{ '{{' }} secrets.installer_url | default('') {{ '}}' }}"
+      installer_url_pass: "{{ '{{' }} secrets.installer_url_password | default('') {{ '}}' }}"
 
       ## Domino Installer Variables
       domino_server_installer_tar: {{ DOMINO_INSTALLER | default("Domino_14.0_Linux_English.tar") }}
