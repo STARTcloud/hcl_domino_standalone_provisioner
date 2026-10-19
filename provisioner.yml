@@ -47,13 +47,16 @@ metadata:
         label: Domino
       - name: ssl
         label: SSL
+        role: ssl
       - name: domino_iq
         label: Domino IQ
+        role: domino_iq
       - name: installers
         label: Installer Archives
         advanced: true
       - name: packages
         label: Packages
+        role: dependencies
       - name: sync
         label: File Sync
         advanced: true
