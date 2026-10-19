@@ -93,16 +93,12 @@ metadata:
         profile: notes_id
         secret_key: user_safe_id
         group: domino
-      - name: DOMINO_ADDITIONAL_SERVER_IDS
-        label: Additional Server IDs to Generate
-        help: >-
-          Number of additional server IDs this standalone server pre-generates
-          for servers that join the domain later
-        type: number
+      - name: DOMINO_ADDITIONAL_SERVER_NAMES
+        label: Additional Server Names
+        help: Fully qualified name of each additional server ID to generate
+        type: list
+        items: fqdn
         group: domino
-        default: 0
-        validate:
-          min: 0
       - name: DOMINO_SERVER_ID_CREATION_TOOL
         label: Server ID Creation Tool
         help: Tool that generates the additional server IDs
@@ -114,20 +110,6 @@ metadata:
             value: ots
           - label: ASJA
             value: asja
-        show_if:
-          DOMINO_ADDITIONAL_SERVER_IDS:
-            gte: 1
-      - name: DOMINO_ADDITIONAL_SERVER_NAMES
-        label: Additional Server Names
-        help: Fully qualified name of each additional server ID to generate
-        type: list
-        items: fqdn
-        group: domino
-        validate:
-          min_items: 1
-        show_if:
-          DOMINO_ADDITIONAL_SERVER_IDS:
-            gte: 1
       - name: CERT_SELFSIGNED
         label: Use Self-Signed Certificate
         help: Generate a self-signed certificate for this server's web services
@@ -446,12 +428,6 @@ metadata:
           - wget
           - ncdu
           - iotop
-      - name: SYNC_METHOD
-        label: Folder Sync Method
-        help: Vagrant synced-folder mechanism — rsync or scp
-        type: text
-        group: sync
-        default: rsync
       - name: SYNCBACK_ID_FILES
         label: Sync ID Files Back to Host
         help: >-

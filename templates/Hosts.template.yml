@@ -435,18 +435,18 @@ hosts:
       ## Additional server options
       is_additional_server: false
 
-      {% if DOMINO_ADDITIONAL_SERVER_IDS | default(0) | int >= 1 %}
+      {% if DOMINO_ADDITIONAL_SERVER_NAMES | default([]) | length >= 1 %}
       domino_server_id_creation_tool: {{ DOMINO_SERVER_ID_CREATION_TOOL | default("asja") }}
       {% if DOMINO_SERVER_ID_CREATION_TOOL | default("asja") == "asja" %}
       asja_generate_server_ids:
-        {% for name in DOMINO_ADDITIONAL_SERVER_NAMES | default([]) %}
+        {% for name in DOMINO_ADDITIONAL_SERVER_NAMES %}
         - name: {{ name }}
           pass: ""
         {% endfor %}
       {% else %}
-      ots_generate_server_id_count: {{ DOMINO_ADDITIONAL_SERVER_IDS }}
+      ots_generate_server_id_count: {{ DOMINO_ADDITIONAL_SERVER_NAMES | length }}
       ots_generate_server_names:
-        {% for name in DOMINO_ADDITIONAL_SERVER_NAMES | default([]) %}
+        {% for name in DOMINO_ADDITIONAL_SERVER_NAMES %}
         - {{ name }}
         {% endfor %}
       {% endif %}
