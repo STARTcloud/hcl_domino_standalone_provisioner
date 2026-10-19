@@ -459,6 +459,9 @@ hosts:
         - netmonitor
         - SuperHumanPortal
 
+      ## Installer Server
+      installer_base_url: "{{ '{{' }} secrets.installer_url | default('') {{ '}}' }}"
+
       ## Domino Installer Variables
       domino_server_installer_tar: {{ DOMINO_INSTALLER | default("Domino_14.0_Linux_English.tar") }}
       domino_hash: {{ DOMINO_HASH | default("") }}
@@ -532,9 +535,6 @@ hosts:
       {% endif %}
       {% if DOMINO_IQ_MODEL %}
       domino_iq_model: '{{ DOMINO_IQ_MODEL }}'
-      {% endif %}
-      {% if DOMINO_IQ_API_KEY %}
-      domino_iq_api_key: '{{ DOMINO_IQ_API_KEY }}'
       {% endif %}
       domino_iq_use_max_completion_tokens: {{ DOMINO_IQ_USE_MAX_COMPLETION_TOKENS | default(false) }}
 

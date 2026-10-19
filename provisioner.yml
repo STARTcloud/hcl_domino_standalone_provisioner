@@ -176,7 +176,10 @@ metadata:
         help: >-
           API key the remote AI endpoint requires on every chat completions
           request
-        type: password
+        type: secret
+        kind: api_key
+        profile: openai
+        secret_key: domino_iq_api_key
         group: domino_iq
         show_if:
           domino_iq_enabled: true
@@ -188,6 +191,22 @@ metadata:
         type: checkbox
         group: domino_iq
         default: false
+      - name: INSTALLER_SERVER
+        label: Installer Server
+        help: URL, user and password of the installer server the roles download archives from
+        type: secret
+        kind: basic_auth
+        profile: installer_server
+        secret_key: installer_url
+        group: installers
+      - name: INSTALLER_BEARER
+        label: Installer Server Bearer Token
+        help: Bearer token the roles send the installer server before falling back to the user and password
+        type: secret
+        kind: api_key
+        profile: installer_server
+        secret_key: installer_url_bearer
+        group: installers
       - name: DOMINO_INSTALLER
         label: Domino Server Installer Archive
         help: >-
